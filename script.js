@@ -14,6 +14,51 @@ navLinks.forEach(link => {
 
 
 // ============================
+// CARRUSEL AUTOMÁTICO
+// ============================
+
+// TOMAMOS TODAS LAS LANDING DEL PORTFOLIO.HTML
+fetch("portfolio.html")
+  .then(res => res.text())
+  .then(html => {
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(html, "text/html");
+    let allPortfolioImages = doc.querySelectorAll(".project img");
+
+    const sliderContainer = document.getElementById("carousel-dynamic");
+
+    allPortfolioImages.forEach(img => {
+      sliderContainer.innerHTML += `
+        <div class="swiper-slide">
+            <img src="${img.src}">
+            <div class="slide-title">${img.dataset.title}</div>
+            <a href="${img.dataset.link}" class="view-btn" target="_blank">Ver landing completa</a>
+        </div>`;
+    });
+
+    const swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      loop: true,
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 220,
+        modifier: 2,
+        slideShadows: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }
+    });
+
+  });
+
+
+// ============================
 // LIGHTBOX
 // ============================
 const galleryItems = document.querySelectorAll(".project img");
@@ -25,18 +70,15 @@ galleryItems.forEach((img, i) => {
 
 function openGallery(i) {
   currentIndex = i;
-
   const img = galleryItems[i];
-  const lightbox = document.getElementById("lightbox");
 
   document.getElementById("lightbox-img").src = img.src;
   document.getElementById("lightbox-title").textContent = img.dataset.title;
 
   const link = document.getElementById("lightbox-link");
   link.href = img.dataset.link;
-  link.textContent = "Ver landing completa (" + img.dataset.title + ")";
 
-  lightbox.style.display = "flex";
+  document.getElementById("lightbox").style.display = "flex";
 }
 
 function changeSlide(step) {
@@ -47,50 +89,5 @@ function changeSlide(step) {
 document.getElementById("lightbox").addEventListener("click", (e) => {
   if (e.target.id === "lightbox") {
     document.getElementById("lightbox").style.display = "none";
-  }
-});
-
-
-// ============================
-// CARRUSEL AUTOMÁTICO (SWIPER)
-// ============================
-
-// Seleccionamos el contenedor del carrusel dinámico
-const sliderContainer = document.getElementById("carousel-dynamic");
-
-// Recorremos todas las imágenes de proyectos
-galleryItems.forEach(img => {
-
-  const title = img.dataset.title;
-  const link = img.dataset.link;
-  const src = img.src;
-
-  // Creamos cada slide
-  sliderContainer.innerHTML += `
-        <div class="swiper-slide">
-            <img src="${src}" alt="${title}">
-            <div class="slide-title">${title}</div>
-            <a href="${link}" target="_blank" class="view-btn">Ver landing completa</a>
-        </div>
-    `;
-});
-
-// Inicializamos Swiper
-const swiper = new Swiper(".mySwiper", {
-  effect: "coverflow",
-  grabCursor: true,
-  centeredSlides: true,
-  slidesPerView: "auto",
-  loop: true,
-  coverflowEffect: {
-    rotate: 0,
-    stretch: 0,
-    depth: 220,
-    modifier: 2,
-    slideShadows: false,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
   }
 });
