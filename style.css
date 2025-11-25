@@ -11,7 +11,6 @@ body {
   position: relative;
 }
 
-/* Fondo atenuado sobre la imagen */
 body::before {
   content: "";
   position: fixed;
@@ -21,7 +20,6 @@ body::before {
   z-index: -1;
 }
 
-/* Fondo oscuro detrás de TODOS los textos */
 p, h1, h2, h3, h4, h5, h6, a, span, li {
   display: inline-block;
   background: rgba(0,0,0,0.55);
@@ -116,16 +114,12 @@ nav ul li a.active::after {
   transition: 0.3s;
 }
 
-.logo img:hover {
-  transform: scale(1.08);
-}
-
 @keyframes neonPulse {
   0% { filter: drop-shadow(0 0 10px #39ff14); }
-  25% { filter: drop-shadow(0 0 15px #00f7ff); }
-  50% { filter: drop-shadow(0 0 15px #ff00ff); }
-  75% { filter: drop-shadow(0 0 15px #8a2be2); }
-  100% { filter: drop-shadow(0 0 10px #39ff14); }
+ 25% { filter: drop-shadow(0 0 15px #00f7ff); }
+ 50% { filter: drop-shadow(0 0 15px #ff00ff); }
+ 75% { filter: drop-shadow(0 0 15px #8a2be2); }
+ 100% { filter: drop-shadow(0 0 10px #39ff14); }
 }
 
 /* ============================
@@ -137,49 +131,9 @@ section {
   margin: auto;
 }
 
-h2 {
-  font-size: 2rem;
-  color: #39ff14;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-h3 {
-  color: #00f7ff;
-  margin-bottom: 15px;
-}
-
-p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #ccc;
-}
-
 /* ============================
-   BOTONES CELESTE NEÓN
+   CARRUSEL SWIPER
 ============================ */
-.view-btn {
-  display: inline-block;
-  background: #00eaff;
-  color: #000;
-  padding: 12px 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: .5px;
-  box-shadow: 0 0 12px #00eaff;
-  transition: .3s;
-}
-
-.view-btn:hover {
-  background: #57f6ff;
-  box-shadow: 0 0 22px #57f6ff;
-}
-
-/* ============================
-   CARRUSEL DESTACADO (SWIPER)
-============================ */
-
 .mySwiper {
   width: 100%;
   max-width: 850px;
@@ -202,20 +156,8 @@ p {
   object-fit: contain;
   border-radius: 12px;
   border: 2px solid #39ff14;
-  box-shadow: 0 0 25px #39ff14;
   margin-bottom: 15px;
   transition: .3s;
-}
-
-.swiper-slide:hover img {
-  transform: scale(1.04);
-}
-
-.slide-title {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #39ff14;
-  margin-bottom: 10px;
 }
 
 .swiper-button-next,
@@ -224,8 +166,15 @@ p {
   text-shadow: 0 0 12px #39ff14;
 }
 
+.slide-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #39ff14;
+}
+
 /* ============================
-   GALERÍA
+   GALERÍA DES
 ============================ */
 .examples {
   display: grid;
@@ -243,143 +192,26 @@ p {
   position: relative;
 }
 
-.project:hover {
-  transform: scale(1.05);
-}
-
-.preview-label {
-  position: absolute;
-  top: -12px;
-  left: 0;
-  right: 0;
-  font-size: 0.7rem;
-  color: rgba(57,255,20,0.7);
-  text-shadow: 0 0 6px rgba(57,255,20,0.6);
-  font-weight: bold;
-  pointer-events: none;
-}
-
 .project img {
   width: 100%;
   height: 110px;
   object-fit: contain;
-  background: rgba(0,0,0,0.6);
-  border-radius: 8px;
-  border: 2px solid #39ff14;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.project img:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 20px #39ff14;
-}
-
-.project a {
-  display: block;
-  margin-top: 8px;
-  color: #39ff14;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-.project a:hover {
-  color: #00f7ff;
-}
-
-/* ============================
-   LIGHTBOX
-============================ */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.lightbox-content {
-  background: rgba(15,15,15,0.9);
-  padding: 20px 30px;
-  border-radius: 16px;
-  box-shadow: 0 0 25px #39ff14;
-  max-width: 420px;
-  text-align: center;
-  animation: fadeIn .4s ease;
-}
-
-.lightbox-content img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: contain;
   border: 2px solid #39ff14;
   border-radius: 10px;
-  box-shadow: 0 0 15px #39ff14;
+  background: rgba(0,0,0,0.6);
 }
 
-.lightbox .caption {
-  margin-top: 10px;
-  color: #39ff14;
-  font-weight: bold;
-}
-
-.nav-btn {
-  position: absolute;
+/* ============================
+   BOTÓN WHATSAPP LATERAL
+============================ */
+.whatsapp-float {
+  position: fixed;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2rem;
-  color: #39ff14;
-  cursor: pointer;
-  padding: 10px;
-  transition: .3s;
+  z-index: 2000;
 }
 
-.nav-btn:hover {
-  color: #00f7ff;
-}
-
-.prev { left: 20px; }
-.next { right: 20px; }
-
-/* ============================
-   CONTACTO
-============================ */
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.contact-links a {
-  text-decoration: none;
-  color: #39ff14;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.contact-links a:hover {
-  color: #00f7ff;
-}
-
-.contact-links img {
-  width: 22px;
-  height: 22px;
-  filter: drop-shadow(0 0 5px #39ff14);
-}
-
-/* ============================
-   BOTÓN WHATSAPP FLOTANTE
-============================ */
 .whatsapp-float img {
   width: 75px;
   height: 75px;
@@ -391,19 +223,12 @@ p {
   transition: .3s;
 }
 
-.whatsapp-float img:hover {
-  transform: scale(1.13);
-  box-shadow: 0 0 25px #25D366;
-}
-
 /* ============================
    FOOTER
 ============================ */
 footer {
   background: rgba(255,255,255,0.05);
   padding: 20px;
-  font-size: 0.9rem;
-  color: #777;
   margin-top: 40px;
 }
 
@@ -412,31 +237,12 @@ footer {
 ============================ */
 @media (max-width: 768px) {
 
-  nav ul {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-    flex-direction: column;
-    gap: 18px;
-    display: none;
-    width: 70%;
-    text-align: left;
-    padding: 20px 15px;
-  }
-
-  nav ul.active {
-    display: flex;
-  }
-
-  nav ul li a {
-    text-shadow: 0 0 8px #39ff14;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
   .swiper-slide img {
-    height: 260px;
+    height: 270px;
+  }
+
+  .whatsapp-float img {
+    width: 60px;
+    height: 60px;
   }
 }
