@@ -495,18 +495,8 @@ document.getElementById("carousel").addEventListener("touchend", e => {
   if(endX > startX + 50) prevSlide();
 });
 
-/* ------- AUTOPLAY GLOBAL ------- */
-setInterval(() => {
-  if(!manualCategory) nextSlide();
-}, 5000);
-
-/* ------- REACTIVAR AUTOPLAY ------- */
-document.addEventListener("scroll", () => {
-  const rect = document.getElementById("trabajos").getBoundingClientRect();
-  if(rect.bottom < 0 || rect.top > window.innerHeight){
-    manualCategory = false;
-  }
-});
+/* ------- SIN AUTOPLAY ------- */
+/* (Autoplay eliminado completamente por pedido tuyo) */
 
 /* ------- INICIALIZAR ------- */
 jumpToCategory("estetica",
