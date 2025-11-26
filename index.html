@@ -19,7 +19,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Fondo oscuro sutil */
 body::before {
   content: "";
   position: fixed;
@@ -51,7 +50,6 @@ nav .logo-nav {
   letter-spacing: 1px;
 }
 
-/* menú desktop */
 nav ul {
   display: flex;
   gap: 25px;
@@ -59,9 +57,9 @@ nav ul {
 }
 nav ul li a {
   color: #39ff14;
-  text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
+  text-decoration: none;
   transition: .2s;
 }
 nav ul li a:hover { color: #00f7ff; }
@@ -74,6 +72,9 @@ nav ul li a:hover { color: #00f7ff; }
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+
+  /* ✔ MÁS ADENTRO */
+  margin-right: 10px;
 }
 .hamburger div {
   height: 4px;
@@ -81,7 +82,7 @@ nav ul li a:hover { color: #00f7ff; }
   border-radius: 5px;
 }
 
-/* menú mobile */
+/* MENU MOBILE */
 #mobile-menu {
   position: fixed;
   top: 0;
@@ -102,7 +103,6 @@ nav ul li a:hover { color: #00f7ff; }
   text-decoration: none;
 }
 
-/* activar menú */
 .mobile-active { right: 0 !important; }
 
 @media(max-width:900px){
@@ -127,7 +127,6 @@ nav ul li a:hover { color: #00f7ff; }
   50% { filter: drop-shadow(0 0 20px #00f7ff); }
   100%{ filter: drop-shadow(0 0 10px #39ff14); }
 }
-
 .hero h1 {
   font-size:2.2rem;
   margin-top:15px;
@@ -146,7 +145,6 @@ section h2 {
   color:#39ff14;
   font-size:2rem;
   margin-bottom:15px;
-  letter-spacing:1px;
 }
 section p {
   font-size:1.1rem;
@@ -155,13 +153,12 @@ section p {
 }
 
 /* ---------------------------------------------------
-   EJEMPLOS (MISMO ESTILO ORIGINAL)
+   EJEMPLOS — MISMO TAMAÑO + TEXTO CIAN
 --------------------------------------------------- */
 .examples {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:18px;
-  margin-top:25px;
 }
 
 .project {
@@ -173,27 +170,29 @@ section p {
 }
 .project:hover { transform:scale(1.04); }
 
+/* ✔ TODAS LAS LANDINGS EXACTO MISMO TAMAÑO */
 .project img {
   width:100%;
-  height:120px;
-  object-fit:contain;
+  height:130px;          /* <-- Ajustado para UNIFICAR tamaño */
+  object-fit:cover;
   background:#00000050;
   border-radius:8px;
   border:2px solid #39ff14;
   cursor:pointer;
 }
 
+/* ✔ TEXTOS EN COLOR CIAN */
 .project a {
   display:block;
   margin-top:8px;
-  color:#39ff14;
+  color:#00f7ff;    /* CIAN */
   font-size:.9rem;
-  text-decoration:none;
   font-weight:600;
+  text-decoration:none;
 }
 
 /* ---------------------------------------------------
-   LIGHTBOX PROFESIONAL
+   LIGHTBOX
 --------------------------------------------------- */
 .lightbox {
   position:fixed;
@@ -212,24 +211,18 @@ section p {
   width:85%;
   text-align:center;
   border:2px solid #39ff14;
-  animation:fadeIn .3s;
 }
-@keyframes fadeIn {
-  from{ opacity:0; transform:scale(.7); }
-  to{ opacity:1; transform:scale(1); }
-}
-
 #lightbox-img {
   width:100%;
   border-radius:10px;
   border:2px solid #39ff14;
 }
 .close-btn {
-  font-size:2.5rem;
-  color:#39ff14;
   position:absolute;
   top:15px;
   right:15px;
+  color:#39ff14;
+  font-size:2.5rem;
   cursor:pointer;
   transition:.2s;
 }
@@ -261,9 +254,7 @@ section p {
   filter:drop-shadow(0 0 6px #000);
 }
 
-/* ---------------------------------------------------
-   FOOTER
---------------------------------------------------- */
+/* FOOTER */
 footer {
   padding:20px;
   background:#00000080;
@@ -273,6 +264,7 @@ footer {
 }
 </style>
 </head>
+
 <body>
 
 <!-- NAV -->
@@ -288,7 +280,9 @@ footer {
   </ul>
 
   <div class="hamburger" onclick="toggleMenu()">
-    <div></div><div></div><div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 </nav>
 
@@ -307,27 +301,25 @@ footer {
   <h1>Agencia Digital · Diseño Web & Landing Pages</h1>
 </div>
 
-<!-- QUIÉNES SOMOS -->
+<!-- SECCIONES -->
 <section id="quienes">
   <h2>Quiénes Somos</h2>
-  <p>Somos una agencia digital especializada en diseño de Landing Pages y sitios web modernos, rápidos y optimizados para convertir clientes.</p>
+  <p>Somos una agencia especializada en Landing Pages modernas y sitios web profesionales.</p>
 </section>
 
-<!-- QUÉ HACEMOS -->
 <section id="quehacemos">
   <h2>Qué Hacemos</h2>
-  <p>Diseños profesionales, visuales, rápidos y adaptados a tu rubro. Creamos páginas que venden, conectan y generan confianza.</p>
+  <p>Diseños rápidos, visuales, responsivos y pensados para convertir clientes.</p>
 </section>
 
-<!-- SERVICIOS -->
 <section id="servicios">
   <h2>Servicios</h2>
   <p>
-    ✔ Landing Pages de alto impacto<br>
+    ✔ Landing Pages premium<br>
     ✔ Sitios web completos<br>
-    ✔ Branding visual<br>
-    ✔ Integración de WhatsApp<br>
-    ✔ Hosting Render / GitHub<br>
+    ✔ Branding y estética<br>
+    ✔ WhatsApp integrado<br>
+    ✔ Hosting gratuito Render<br>
   </p>
 </section>
 
@@ -345,6 +337,7 @@ footer {
 
   <h3>💈 Barberías</h3>
   <div class="examples gallery">
+
     <div class="project">
       <img src="https://iili.io/KPyvEcx.jpg" data-title="Barber 99" data-link="https://barberia-elbebu.onrender.com/">
       <a target="_blank" href="https://barberia-elbebu.onrender.com/">Barber 99</a>
@@ -354,6 +347,7 @@ footer {
       <img src="https://iili.io/KPyUCn1.jpg" data-title="Barber Shop Rodri" data-link="https://barber-shop-rodri.onrender.com/">
       <a target="_blank" href="https://barber-shop-rodri.onrender.com/">Barber Shop Rodri</a>
     </div>
+
   </div>
 
   <h3>🍰 Repostería</h3>
@@ -364,7 +358,7 @@ footer {
     </div>
   </div>
 
-  <h3>🍻 Bailables / Resto</h3>
+  <h3>🍻 Bailables</h3>
   <div class="examples gallery">
     <div class="project">
       <img src="https://iili.io/f9a9K5Q.jpg" data-title="Tío Sergio" data-link="https://tio-sergio.onrender.com">
@@ -372,7 +366,7 @@ footer {
     </div>
   </div>
 
-  <h3>📻 Radios Online</h3>
+  <h3>📻 Radios</h3>
   <div class="examples gallery">
     <div class="project">
       <img src="https://iili.io/f9an4yX.jpg" data-title="Radio Imagen" data-link="https://radioimagen.onrender.com">
@@ -424,20 +418,19 @@ footer {
 <!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
-  <p>Consultas, presupuestos y desarrollos</p>
+  <p>Consultas y proyectos por WhatsApp</p>
   <a class="view-btn" target="_blank" 
      href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
      Escribir por WhatsApp
   </a>
 </section>
 
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!" 
+<!-- WHATSAPP -->
+<a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!"
 class="whatsapp-float" target="_blank">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
 
-<!-- FOOTER -->
 <footer>© 2025 Ciborg347™ · Agencia Digital</footer>
 
 <!-- LIGHTBOX -->
