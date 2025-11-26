@@ -29,6 +29,11 @@ nav {
   display:flex; justify-content:space-between; align-items:center;
   z-index:3000;
 }
+.logo-nav {
+  color:#39ff14;
+  font-size:1.3rem;
+  font-weight:bold;
+}
 
 nav ul {
   display:flex; gap:35px; list-style:none; padding:0; margin:0;
@@ -36,9 +41,7 @@ nav ul {
 nav li a {
   color:#00f7ff; text-decoration:none; font-weight:bold; font-size:1.05rem;
 }
-nav li a:hover {
-  color:#39ff14;
-}
+nav li a:hover { color:#39ff14; }
 
 /* Hamburguesa */
 .hamburger { display:none; width:28px; cursor:pointer; flex-direction:column; gap:5px; }
@@ -59,7 +62,7 @@ nav li a:hover {
 }
 .mobile-active { right:0!important; }
 
-/* Cerrar menú clickeando afuera */
+/* Overlay para cerrar menú tocando afuera */
 #menu-overlay {
   position:fixed; inset:0;
   background:rgba(0,0,0,.6);
@@ -67,7 +70,6 @@ nav li a:hover {
   z-index:3200;
 }
 
-/* RESPONSIVE NAV */
 @media(max-width:900px){
   nav ul { display:none; }
   .hamburger { display:flex; margin-right:8px; }
@@ -112,24 +114,42 @@ section p {
   text-align:center;
 }
 
-.carousel img {
+/* CONTENEDOR DE LA IMAGEN (LA CAJA DEL CARRUSEL) */
+.carousel-image-wrapper {
   width:100%;
-  height:360px;
-  object-fit:contain;    /* 🔥 IMAGEN COMPLETA */
+  height:290px;           /* alto controlado escritorio */
   background:#000;
   border-radius:15px;
   border:2px solid #39ff14;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  overflow:hidden;
 }
 
-/* Descripción cian */
+/* LA IMAGEN SIEMPRE ADENTRO DEL CONTENEDOR */
+.carousel-image-wrapper img {
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;     /* imagen COMPLETA */
+  display:block;
+}
+
+/* Mobile: un poco más baja */
+@media(max-width:600px){
+  .carousel-image-wrapper {
+    height:220px;
+  }
+}
+
 .carousel-desc {
   margin-top:15px;
   color:#00f7ff;
-  font-size:1.1rem;
+  font-size:1.05rem;
   font-weight:bold;
 }
 
-/* Botón CTA */
 .carousel-btn {
   margin-top:12px;
   padding:10px 22px;
@@ -151,7 +171,7 @@ section p {
 .left { left:15px; }
 .right { right:15px; }
 
-/* Botón cerrar */
+/* Botón cerrar carrusel */
 .close-carousel {
   position:absolute; top:10px; right:15px;
   font-size:2rem; cursor:pointer;
@@ -179,7 +199,6 @@ footer {
 </head>
 <body>
 
-<!-- Overlay para cerrar el menú -->
 <div id="menu-overlay" onclick="closeMenu()"></div>
 
 <!-- NAV -->
@@ -210,7 +229,7 @@ footer {
 
 <!-- HERO -->
 <div class="hero">
-  <img src="https://iili.io/fH74EGa.md.png" alt="Logo">
+  <img src="https://iili.io/fH74EGa.md.png" alt="Logo Ciborg347">
   <h1 style="color:#00f7ff; margin-top:20px;">Impulsamos negocios con diseño web estratégico</h1>
 </div>
 
@@ -244,26 +263,20 @@ footer {
   </p>
 </section>
 
-<!-- EJEMPLOS (CARRUSEL) -->
+<!-- CARRUSEL DE EJEMPLOS -->
 <section id="trabajos">
   <h2>Ejemplos de Landings</h2>
 
   <div class="carousel-container" id="carousel">
-    
-    <!-- Cerrar -->
     <div class="close-carousel" onclick="closeCarousel()">×</div>
-
-    <!-- Flechas -->
     <div class="arrow left" onclick="prevSlide()">❮</div>
     <div class="arrow right" onclick="nextSlide()">❯</div>
 
-    <!-- Imagen -->
-    <img id="carousel-img" src="">
+    <div class="carousel-image-wrapper">
+      <img id="carousel-img" src="" alt="Ejemplo de landing">
+    </div>
 
-    <!-- Texto vendedor -->
     <div class="carousel-desc" id="carousel-desc"></div>
-
-    <!-- Botón -->
     <a id="carousel-btn" class="carousel-btn" target="_blank">Ver landing completa</a>
   </div>
 </section>
@@ -281,13 +294,13 @@ footer {
 <a class="whatsapp-float" 
    href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20mi%20propia%20landing."
    target="_blank">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </a>
 
 <footer>© 2025 Ciborg347™ · Web Agency</footer>
 
 <script>
-/* ---------------- MENU ------------------ */
+/* -------- MENÚ -------- */
 function toggleMenu(){
   document.getElementById("mobile-menu").classList.add("mobile-active");
   document.getElementById("menu-overlay").style.display="block";
@@ -297,7 +310,7 @@ function closeMenu(){
   document.getElementById("menu-overlay").style.display="none";
 }
 
-/* ---------------- CARRUSEL ------------------ */
+/* -------- CARRUSEL -------- */
 const slides = [
   {
     img:"https://iili.io/KPyCnHu.jpg",
