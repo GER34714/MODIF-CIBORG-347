@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciborg347™ | Landing Pages & Web Designs</title>
+<link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
+<meta property="og:title" content="Ciborg347™ | Landing Pages & Web Designs">
+<meta property="og:description" content="Landing Pages modernas, optimizadas y con estilo que venden e impulsan tu negocio. 🚀">
+<meta property="og:image" content="https://iili.io/fHQF3u4.md.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+  background: url('https://iili.io/fH5IORj.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  scroll-behavior: smooth;
+
+  /* Fade-in suave */
+  opacity: 0;
+  animation: fadeInBody .8s forwards ease-out;
+}
+@keyframes fadeInBody { to { opacity: 1; } }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex; justify-content: center;
+  padding: 14px 20px; z-index: 1000;
+  backdrop-filter: blur(6px);
+
+  animation: fadeDown .8s ease-out;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+nav ul { list-style: none; display: flex; gap: 45px; padding: 0; }
+nav a {
+  color: #39ff14; text-decoration: none; font-weight: bold; font-size: 1.1rem;
+}
+
+/* LOGO */
+.logo {
+  margin: 120px 0 50px;
+  animation: fadeUp .9s ease-out;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo img {
+  width: 260px;
+  filter: drop-shadow(0 0 15px #39ff14);
+  animation: neonPulse 3s infinite alternate;
+}
+
+/* SECCIONES */
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+  animation: fadeSection .8s ease-out;
+}
+@keyframes fadeSection {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 { font-size: 2rem; margin-bottom: 20px; color: #39ff14; }
+h3 { color: #00f7ff; }
+
+/* GALERÍA ORIGINAL (NO TARJETAS GRANDES) */
+.examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+}
+.project {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,255,128,0.3);
+  padding: 10px;
+  transition: .3s;
+
+  /* Animación suave */
+  opacity: 0;
+  animation: fadeCard .6s forwards;
+}
+@keyframes fadeCard { to { opacity: 1; transform: scale(1); } }
+
+.project img {
+  width: 100%; height: 110px; object-fit: contain;
+  background: rgba(0,0,0,0.6);
+  border-radius: 8px;
+  border: 2px solid #39ff14;
+  cursor: pointer;
+}
+.project a {
+  display: block; margin-top: 8px;
+  color: #39ff14; font-size: .85rem; font-weight: bold;
+}
+
+/*********** LIGHTBOX ***********/
+.lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  align-items: center; justify-content: center; flex-direction: column;
+
+  animation: fadeIn .3s ease-out;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-content {
+  background: rgba(15,15,15,0.95);
+  padding: 20px 30px;
+  border-radius: 16px;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 0 25px #39ff14;
+
+  animation: scaleIn .25s ease-out;
+}
+@keyframes scaleIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-content img {
+  width: 100%; max-height: 300px;
+  object-fit: contain; border-radius: 10px;
+  border: 2px solid #39ff14;
+}
+
+/* BOTÓN CERRAR */
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #39ff14;
+  font-size: 2.5rem;
+  cursor: pointer;
+  text-shadow: 0 0 10px #39ff14;
+  transition: .2s;
+}
+.close-btn:hover { color: #00f7ff; }
+
+/* WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  bottom: 75px;
+  right: 22px;
+  z-index: 999;
+}
+.whatsapp-float img {
+  width: 65px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px #000);
+}
+
+footer {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  font-size: .9rem;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#quienes">Quiénes Somos</a></li>
+    <li><a href="#descripcion">Qué Hacemos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#ejemplos">Ejemplos</a></li>
+    <li><a href="#valores">Presupuesto</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="logo">
+  <img src="https://iili.io/fH74EGa.md.png" alt="Ciborg347™">
+</div>
+
+<section id="quienes">
+  <h2>Quiénes Somos</h2>
+  <p>Ciborg347™ crea Landing Pages y webs profesionales, rápidas y con estética premium.</p>
+</section>
+
+<section id="descripcion">
+  <h2>Qué Hacemos</h2>
+  <p>Diseñamos páginas modernas, rápidas, responsivas y optimizadas para convertir.</p>
+</section>
+
+<section id="servicios">
+  <h2>Servicios</h2>
+  <p>
+    ✔ Landing Pages profesionales<br>
+    ✔ Webs completas<br>
+    ✔ Branding visual<br>
+    ✔ WhatsApp integrado<br>
+    ✔ Hosting Render gratis
+  </p>
+</section>
+
+<section id="ejemplos">
+  <h2>Ejemplos de Landings</h2>
+
+  <!-- MANICURIA -->
+  <h3>💅 MANICURIA & ESTÉTICAS</h3>
+  <div class="examples gallery">
+      <div class="project"><img src="https://iili.io/KPyCnHu.jpg" 
+      data-link="https://adda-nails.onrender.com/" data-title="Adda Nails">
+      <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
+  </div>
+
+  <!-- BARBERÍAS -->
+  <h3>💈 Barberías</h3>
+  <div class="examples gallery">
+      <div class="project"><img src="https://iili.io/KPyvEcx.jpg"
+      data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99">
+      <a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
+
+      <div class="project"><img src="https://iili.io/KPyUCn1.jpg"
+      data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri">
+      <a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
+  </div>
+
+  <!-- REPOSTERÍA -->
+  <h3>🍰 Repostería / Food</h3>
+  <div class="examples gallery">
+      <div class="project"><img src="https://iili.io/fF5pLGf.jpg"
+      data-link="https://dulce-juana.onrender.com/" data-title="Dulce Juana™">
+      <a href="https://dulce-juana.onrender.com/" target="_blank">Dulce Juana™</a></div>
+  </div>
+
+  <!-- RESTO -->
+  <h3>🍻 Restobar / Bailables</h3>
+  <div class="examples gallery">
+      <div class="project"><img src="https://iili.io/f9a9K5Q.jpg"
+      data-link="https://tio-sergio.onrender.com" data-title="Tío Sergio™">
+      <a href="https://tio-sergio.onrender.com" target="_blank">Tío Sergio™</a></div>
+  </div>
+
+  <!-- RADIOS -->
+  <h3>📻 Radios Online</h3>
+  <div class="examples gallery">
+      <div class="project"><img src="https://iili.io/f9an4yX.jpg"
+      data-link="https://radioimagen.onrender.com" data-title="Radio Imagen™">
+      <a href="https://radioimagen.onrender.com" target="_blank">Radio Imagen™</a></div>
+  </div>
+
+  <!-- CASINOS -->
+  <h3>🎰 Casinos</h3>
+  <div class="examples gallery">
+
+      <div class="project"><img src="https://iili.io/KPygQXS.jpg"
+      data-link="https://facucasino.onrender.com/" data-title="Facu Casino™">
+      <a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
+
+      <div class="project"><img src="https://iili.io/KPyrMj2.jpg"
+      data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™">
+      <a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
+
+      <div class="project"><img src="https://iili.io/KPyDVHP.jpg"
+      data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™">
+      <a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
+
+      <div class="project"><img src="https://iili.io/KigNdVS.jpg"
+      data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™">
+      <a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
+
+      <div class="project"><img src="https://iili.io/Kigv3Ij.jpg"
+      data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™">
+      <a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
+
+      <div class="project"><img src="https://iili.io/KiggTcN.jpg"
+      data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™">
+      <a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
+
+      <div class="project"><img src="https://iili.io/f9a9Fdx.jpg"
+      data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™">
+      <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a></div>
+
+  </div>
+</section>
+
+<section id="valores">
+  <h2>Presupuesto Personalizado</h2>
+  <p>Proyectos 100% personalizados según tu negocio.</p>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <div class="contact-links">
+    <a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- BOTÓN WHATSAPP -->
+<a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!"
+class="whatsapp-float" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
+
+<footer>© 2025 Ciborg347™</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <span class="close-btn" onclick="closeLb()">×</span>
+
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="">
+    <div id="lightbox-title"></div>
+    <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
+  </div>
+</div>
+
+<script>
+const galleryItems = document.querySelectorAll(".gallery img");
+let currentIndex = 0;
+
+galleryItems.forEach((img, i) => {
+  img.addEventListener("click", () => openGallery(i));
+});
+
+function openGallery(i) {
+  currentIndex = i;
+  const img = galleryItems[i];
+  document.getElementById("lightbox-img").src = img.src;
+  document.getElementById("lightbox-title").textContent = img.dataset.title;
+  document.getElementById("lightbox-link").href = img.dataset.link;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLb() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+document.getElementById("lightbox").addEventListener("click", (e) => {
+  if (e.target.id === "lightbox") closeLb();
+});
+</script>
+
+</body>
+</html>
