@@ -1,113 +1,66 @@
-/* ============================
-   ESTILOS GENERALES
-============================ */
+/* Estilos generales */
 body {
   margin: 0;
   font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
-  background: url("https://iili.io/fqGY7bs.jpg") center/cover fixed no-repeat;
+  background: #0a0a0a;
   color: #fff;
   text-align: center;
   scroll-behavior: smooth;
   position: relative;
 }
 
-/* Fondo negro suave */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.90);
   backdrop-filter: blur(2px);
   z-index: -1;
 }
 
-/* Fondo detrás de textos */
-p, h1, h2, h3, h4, h5, h6, a, span, li {
-  display: inline-block;
-  background: rgba(0,0,0,0.55);
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-/* ============================
-   NAVBAR
-============================ */
+/* Navbar */
 nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
+  position: fixed; top: 0; width: 100%;
   background: rgba(0,0,0,0.85);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 20px;
-  z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 20px; z-index: 1000;
   backdrop-filter: blur(6px);
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  gap: 50px;
-  margin: 0;
-  padding: 0;
+  list-style: none; display: flex; gap: 50px;
+  margin: 0; padding: 0;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: #39ff14;
-  font-weight: bold;
-  font-size: 1.1rem;
-  position: relative;
-  transition: color 0.3s;
+  text-decoration: none; color: #39ff14;
+  font-weight: bold; font-size: 1.1rem;
+  position: relative; transition: color 0.3s;
 }
 
 nav ul li a::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #39ff14;
+  content: ""; position: absolute; bottom: -5px; left: 0;
+  width: 0; height: 2px; background: #39ff14;
   transition: width 0.3s;
 }
 
 nav ul li a:hover::after,
-nav ul li a.active::after {
-  width: 100%;
-}
+nav ul li a.active::after { width: 100%; }
 
-/* ============================
-   MENÚ HAMBURGUESA
-============================ */
+nav ul li a:hover { color: #00f7ff; }
+
 .hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
+  display: none; flex-direction: column;
+  cursor: pointer; gap: 5px;
 }
 
 .hamburger div {
-  width: 28px;
-  height: 4px;
-  background: #39ff14;
-  border-radius: 4px;
-  box-shadow: 0 0 8px #39ff14;
-  transition: .3s;
+  width: 25px; height: 3px;
+  background: #39ff14; transition: 0.3s;
 }
 
-.hamburger:hover div {
-  background: #00eaff;
-  box-shadow: 0 0 12px #00eaff;
-}
-
-/* ============================
-   LOGO
-============================ */
-.logo {
-  margin: 120px 0 50px;
-}
+/* Logo */
+.logo { margin: 120px 0 50px; }
 
 .logo img {
   width: 260px;
@@ -116,9 +69,7 @@ nav ul li a.active::after {
   transition: 0.3s;
 }
 
-.logo img:hover {
-  transform: scale(1.08);
-}
+.logo img:hover { transform: scale(1.08); }
 
 @keyframes neonPulse {
   0% { filter: drop-shadow(0 0 10px #39ff14); }
@@ -128,9 +79,7 @@ nav ul li a.active::after {
   100% { filter: drop-shadow(0 0 10px #39ff14); }
 }
 
-/* ============================
-   SECCIONES
-============================ */
+/* Secciones */
 section {
   padding: 80px 20px;
   max-width: 1100px;
@@ -144,10 +93,7 @@ h2 {
   letter-spacing: 2px;
 }
 
-h3 {
-  color: #00f7ff;
-  margin-bottom: 15px;
-}
+h3 { color: #00f7ff; margin-bottom: 15px; }
 
 p {
   font-size: 1.1rem;
@@ -155,263 +101,130 @@ p {
   color: #ccc;
 }
 
-/* ============================
-   BOTONES NEÓN
-============================ */
-.view-btn {
-  display: inline-block;
-  background: #00eaff;
-  color: #000;
-  padding: 12px 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: .5px;
-  box-shadow: 0 0 12px #00eaff;
-  transition: .3s;
-}
+/* ========================= */
+/* 🚀 CARRUSEL PREMIUM CSS   */
+/* ========================= */
 
-.view-btn:hover {
-  background: #57f6ff;
-  box-shadow: 0 0 22px #57f6ff;
-}
-
-/* ============================
-   CARRUSEL (SWIPER)
-============================ */
-
-.mySwiper {
+.carousel-container {
+  overflow: hidden;
   width: 100%;
-  max-width: 850px;
-  padding-top: 40px;
-  padding-bottom: 60px;
-  margin: auto;
-}
-
-.swiper-slide {
-  background: rgba(0,0,0,0.6);
-  border-radius: 18px;
-  box-shadow: 0 0 35px #39ff14;
-  padding: 20px;
-  text-align: center;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 360px;
-  object-fit: contain;
-  border-radius: 12px;
-  border: 2px solid #39ff14;
-  box-shadow: 0 0 25px #39ff14;
-  margin-bottom: 15px;
-  transition: .3s;
-}
-
-.swiper-slide:hover img {
-  transform: scale(1.04);
-}
-
-/* MEJORAS PREMIUM */
-
-.mySwiper .swiper-slide {
-    padding: 25px;
-    border-radius: 16px;
-    background: rgba(0,0,0,0.65);
-    box-shadow: 0 0 30px rgba(57,255,20,0.45);
-}
-
-.mySwiper .swiper-slide h3 {
-    margin: 12px 0 8px;
-    font-size: 1.3rem;
-    background: transparent;
-    color: #39ff14;
-    text-shadow: 0 0 8px #39ff14;
-}
-
-.mySwiper .swiper-pagination-bullet {
-    background: #39ff14;
-    box-shadow: 0 0 10px #39ff14;
-    opacity: 1;
-}
-
-.mySwiper .swiper-pagination-bullet-active {
-    background: #00eaff;
-    box-shadow: 0 0 15px #00eaff;
-}
-
-.mySwiper .swiper-button-next,
-.mySwiper .swiper-button-prev {
-  color: #39ff14;
-  text-shadow: 0 0 12px #39ff14;
-}
-
-.mySwiper .swiper-button-next:hover,
-.mySwiper .swiper-button-prev:hover {
-    color: #00eaff;
-    text-shadow: 0 0 15px #00eaff;
-}
-
-/* ESPECIAL PARA CELU */
-@media (max-width: 768px) {
-    .mySwiper .swiper-slide img {
-        height: 230px !important;
-    }
-    .mySwiper {
-        max-width: 95%;
-    }
-}
-
-/* ============================
-   GALERÍA (INDEX)
-============================ */
-.examples {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.project {
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,255,128,0.3);
-  padding: 10px;
-  transition: 0.3s;
-  position: relative;
-}
-
-.project:hover {
-  transform: scale(1.05);
-}
-
-.preview-label {
-  position: absolute;
-  top: -12px;
-  left: 0;
-  right: 0;
-  font-size: 0.7rem;
-  color: rgba(57,255,20,0.7);
-  text-shadow: 0 0 6px rgba(57,255,20,0.6);
-  font-weight: bold;
-  pointer-events: none;
-}
-
-.project img {
-  width: 100%;
-  height: 110px;
-  object-fit: contain;
-  background: rgba(0,0,0,0.6);
-  border-radius: 8px;
-  border: 2px solid #39ff14;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.project img:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 20px #39ff14;
-}
-
-.project a {
-  display: block;
-  margin-top: 8px;
-  color: #39ff14;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-.project a:hover {
-  color: #00f7ff;
-}
-
-/* ============================
-   CONTACTO
-============================ */
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.contact-links a {
-  text-decoration: none;
-  color: #39ff14;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-}
-
-.contact-links a:hover {
-  color: #00f7ff;
-}
-
-.contact-links img {
-  width: 22px;
-  height: 22px;
-  filter: drop-shadow(0 0 5px #39ff14);
-}
-
-/* ============================
-   BOTÓN WHATSAPP FLOTANTE
-============================ */
-.whatsapp-float img {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background: #25D366;
-  padding: 10px;
-  object-fit: contain;
-  box-shadow: 0 0 15px #25D366;
-  transition: .3s;
-}
-
-.whatsapp-float img:hover {
-  transform: scale(1.13);
-  box-shadow: 0 0 25px #25D366;
-}
-
-/* ============================
-   FOOTER
-============================ */
-footer {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #777;
   margin-top: 40px;
 }
 
-/* ============================
-   RESPONSIVE MENU + FIXES
-============================ */
+.carousel-track {
+  display: flex;
+  transition: transform .4s ease;
+}
+
+.slide {
+  min-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 90%;
+  max-width: 340px;
+  border-radius: 10px;
+  border: 2px solid #39ff14;
+  margin-bottom: 15px;
+  box-shadow: 0 0 18px #39ff14;
+}
+
+.slide h3 { margin-bottom: 10px; }
+
+.slide p {
+  max-width: 650px;
+  margin: 0 auto 15px;
+}
+
+.btn-slide {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #39ff14;
+  color: #000;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn-slide:hover {
+  background: #00f7ff;
+  box-shadow: 0 0 15px #00f7ff;
+}
+
+/* Botones */
+.carousel-controls { margin-top: 18px; }
+
+.carousel-btn {
+  background: none;
+  border: 2px solid #39ff14;
+  color: #39ff14;
+  font-size: 1.6rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.carousel-btn:hover {
+  color: #00f7ff;
+  border-color: #00f7ff;
+}
+
+/* Contacto */
+.contact-links {
+  display: flex; flex-direction: column;
+  gap: 10px; align-items: center; margin-top: 20px;
+}
+
+.contact-links a {
+  text-decoration: none; color: #39ff14;
+  font-size: 1rem; display: flex; align-items: center;
+  gap: 8px; font-weight: bold;
+}
+
+.contact-links a:hover { color: #00f7ff; }
+
+.contact-links img {
+  width: 22px; filter: drop-shadow(0 0 5px #39ff14);
+}
+
+/* WhatsApp flotante */
+.whatsapp-float {
+  position: fixed; bottom: 60px; right: 22px;
+  z-index: 999;
+}
+
+.whatsapp-float img {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,255,0,0.5);
+  transition: 0.3s;
+}
+
+.whatsapp-float img:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 20px rgba(0,255,0,0.8);
+}
+
+/* Footer */
+footer {
+  background: rgba(255,255,255,0.05);
+  padding: 20px; font-size: 0.9rem;
+  color: #777; margin-top: 40px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-
   nav ul {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-    flex-direction: column;
-    gap: 18px;
-    display: none;
-    width: 70%;
-    text-align: left;
-    padding: 20px 15px;
+    position: absolute; top: 60px; left: 10px;
+    flex-direction: column; gap: 18px;
+    display: none; width: 70%; text-align: left;
   }
 
-  nav ul.active {
-    display: flex;
-  }
+  nav ul.active { display: flex; }
 
-  .hamburger {
-    display: flex;
-  }
-
-  .swiper-slide img {
-    height: 260px;
-  }
+  .hamburger { display: flex; }
 }
