@@ -3,255 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ciborg347™ | Landing Pages & Web Designs</title>
+<title>Ciborg347™ | Web Agency</title>
 <link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
 
 <style>
-/* -----------------------------------
-   BASE
------------------------------------ */
+/* ------------------------ BASE ------------------------ */
 body {
   margin: 0;
   font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
-  background: url('https://iili.io/fH5IORj.jpg') center/cover fixed no-repeat;
+  background: url("https://iili.io/fH5IORj.jpg") center/cover fixed no-repeat;
   color: #fff;
   scroll-behavior: smooth;
 }
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.78);
-  backdrop-filter: blur(4px);
-  z-index: -1;
+  content:""; inset:0; position:fixed;
+  background:rgba(0,0,0,.80); backdrop-filter:blur(4px);
+  z-index:-1;
 }
 
-/* -----------------------------------
-   NAVBAR + HAMBURGUESA
------------------------------------ */
+/* ------------------------ NAV ------------------------ */
 nav {
-  position: fixed; top: 0; width: 100%;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 20px;
-  background: rgba(0,0,0,.85);
-  backdrop-filter: blur(6px);
-  z-index: 2000;
+  position:fixed; top:0; left:0; width:100%;
+  background:rgba(0,0,0,.85);
+  padding:15px 20px;
+  display:flex; justify-content:space-between; align-items:center;
+  z-index:3000;
 }
 
-.logo-nav {
-  color: #39ff14;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-/* Desktop */
 nav ul {
-  display: flex; gap: 35px; list-style: none; padding: 0; margin: 0;
+  display:flex; gap:35px; list-style:none; padding:0; margin:0;
 }
-nav ul li a {
-  color: #00f7ff;
-  text-decoration: none;
-  font-size: 1.05rem; font-weight: bold;
-  transition: .2s;
+nav li a {
+  color:#00f7ff; text-decoration:none; font-weight:bold; font-size:1.05rem;
 }
-nav ul li a:hover { color: #39ff14; }
+nav li a:hover {
+  color:#39ff14;
+}
 
 /* Hamburguesa */
-.hamburger {
-  width: 32px; height: 23px;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  margin-right: 15px;
-}
-.hamburger div {
-  height: 4px; background: #39ff14; border-radius: 5px;
-}
+.hamburger { display:none; width:28px; cursor:pointer; flex-direction:column; gap:5px; }
+.hamburger div { height:4px; background:#39ff14; border-radius:4px; }
 
-/* Menú mobile */
+/* Menu móvil */
 #mobile-menu {
-  position: fixed;
-  top: 0; right: -100%; height: 100%;
-  width: 68%;
-  background: #000;
-  padding: 80px 25px;
-  display: flex; flex-direction: column; gap: 30px;
-  transition: .3s;
-  z-index: 2500;
+  position:fixed; right:-100%; top:0;
+  height:100%; width:70%;
+  background:#000;
+  padding:80px 25px;
+  display:flex; flex-direction:column; gap:30px;
+  transition:.3s;
+  z-index:3500;
 }
 #mobile-menu a {
-  color: #00f7ff; font-size: 1.3rem; text-decoration: none; font-weight: bold;
+  color:#00f7ff; text-decoration:none; font-size:1.3rem; font-weight:bold;
 }
-.mobile-active { right: 0 !important; }
+.mobile-active { right:0!important; }
 
+/* Cerrar menú clickeando afuera */
+#menu-overlay {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  z-index:3200;
+}
+
+/* RESPONSIVE NAV */
 @media(max-width:900px){
-  nav ul { display: none; }
-  .hamburger { display: flex; }
+  nav ul { display:none; }
+  .hamburger { display:flex; margin-right:8px; }
 }
 
-/* -----------------------------------
-   HERO
------------------------------------ */
+/* ------------------------ HERO ------------------------ */
 .hero {
-  text-align: center;
-  padding-top: 140px;
+  padding-top:140px; text-align:center;
 }
 .hero img {
-  width: 260px;
-  filter: drop-shadow(0 0 15px #39ff14);
-  animation: neonPulse 3s infinite alternate;
+  width:260px;
+  filter:drop-shadow(0 0 15px #39ff14);
+  animation:glow 3s infinite alternate;
 }
-@keyframes neonPulse {
-  0% { filter: drop-shadow(0 0 10px #39ff14); }
-  50% { filter: drop-shadow(0 0 20px #00f7ff); }
-  100% { filter: drop-shadow(0 0 10px #39ff14); }
+@keyframes glow {
+  0%{ filter:drop-shadow(0 0 10px #39ff14);}
+  50%{ filter:drop-shadow(0 0 20px #00f7ff);}
+  100%{ filter:drop-shadow(0 0 10px #39ff14);}
 }
 
-/* -----------------------------------
-   SECCIONES
------------------------------------ */
+/* ------------------------ SECCIONES ------------------------ */
 section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 80px 20px;
+  max-width:1100px; margin:auto; padding:80px 20px;
 }
 section h2 {
-  color: #39ff14; font-size: 2rem; margin-bottom: 15px;
+  font-size:2rem; color:#39ff14; margin-bottom:15px;
 }
 section p {
-  font-size: 1.15rem; color: #ccc; line-height: 1.7;
+  font-size:1.15rem; line-height:1.7; color:#ccc;
 }
 
-/* -----------------------------------
-   GALERÍA — TARJETAS TODAS IGUALES
------------------------------------ */
-.examples {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  justify-content: center;
-  margin-top: 25px;
+/* ------------------------ CARRUSEL ------------------------ */
+.carousel-container {
+  max-width:900px;
+  margin:40px auto;
+  background:rgba(0,0,0,.65);
+  padding:25px;
+  border-radius:20px;
+  border:1px solid rgba(57,255,20,.4);
+  box-shadow:0 0 15px rgba(0,255,255,.2);
+  position:relative;
+  text-align:center;
 }
 
-.project {
-  width: 190px; /* 🔥 mismo ancho para TODAS las tarjetas */
-  background: rgba(255,255,255,0.07);
-  border-radius: 12px;
-  padding: 10px;
-  border: 1px solid rgba(57,255,20,0.35);
-  transition: .2s;
-  box-sizing: border-box;
-}
-.project:hover { transform: scale(1.04); }
-
-/* miniaturas todas iguales */
-.project img {
-  width: 100%;
-  height: 135px;
-  object-fit: cover;
-  background: rgba(0,0,0,0.6);
-  border-radius: 10px;
-  border: 2px solid #39ff14;
-  cursor: pointer;
+.carousel img {
+  width:100%;
+  height:360px;
+  object-fit:contain;    /* 🔥 IMAGEN COMPLETA */
+  background:#000;
+  border-radius:15px;
+  border:2px solid #39ff14;
 }
 
-/* TEXTO CIAN */
-.project a {
-  margin-top: 8px;
-  display: block;
-  color: #00f7ff;
-  font-size: .92rem;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
+/* Descripción cian */
+.carousel-desc {
+  margin-top:15px;
+  color:#00f7ff;
+  font-size:1.1rem;
+  font-weight:bold;
 }
 
-/* -----------------------------------
-   LIGHTBOX — TODAS COMPLETAS IGUALES
------------------------------------ */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 5000;
+/* Botón CTA */
+.carousel-btn {
+  margin-top:12px;
+  padding:10px 22px;
+  background:#39ff14;
+  color:#000;
+  font-weight:bold;
+  border-radius:25px;
+  text-decoration:none;
+  display:inline-block;
 }
 
-.lightbox-content {
-  background: #0d0d0d;
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 450px;
-  width: 90%;
-  border: 2px solid #39ff14;
-  text-align: center;
+/* Flechas */
+.arrow {
+  position:absolute; top:50%; transform:translateY(-50%);
+  font-size:2.2rem; cursor:pointer; user-select:none;
+  color:#39ff14;
+}
+.arrow:hover { color:#00f7ff; }
+.left { left:15px; }
+.right { right:15px; }
+
+/* Botón cerrar */
+.close-carousel {
+  position:absolute; top:10px; right:15px;
+  font-size:2rem; cursor:pointer;
+  color:#39ff14;
+}
+.close-carousel:hover { color:#00f7ff; }
+
+/* ------------------------ FOOTER ------------------------ */
+footer {
+  text-align:center; padding:20px; margin-top:50px;
+  background:rgba(0,0,0,.55);
+  color:#aaa; font-size:.9rem;
 }
 
-/* TODAS ENTERAS, SIN CORTAR, MISMO ALTO VISUAL */
-#lightbox-img {
-  width: 100%;
-  height: 320px;
-  object-fit: contain;      /* muestra la imagen ENTERA */
-  object-position: center;
-  border-radius: 10px;
-  border: 2px solid #39ff14;
-  background: #000;
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 2.5rem;
-  color: #39ff14;
-  cursor: pointer;
-}
-
-/* BOTÓN DEL LIGHTBOX */
-.view-btn {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 20px;
-  background: #39ff14;
-  color: #000;
-  border-radius: 25px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-/* -----------------------------------
-   WHATSAPP FLOAT
------------------------------------ */
+/* ------------------------ WHATSAPP ------------------------ */
 .whatsapp-float {
-  position: fixed;
-  bottom: 65px;
-  right: 20px;
-  z-index: 4000;
+  position:fixed; right:20px; bottom:65px;
+  z-index:4000;
 }
 .whatsapp-float img {
-  width: 65px;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 6px #000);
-}
-
-/* -----------------------------------
-   FOOTER
------------------------------------ */
-footer {
-  background: rgba(0,0,0,.55);
-  padding: 20px;
-  text-align: center;
-  font-size: .9rem;
-  margin-top: 50px;
-  color: #aaa;
+  width:65px; border-radius:50%;
+  filter:drop-shadow(0 0 6px #000);
 }
 </style>
 </head>
-
 <body>
+
+<!-- Overlay para cerrar el menú -->
+<div id="menu-overlay" onclick="closeMenu()"></div>
 
 <!-- NAV -->
 <nav>
@@ -261,7 +190,7 @@ footer {
     <li><a href="#quienes">Quiénes Somos</a></li>
     <li><a href="#quehacemos">Qué Hacemos</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#ejemplos">Ejemplos</a></li>
+    <li><a href="#trabajos">Ejemplos</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 
@@ -270,27 +199,27 @@ footer {
   </div>
 </nav>
 
-<!-- MENU MOBILE -->
+<!-- MENÚ MOBILE -->
 <div id="mobile-menu">
   <a href="#quienes" onclick="closeMenu()">Quiénes Somos</a>
   <a href="#quehacemos" onclick="closeMenu()">Qué Hacemos</a>
   <a href="#servicios" onclick="closeMenu()">Servicios</a>
-  <a href="#ejemplos" onclick="closeMenu()">Ejemplos</a>
+  <a href="#trabajos" onclick="closeMenu()">Ejemplos</a>
   <a href="#contacto" onclick="closeMenu()">Contacto</a>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <img src="https://iili.io/fH74EGa.md.png" alt="Ciborg347™">
-  <h1>Impulsamos negocios con diseño web estratégico</h1>
+  <img src="https://iili.io/fH74EGa.md.png" alt="Logo">
+  <h1 style="color:#00f7ff; margin-top:20px;">Impulsamos negocios con diseño web estratégico</h1>
 </div>
 
-<!-- QUIENES SOMOS -->
+<!-- QUIÉNES SOMOS -->
 <section id="quienes">
   <h2>Quiénes Somos</h2>
   <p>
-  En <b>Ciborg347™</b> transformamos ideas en páginas que venden.  
-  Diseñamos experiencias digitales que convierten visitas en clientes reales.
+    En <b>Ciborg347™</b> transformamos ideas en páginas que venden.  
+    Creamos experiencias digitales diseñadas para generar impacto y atraer clientes reales.
   </p>
 </section>
 
@@ -298,8 +227,8 @@ footer {
 <section id="quehacemos">
   <h2>Qué Hacemos</h2>
   <p>
-  Creamos landings rápidas, modernas y optimizadas para captar clientes.  
-  Tu negocio necesita presencia y ventas: <b>nosotros te damos las dos.</b>
+    Creamos landings optimizadas, modernas y enfocadas en resultados.  
+    Tu negocio necesita presencia, confianza y ventas. Nosotros te damos las tres.
   </p>
 </section>
 
@@ -310,153 +239,167 @@ footer {
     ✔ Landing Pages premium<br>
     ✔ Sitios web completos<br>
     ✔ Branding visual<br>
-    ✔ WhatsApp integrado<br>
-    ✔ Hosting gratis Render<br>
+    ✔ Integración con WhatsApp<br>
+    ✔ Hosting gratis en Render<br>
   </p>
 </section>
 
-<!-- EJEMPLOS -->
-<section id="ejemplos">
-  <h2>Ejemplos</h2>
+<!-- EJEMPLOS (CARRUSEL) -->
+<section id="trabajos">
+  <h2>Ejemplos de Landings</h2>
 
-  <h3>💅 Manicuría</h3>
-  <div class="examples gallery">
-    <div class="project">
-      <img src="https://iili.io/KPyCnHu.jpg" data-title="Adda Nails" data-link="https://adda-nails.onrender.com/">
-      <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a>
-    </div>
-  </div>
+  <div class="carousel-container" id="carousel">
+    
+    <!-- Cerrar -->
+    <div class="close-carousel" onclick="closeCarousel()">×</div>
 
-  <h3>💈 Barberías</h3>
-  <div class="examples gallery">
+    <!-- Flechas -->
+    <div class="arrow left" onclick="prevSlide()">❮</div>
+    <div class="arrow right" onclick="nextSlide()">❯</div>
 
-    <div class="project">
-      <img src="https://iili.io/KPyvEcx.jpg" data-title="Barber 99" data-link="https://barberia-elbebu.onrender.com/">
-      <a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a>
-    </div>
+    <!-- Imagen -->
+    <img id="carousel-img" src="">
 
-    <div class="project">
-      <img src="https://iili.io/KPyUCn1.jpg" data-title="Barber Shop Rodri" data-link="https://barber-shop-rodri.onrender.com/">
-      <a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a>
-    </div>
+    <!-- Texto vendedor -->
+    <div class="carousel-desc" id="carousel-desc"></div>
 
-  </div>
-
-  <h3>🍰 Repostería</h3>
-  <div class="examples gallery">
-    <div class="project">
-      <img src="https://iili.io/fF5pLGf.jpg" data-title="Dulce Juana" data-link="https://dulce-juana.onrender.com/">
-      <a href="https://dulce-juana.onrender.com/" target="_blank">Dulce Juana™</a>
-    </div>
-  </div>
-
-  <h3>🍻 Bailables</h3>
-  <div class="examples gallery">
-    <div class="project">
-      <img src="https://iili.io/f9a9K5Q.jpg" data-title="Tío Sergio" data-link="https://tio-sergio.onrender.com">
-      <a href="https://tio-sergio.onrender.com" target="_blank">Tío Sergio™</a>
-    </div>
-  </div>
-
-  <h3>📻 Radios</h3>
-  <div class="examples gallery">
-    <div class="project">
-      <img src="https://iili.io/f9an4yX.jpg" data-title="Radio Imagen" data-link="https://radioimagen.onrender.com">
-      <a href="https://radioimagen.onrender.com" target="_blank">Radio Imagen™</a>
-    </div>
-  </div>
-
-  <h3>🎰 Casinos</h3>
-  <div class="examples gallery">
-
-    <div class="project">
-      <img src="https://iili.io/KPygQXS.jpg" data-title="Facu Casino" data-link="https://facucasino.onrender.com/">
-      <a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a>
-    </div>
-
-    <div class="project">
-      <img src="https://iili.io/KPyrMj2.jpg" data-title="Dragon Casino" data-link="https://dragon-casino.onrender.com/">
-      <a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a>
-    </div>
-
-    <div class="project">
-      <img src="https://iili.io/KPyDVHP.jpg" data-title="Dynasty Bet" data-link="https://dinasty-bet.onrender.com/">
-      <a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a>
-    </div>
-
-    <div class="project">
-      <img src="https://iili.io/KigNdVS.jpg" data-title="Gira y Gana" data-link="https://giraygana-fortunaplay.onrender.com/">
-      <a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a>
-    </div>
-
-    <div class="project">
-      <img src="https://iili.io/Kigv3Ij.jpg" data-title="Fortuna Play" data-link="https://ganamostodosjuntos.onrender.com/">
-      <a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a>
-    </div>
-
-    <div class="project">
-      <img src="https://iili.io/KiggTcN.jpg" data-title="Lions Casino" data-link="https://lions-casino.onrender.com/">
-      <a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a>
-    </div>
-
-    <div class="project">
-      <img src="https://iili.io/f9a9Fdx.jpg" data-title="Rueda de Premios" data-link="https://giraygana-ijae.onrender.com">
-      <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a>
-    </div>
-
+    <!-- Botón -->
+    <a id="carousel-btn" class="carousel-btn" target="_blank">Ver landing completa</a>
   </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
-  <p>Consultas por WhatsApp:</p>
-  <a class="view-btn" target="_blank"
-     href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">Escribir</a>
+  <p>Escribinos y contanos tu idea:</p>
+  <a class="carousel-btn"
+     href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20quiero%20dise%C3%B1ar%20algo%20para%20mi%20negocio."
+     target="_blank">WhatsApp</a>
 </section>
 
-<!-- WHATSAPP -->
-<a class="whatsapp-float" target="_blank"
-   href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" 
+   href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20mi%20propia%20landing."
+   target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
 </a>
 
-<!-- FOOTER -->
-<footer>© 2025 Ciborg347™ · Diseño Web</footer>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox">
-  <span class="close-btn" onclick="closeLb()">×</span>
-  <div class="lightbox-content">
-    <img id="lightbox-img">
-    <div id="lightbox-title"></div>
-    <a id="lightbox-link" class="view-btn" target="_blank">Ver landing completa</a>
-  </div>
-</div>
+<footer>© 2025 Ciborg347™ · Web Agency</footer>
 
 <script>
-/* MENU MOBILE */
-function toggleMenu(){ 
-  document.getElementById("mobile-menu").classList.toggle("mobile-active"); 
+/* ---------------- MENU ------------------ */
+function toggleMenu(){
+  document.getElementById("mobile-menu").classList.add("mobile-active");
+  document.getElementById("menu-overlay").style.display="block";
 }
-function closeMenu(){ 
-  document.getElementById("mobile-menu").classList.remove("mobile-active"); 
+function closeMenu(){
+  document.getElementById("mobile-menu").classList.remove("mobile-active");
+  document.getElementById("menu-overlay").style.display="none";
 }
 
-/* LIGHTBOX */
-const items = document.querySelectorAll(".gallery img");
-items.forEach(img => {
-  img.addEventListener("click", ()=>{
-    document.getElementById("lightbox-img").src = img.src;
-    document.getElementById("lightbox-title").innerText = img.dataset.title;
-    document.getElementById("lightbox-link").href = img.dataset.link;
-    document.getElementById("lightbox").style.display = "flex";
-  });
+/* ---------------- CARRUSEL ------------------ */
+const slides = [
+  {
+    img:"https://iili.io/KPyCnHu.jpg",
+    link:"https://adda-nails.onrender.com/",
+    desc:"Landing enfocada en atraer clientas y mostrar calidad estética."
+  },
+  {
+    img:"https://iili.io/KPyvEcx.jpg",
+    link:"https://barberia-elbebu.onrender.com/",
+    desc:"Diseño masculino con enfoque en turnos y estilo fresco."
+  },
+  {
+    img:"https://iili.io/KPyUCn1.jpg",
+    link:"https://barber-shop-rodri.onrender.com/",
+    desc:"Landing profesional ideal para posicionar tu barbería."
+  },
+  {
+    img:"https://iili.io/fF5pLGf.jpg",
+    link:"https://dulce-juana.onrender.com/",
+    desc:"Diseño dulce y vendedor para negocios gastronómicos."
+  },
+  {
+    img:"https://iili.io/f9a9K5Q.jpg",
+    link:"https://tio-sergio.onrender.com",
+    desc:"Landing ideal para eventos, bailes y vida nocturna."
+  },
+  {
+    img:"https://iili.io/f9an4yX.jpg",
+    link:"https://radioimagen.onrender.com",
+    desc:"Página para radios con streaming integrado y estilo moderno."
+  },
+  {
+    img:"https://iili.io/KPygQXS.jpg",
+    link:"https://facucasino.onrender.com/",
+    desc:"Landing agresiva y optimizada para captar jugadores."
+  },
+  {
+    img:"https://iili.io/KPyrMj2.jpg",
+    link:"https://dragon-casino.onrender.com/",
+    desc:"Diseño visual impactante para casinos y juegos online."
+  },
+  {
+    img:"https://iili.io/KPyDVHP.jpg",
+    link:"https://dinasty-bet.onrender.com/",
+    desc:"Estilo deportivo ideal para apuestas y beneficios VIP."
+  },
+  {
+    img:"https://iili.io/KigNdVS.jpg",
+    link:"https://giraygana-fortunaplay.onrender.com/",
+    desc:"Landing de wheel premium lista para conversión rápida."
+  },
+  {
+    img:"https://iili.io/Kigv3Ij.jpg",
+    link:"https://ganamostodosjuntos.onrender.com/",
+    desc:"Landing visual con CTA directo para captar jugadores."
+  },
+  {
+    img:"https://iili.io/KiggTcN.jpg",
+    link:"https://lions-casino.onrender.com/",
+    desc:"Diseño premium para casinos online categoría top."
+  },
+  {
+    img:"https://iili.io/f9a9Fdx.jpg",
+    link:"https://giraygana-ijae.onrender.com",
+    desc:"Wheel de premios lista para atraer tráfico y conversiones."
+  }
+];
+
+let index = 0;
+
+function updateCarousel(){
+  const s = slides[index];
+  document.getElementById("carousel-img").src = s.img;
+  document.getElementById("carousel-desc").innerText = s.desc;
+  document.getElementById("carousel-btn").href = s.link;
+}
+
+function nextSlide(){
+  index = (index + 1) % slides.length;
+  updateCarousel();
+}
+function prevSlide(){
+  index = (index - 1 + slides.length) % slides.length;
+  updateCarousel();
+}
+function closeCarousel(){
+  document.getElementById("carousel").style.display="none";
+}
+
+/* Swipe táctil */
+let startX = 0;
+document.getElementById("carousel").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
 });
-function closeLb(){ document.getElementById("lightbox").style.display="none"; }
-document.getElementById("lightbox").addEventListener("click", e=>{
-  if(e.target.id==="lightbox") closeLb();
+document.getElementById("carousel").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if(endX < startX - 50) nextSlide();
+  if(endX > startX + 50) prevSlide();
 });
+
+/* Inicializar */
+updateCarousel();
 </script>
 
 </body>
