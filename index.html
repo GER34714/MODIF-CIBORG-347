@@ -3,354 +3,478 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ciborg347™ | Landing Pages & Web Designs</title>
+<title>Ciborg347™ | Agencia Digital & Landing Pages</title>
+
 <link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
-<meta property="og:title" content="Ciborg347™ | Landing Pages & Web Designs">
-<meta property="og:description" content="Landing Pages modernas, optimizadas y con estilo que venden e impulsan tu negocio. 🚀">
-<meta property="og:image" content="https://iili.io/fHQF3u4.md.jpg">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 
 <style>
+/* ---------------------------------------------------
+   BASE GENERAL
+--------------------------------------------------- */
 body {
   margin: 0;
-  font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
-  background: url('https://iili.io/fH5IORj.jpg') no-repeat center center fixed;
-  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  background: url("https://iili.io/fH5IORj.jpg") center/cover fixed no-repeat;
   color: #fff;
-  text-align: center;
   scroll-behavior: smooth;
-
-  /* Fade-in suave */
-  opacity: 0;
-  animation: fadeInBody .8s forwards ease-out;
 }
-@keyframes fadeInBody { to { opacity: 1; } }
 
-/* NAV */
+/* Fondo oscuro sutil */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: -1;
+}
+
+/* ---------------------------------------------------
+   NAVBAR PROFESIONAL
+--------------------------------------------------- */
 nav {
-  position: fixed; top: 0; width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
   background: rgba(0,0,0,0.85);
-  display: flex; justify-content: center;
-  padding: 14px 20px; z-index: 1000;
-  backdrop-filter: blur(6px);
-
-  animation: fadeDown .8s ease-out;
-}
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-nav ul { list-style: none; display: flex; gap: 45px; padding: 0; }
-nav a {
-  color: #39ff14; text-decoration: none; font-weight: bold; font-size: 1.1rem;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
 }
 
-/* LOGO */
-.logo {
-  margin: 120px 0 50px;
-  animation: fadeUp .9s ease-out;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
+nav .logo-nav {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #39ff14;
+  letter-spacing: 1px;
 }
 
-.logo img {
-  width: 260px;
+/* menú desktop */
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+nav ul li a {
+  color: #39ff14;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: .2s;
+}
+nav ul li a:hover { color: #00f7ff; }
+
+/* HAMBURGUESA */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.hamburger div {
+  height: 4px;
+  background: #39ff14;
+  border-radius: 5px;
+}
+
+/* menú mobile */
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 65%;
+  height: 100%;
+  background: #000;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transition: .3s;
+  z-index: 2500;
+}
+#mobile-menu a {
+  color: #39ff14;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+/* activar menú */
+.mobile-active { right: 0 !important; }
+
+@media(max-width:900px){
+  nav ul { display:none; }
+  .hamburger { display:flex; }
+}
+
+/* ---------------------------------------------------
+   HERO
+--------------------------------------------------- */
+.hero {
+  text-align:center;
+  padding:160px 20px 80px;
+}
+.hero img {
+  width:260px;
   filter: drop-shadow(0 0 15px #39ff14);
   animation: neonPulse 3s infinite alternate;
 }
+@keyframes neonPulse {
+  0% { filter: drop-shadow(0 0 10px #39ff14); }
+  50% { filter: drop-shadow(0 0 20px #00f7ff); }
+  100%{ filter: drop-shadow(0 0 10px #39ff14); }
+}
 
-/* SECCIONES */
+.hero h1 {
+  font-size:2.2rem;
+  margin-top:15px;
+  color:#39ff14;
+}
+
+/* ---------------------------------------------------
+   SECCIONES
+--------------------------------------------------- */
 section {
-  padding: 80px 20px;
-  max-width: 1100px;
-  margin: auto;
-  animation: fadeSection .8s ease-out;
+  max-width:1100px;
+  margin:auto;
+  padding:80px 20px;
 }
-@keyframes fadeSection {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+section h2 {
+  color:#39ff14;
+  font-size:2rem;
+  margin-bottom:15px;
+  letter-spacing:1px;
+}
+section p {
+  font-size:1.1rem;
+  color:#ccc;
+  line-height:1.7;
 }
 
-h2 { font-size: 2rem; margin-bottom: 20px; color: #39ff14; }
-h3 { color: #00f7ff; }
-
-/* GALERÍA ORIGINAL (NO TARJETAS GRANDES) */
+/* ---------------------------------------------------
+   EJEMPLOS (MISMO ESTILO ORIGINAL)
+--------------------------------------------------- */
 .examples {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px;
+  margin-top:25px;
 }
-.project {
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,255,128,0.3);
-  padding: 10px;
-  transition: .3s;
 
-  /* Animación suave */
-  opacity: 0;
-  animation: fadeCard .6s forwards;
+.project {
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+  padding:10px;
+  border:1px solid rgba(57,255,20,0.3);
+  transition:.2s;
 }
-@keyframes fadeCard { to { opacity: 1; transform: scale(1); } }
+.project:hover { transform:scale(1.04); }
 
 .project img {
-  width: 100%; height: 110px; object-fit: contain;
-  background: rgba(0,0,0,0.6);
-  border-radius: 8px;
-  border: 2px solid #39ff14;
-  cursor: pointer;
+  width:100%;
+  height:120px;
+  object-fit:contain;
+  background:#00000050;
+  border-radius:8px;
+  border:2px solid #39ff14;
+  cursor:pointer;
 }
+
 .project a {
-  display: block; margin-top: 8px;
-  color: #39ff14; font-size: .85rem; font-weight: bold;
+  display:block;
+  margin-top:8px;
+  color:#39ff14;
+  font-size:.9rem;
+  text-decoration:none;
+  font-weight:600;
 }
 
-/*********** LIGHTBOX ***********/
+/* ---------------------------------------------------
+   LIGHTBOX PROFESIONAL
+--------------------------------------------------- */
 .lightbox {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 2000;
-  align-items: center; justify-content: center; flex-direction: column;
-
-  animation: fadeIn .3s ease-out;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:3000;
 }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
 .lightbox-content {
-  background: rgba(15,15,15,0.95);
-  padding: 20px 30px;
-  border-radius: 16px;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 0 25px #39ff14;
-
-  animation: scaleIn .25s ease-out;
+  background:#0e0e0e;
+  padding:25px;
+  border-radius:15px;
+  max-width:400px;
+  width:85%;
+  text-align:center;
+  border:2px solid #39ff14;
+  animation:fadeIn .3s;
 }
-@keyframes scaleIn {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.lightbox-content img {
-  width: 100%; max-height: 300px;
-  object-fit: contain; border-radius: 10px;
-  border: 2px solid #39ff14;
+@keyframes fadeIn {
+  from{ opacity:0; transform:scale(.7); }
+  to{ opacity:1; transform:scale(1); }
 }
 
-/* BOTÓN CERRAR */
+#lightbox-img {
+  width:100%;
+  border-radius:10px;
+  border:2px solid #39ff14;
+}
 .close-btn {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  color: #39ff14;
-  font-size: 2.5rem;
-  cursor: pointer;
-  text-shadow: 0 0 10px #39ff14;
-  transition: .2s;
+  font-size:2.5rem;
+  color:#39ff14;
+  position:absolute;
+  top:15px;
+  right:15px;
+  cursor:pointer;
+  transition:.2s;
 }
-.close-btn:hover { color: #00f7ff; }
+.close-btn:hover { color:#00f7ff; }
 
-/* WHATSAPP */
+.view-btn {
+  display:inline-block;
+  margin-top:12px;
+  padding:8px 18px;
+  background:#39ff14;
+  color:#000;
+  border-radius:25px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* ---------------------------------------------------
+   WHATSAPP FLOAT
+--------------------------------------------------- */
 .whatsapp-float {
-  position: fixed;
-  bottom: 75px;
-  right: 22px;
-  z-index: 999;
+  position:fixed;
+  bottom:70px;
+  right:20px;
+  z-index:4000;
 }
 .whatsapp-float img {
-  width: 65px;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 6px #000);
+  width:65px;
+  border-radius:50%;
+  filter:drop-shadow(0 0 6px #000);
 }
 
+/* ---------------------------------------------------
+   FOOTER
+--------------------------------------------------- */
 footer {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  font-size: .9rem;
-  color: #777;
+  padding:20px;
+  background:#00000080;
+  color:#ccc;
+  margin-top:60px;
+  font-size:.9rem;
 }
 </style>
 </head>
-
 <body>
 
+<!-- NAV -->
 <nav>
+  <div class="logo-nav">Ciborg347™</div>
+
   <ul>
     <li><a href="#quienes">Quiénes Somos</a></li>
-    <li><a href="#descripcion">Qué Hacemos</a></li>
+    <li><a href="#quehacemos">Qué Hacemos</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#ejemplos">Ejemplos</a></li>
-    <li><a href="#valores">Presupuesto</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
 </nav>
 
-<div class="logo">
-  <img src="https://iili.io/fH74EGa.md.png" alt="Ciborg347™">
+<!-- MENÚ MOBILE -->
+<div id="mobile-menu">
+  <a href="#quienes" onclick="closeMenu()">Quiénes Somos</a>
+  <a href="#quehacemos" onclick="closeMenu()">Qué Hacemos</a>
+  <a href="#servicios" onclick="closeMenu()">Servicios</a>
+  <a href="#ejemplos" onclick="closeMenu()">Ejemplos</a>
+  <a href="#contacto" onclick="closeMenu()">Contacto</a>
 </div>
 
+<!-- HERO -->
+<div class="hero">
+  <img src="https://iili.io/fH74EGa.md.png">
+  <h1>Agencia Digital · Diseño Web & Landing Pages</h1>
+</div>
+
+<!-- QUIÉNES SOMOS -->
 <section id="quienes">
   <h2>Quiénes Somos</h2>
-  <p>Ciborg347™ crea Landing Pages y webs profesionales, rápidas y con estética premium.</p>
+  <p>Somos una agencia digital especializada en diseño de Landing Pages y sitios web modernos, rápidos y optimizados para convertir clientes.</p>
 </section>
 
-<section id="descripcion">
+<!-- QUÉ HACEMOS -->
+<section id="quehacemos">
   <h2>Qué Hacemos</h2>
-  <p>Diseñamos páginas modernas, rápidas, responsivas y optimizadas para convertir.</p>
+  <p>Diseños profesionales, visuales, rápidos y adaptados a tu rubro. Creamos páginas que venden, conectan y generan confianza.</p>
 </section>
 
+<!-- SERVICIOS -->
 <section id="servicios">
   <h2>Servicios</h2>
   <p>
-    ✔ Landing Pages profesionales<br>
-    ✔ Webs completas<br>
+    ✔ Landing Pages de alto impacto<br>
+    ✔ Sitios web completos<br>
     ✔ Branding visual<br>
-    ✔ WhatsApp integrado<br>
-    ✔ Hosting Render gratis
+    ✔ Integración de WhatsApp<br>
+    ✔ Hosting Render / GitHub<br>
   </p>
 </section>
 
+<!-- EJEMPLOS ORDENADOS -->
 <section id="ejemplos">
-  <h2>Ejemplos de Landings</h2>
+  <h2>Ejemplos</h2>
 
-  <!-- MANICURIA -->
-  <h3>💅 MANICURIA & ESTÉTICAS</h3>
+  <h3>💅 Manicuría</h3>
   <div class="examples gallery">
-      <div class="project"><img src="https://iili.io/KPyCnHu.jpg" 
-      data-link="https://adda-nails.onrender.com/" data-title="Adda Nails">
-      <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a></div>
+    <div class="project">
+      <img src="https://iili.io/KPyCnHu.jpg" data-title="Adda Nails" data-link="https://adda-nails.onrender.com/">
+      <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a>
+    </div>
   </div>
 
-  <!-- BARBERÍAS -->
   <h3>💈 Barberías</h3>
   <div class="examples gallery">
-      <div class="project"><img src="https://iili.io/KPyvEcx.jpg"
-      data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99">
-      <a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a></div>
+    <div class="project">
+      <img src="https://iili.io/KPyvEcx.jpg" data-title="Barber 99" data-link="https://barberia-elbebu.onrender.com/">
+      <a target="_blank" href="https://barberia-elbebu.onrender.com/">Barber 99</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/KPyUCn1.jpg"
-      data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri">
-      <a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a></div>
+    <div class="project">
+      <img src="https://iili.io/KPyUCn1.jpg" data-title="Barber Shop Rodri" data-link="https://barber-shop-rodri.onrender.com/">
+      <a target="_blank" href="https://barber-shop-rodri.onrender.com/">Barber Shop Rodri</a>
+    </div>
   </div>
 
-  <!-- REPOSTERÍA -->
-  <h3>🍰 Repostería / Food</h3>
+  <h3>🍰 Repostería</h3>
   <div class="examples gallery">
-      <div class="project"><img src="https://iili.io/fF5pLGf.jpg"
-      data-link="https://dulce-juana.onrender.com/" data-title="Dulce Juana™">
-      <a href="https://dulce-juana.onrender.com/" target="_blank">Dulce Juana™</a></div>
+    <div class="project">
+      <img src="https://iili.io/fF5pLGf.jpg" data-title="Dulce Juana" data-link="https://dulce-juana.onrender.com/">
+      <a target="_blank" href="https://dulce-juana.onrender.com/">Dulce Juana™</a>
+    </div>
   </div>
 
-  <!-- RESTO -->
-  <h3>🍻 Restobar / Bailables</h3>
+  <h3>🍻 Bailables / Resto</h3>
   <div class="examples gallery">
-      <div class="project"><img src="https://iili.io/f9a9K5Q.jpg"
-      data-link="https://tio-sergio.onrender.com" data-title="Tío Sergio™">
-      <a href="https://tio-sergio.onrender.com" target="_blank">Tío Sergio™</a></div>
+    <div class="project">
+      <img src="https://iili.io/f9a9K5Q.jpg" data-title="Tío Sergio" data-link="https://tio-sergio.onrender.com">
+      <a target="_blank" href="https://tio-sergio.onrender.com">Tío Sergio™</a>
+    </div>
   </div>
 
-  <!-- RADIOS -->
   <h3>📻 Radios Online</h3>
   <div class="examples gallery">
-      <div class="project"><img src="https://iili.io/f9an4yX.jpg"
-      data-link="https://radioimagen.onrender.com" data-title="Radio Imagen™">
-      <a href="https://radioimagen.onrender.com" target="_blank">Radio Imagen™</a></div>
+    <div class="project">
+      <img src="https://iili.io/f9an4yX.jpg" data-title="Radio Imagen" data-link="https://radioimagen.onrender.com">
+      <a target="_blank" href="https://radioimagen.onrender.com">Radio Imagen™</a>
+    </div>
   </div>
 
-  <!-- CASINOS -->
   <h3>🎰 Casinos</h3>
   <div class="examples gallery">
 
-      <div class="project"><img src="https://iili.io/KPygQXS.jpg"
-      data-link="https://facucasino.onrender.com/" data-title="Facu Casino™">
-      <a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a></div>
+    <div class="project">
+      <img src="https://iili.io/KPygQXS.jpg" data-title="Facu Casino" data-link="https://facucasino.onrender.com/">
+      <a target="_blank" href="https://facucasino.onrender.com/">Facu Casino™</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/KPyrMj2.jpg"
-      data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™">
-      <a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a></div>
+    <div class="project">
+      <img src="https://iili.io/KPyrMj2.jpg" data-title="Dragon Casino" data-link="https://dragon-casino.onrender.com/">
+      <a target="_blank" href="https://dragon-casino.onrender.com/">Dragon Casino™</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/KPyDVHP.jpg"
-      data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™">
-      <a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a></div>
+    <div class="project">
+      <img src="https://iili.io/KPyDVHP.jpg" data-title="Dynasty Bet" data-link="https://dinasty-bet.onrender.com/">
+      <a target="_blank" href="https://dinasty-bet.onrender.com/">Dynasty Bet™</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/KigNdVS.jpg"
-      data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™">
-      <a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a></div>
+    <div class="project">
+      <img src="https://iili.io/KigNdVS.jpg" data-title="Gira y Gana" data-link="https://giraygana-fortunaplay.onrender.com/">
+      <a target="_blank" href="https://giraygana-fortunaplay.onrender.com/">Gira y Gana™</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/Kigv3Ij.jpg"
-      data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™">
-      <a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a></div>
+    <div class="project">
+      <img src="https://iili.io/Kigv3Ij.jpg" data-title="Fortuna Play" data-link="https://ganamostodosjuntos.onrender.com/">
+      <a target="_blank" href="https://ganamostodosjuntos.onrender.com/">Fortuna Play™</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/KiggTcN.jpg"
-      data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™">
-      <a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a></div>
+    <div class="project">
+      <img src="https://iili.io/KiggTcN.jpg" data-title="Lions Casino" data-link="https://lions-casino.onrender.com/">
+      <a target="_blank" href="https://lions-casino.onrender.com/">Lions Casino™</a>
+    </div>
 
-      <div class="project"><img src="https://iili.io/f9a9Fdx.jpg"
-      data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™">
-      <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a></div>
+    <div class="project">
+      <img src="https://iili.io/f9a9Fdx.jpg" data-title="Rueda de Premios" data-link="https://giraygana-ijae.onrender.com">
+      <a target="_blank" href="https://giraygana-ijae.onrender.com">Rueda de Premios™</a>
+    </div>
 
   </div>
 </section>
 
-<section id="valores">
-  <h2>Presupuesto Personalizado</h2>
-  <p>Proyectos 100% personalizados según tu negocio.</p>
-</section>
-
+<!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
-  <div class="contact-links">
-    <a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
-    </a>
-  </div>
+  <p>Consultas, presupuestos y desarrollos</p>
+  <a class="view-btn" target="_blank" 
+     href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
+     Escribir por WhatsApp
+  </a>
 </section>
 
-<!-- BOTÓN WHATSAPP -->
-<a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!"
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!" 
 class="whatsapp-float" target="_blank">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
 
-<footer>© 2025 Ciborg347™</footer>
+<!-- FOOTER -->
+<footer>© 2025 Ciborg347™ · Agencia Digital</footer>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
   <span class="close-btn" onclick="closeLb()">×</span>
-
   <div class="lightbox-content">
-    <img id="lightbox-img" src="">
-    <div id="lightbox-title"></div>
-    <a id="lightbox-link" class="view-btn" href="#" target="_blank">Ver landing completa</a>
+    <img id="lightbox-img">
+    <h3 id="lightbox-title"></h3>
+    <a id="lightbox-link" class="view-btn" target="_blank">Ver landing completa</a>
   </div>
 </div>
 
 <script>
-const galleryItems = document.querySelectorAll(".gallery img");
-let currentIndex = 0;
+/* MENU MOBILE */
+function toggleMenu(){
+  document.getElementById("mobile-menu").classList.toggle("mobile-active");
+}
+function closeMenu(){
+  document.getElementById("mobile-menu").classList.remove("mobile-active");
+}
 
-galleryItems.forEach((img, i) => {
-  img.addEventListener("click", () => openGallery(i));
+/* LIGHTBOX */
+const items = document.querySelectorAll(".gallery img");
+
+items.forEach((img,i)=>{
+  img.addEventListener("click", ()=>{
+    document.getElementById("lightbox-img").src = img.src;
+    document.getElementById("lightbox-title").innerText = img.dataset.title;
+    document.getElementById("lightbox-link").href = img.dataset.link;
+    document.getElementById("lightbox").style.display = "flex";
+  });
 });
-
-function openGallery(i) {
-  currentIndex = i;
-  const img = galleryItems[i];
-  document.getElementById("lightbox-img").src = img.src;
-  document.getElementById("lightbox-title").textContent = img.dataset.title;
-  document.getElementById("lightbox-link").href = img.dataset.link;
-  document.getElementById("lightbox").style.display = "flex";
+function closeLb(){
+  document.getElementById("lightbox").style.display="none";
 }
-
-function closeLb() {
-  document.getElementById("lightbox").style.display = "none";
-}
-
-document.getElementById("lightbox").addEventListener("click", (e) => {
-  if (e.target.id === "lightbox") closeLb();
+document.getElementById("lightbox").addEventListener("click", e=>{
+  if(e.target.id==="lightbox") closeLb();
 });
 </script>
 
