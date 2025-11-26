@@ -226,24 +226,19 @@ section p {
   display:inline-block;
 }
 
-/* Flechas pequeñas */
+/* Flechas pequeñas en PC y MOBILE */
 .arrow {
   position:absolute; 
   top:50%; transform:translateY(-50%);
-  font-size:1.6rem;
+  font-size:1.4rem;
   cursor:pointer; user-select:none;
   color:#39ff14;
-  opacity:0.7;
+  opacity:0.6;
 }
 .arrow:hover { color:#00f7ff; opacity:1; }
 
-.left { left:10px; }
-.right { right:10px; }
-
-/* Ocultar flechas en mobile */
-@media(max-width:900px){
-  .arrow { display:none!important; }
-}
+.left { left:5px; }
+.right { right:5px; }
 
 /* ------------------------ FOOTER ------------------------ */
 footer {
@@ -258,7 +253,9 @@ footer {
   z-index:4000;
 }
 .whatsapp-float img {
-  width:65px; border-radius:50%;
+  width:60px;
+  height:60px;
+  object-fit:contain;
   filter:drop-shadow(0 0 6px #000);
 }
 </style>
@@ -428,14 +425,14 @@ let allSlides = [
 let filteredSlides = [];
 let index = 0;
 
-/* Generar botones de categorías */
+/* Generar botones */
 const categories = [
   {id:"estetica", name:"Estética"},
   {id:"barber", name:"Barberías"},
   {id:"food", name:"Gastronomía"},
   {id:"radio", name:"Radios"},
   {id:"evento", name:"Eventos"},
-  {id:"casino", name:"Casinos"} /* Esto queda último como pediste */
+  {id:"casino", name:"Casinos"} 
 ];
 
 let catContainer = document.getElementById("category-buttons");
@@ -443,11 +440,14 @@ let catContainer = document.getElementById("category-buttons");
 categories.forEach(cat => {
   let btn = document.createElement("button");
   btn.innerText = cat.name;
-  btn.onclick = () => selectCategory(cat.id, btn);
+  btn.onclick = () => { 
+    manualCategory = true;
+    selectCategory(cat.id, btn);
+  };
   catContainer.appendChild(btn);
 });
 
-/* Al seleccionar categoría */
+/* Al seleccionar */
 function selectCategory(cat, btn){
   document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
@@ -478,7 +478,7 @@ function prevSlide(){
   updateCarousel();
 }
 
-/* Swipe táctil */
+/* Swipe */
 let startX = 0;
 document.getElementById("carousel").addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
@@ -489,7 +489,33 @@ document.getElementById("carousel").addEventListener("touchend", e => {
   if(endX > startX + 50) prevSlide();
 });
 
-/* Inicialización automática → al cargar, toma la PRIMER categoría que NO sea casino */
+/* -------- AUTOPLAY DE CATEGORÍAS -------- */
+let manualCategory = false;
+let autoCategoriesIndex = 0;
+
+function autoplayCategories(){
+  if(manualCategory) return;
+
+  autoCategoriesIndex = (autoCategoriesIndex + 1) % categories.length;
+  const cat = categories[autoCategoriesIndex];
+
+  const btn = [...document.querySelectorAll(".categories button")]
+              .find(b => b.innerText === cat.name);
+
+  selectCategory(cat.id, btn);
+}
+
+let autoPlayInterval = setInterval(autoplayCategories, 5000);
+
+/* Si el usuario sale del carrusel → se reactiva autoplay */
+document.addEventListener("scroll", () => {
+  const rect = document.getElementById("trabajos").getBoundingClientRect();
+  if(rect.bottom < 0 || rect.top > window.innerHeight){
+    manualCategory = false;
+  }
+});
+
+/* Inicializar */
 selectCategory("estetica", document.querySelector(".categories button"));
 
 /* -------- TIPS ROTATIVOS -------- */
