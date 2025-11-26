@@ -8,7 +8,7 @@
 
 <style>
 /* -----------------------------------
-   ESTILOS BASE
+   BASE
 ----------------------------------- */
 body {
   margin: 0;
@@ -21,90 +21,71 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.78);
+  background: rgba(0,0,0,.78);
   backdrop-filter: blur(4px);
   z-index: -1;
 }
 
 /* -----------------------------------
-   NAVBAR + HAMBURGUESA RESPONSIVA
+   NAVBAR + HAMBURGUESA
 ----------------------------------- */
 nav {
   position: fixed; top: 0; width: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex; justify-content: space-between;
-  align-items: center;
+  display: flex; justify-content: space-between; align-items: center;
   padding: 14px 20px;
-  z-index: 2000;
+  background: rgba(0,0,0,.85);
   backdrop-filter: blur(6px);
+  z-index: 2000;
 }
 
-nav .logo-nav {
+.logo-nav {
   color: #39ff14;
   font-size: 1.3rem;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 /* Desktop */
 nav ul {
-  display: flex;
-  gap: 35px;
-  margin: 0; padding: 0;
-  list-style: none;
+  display: flex; gap: 35px; list-style: none; padding: 0; margin: 0;
 }
 nav ul li a {
-  color: #00f7ff; /* CIAN */
+  color: #00f7ff;
   text-decoration: none;
-  font-size: 1.07rem;
-  font-weight: bold;
+  font-size: 1.05rem; font-weight: bold;
   transition: .2s;
 }
 nav ul li a:hover { color: #39ff14; }
 
-/* HAMBURGUESA */
+/* Hamburguesa */
 .hamburger {
-  width: 32px;
-  height: 23px;
+  width: 32px; height: 23px;
   display: none;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-
-  /* ✔ MÁS ADENTRO */
-  margin-right: 12px;
+  margin-right: 15px;
 }
 .hamburger div {
-  height: 4px;
-  background: #39ff14;
-  border-radius: 5px;
+  height: 4px; background: #39ff14; border-radius: 5px;
 }
 
-/* MENU MOBILE */
+/* Menú mobile */
 #mobile-menu {
   position: fixed;
-  top: 0;
-  right: -100%;
+  top: 0; right: -100%; height: 100%;
   width: 68%;
-  height: 100%;
   background: #000;
   padding: 80px 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  display: flex; flex-direction: column; gap: 30px;
   transition: .3s;
-  z-index: 3000;
+  z-index: 2500;
 }
 #mobile-menu a {
-  color: #00f7ff;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
+  color: #00f7ff; font-size: 1.3rem; text-decoration: none; font-weight: bold;
 }
-
 .mobile-active { right: 0 !important; }
 
-@media(max-width: 900px){
+@media(max-width:900px){
   nav ul { display: none; }
   .hamburger { display: flex; }
 }
@@ -113,8 +94,8 @@ nav ul li a:hover { color: #39ff14; }
    HERO
 ----------------------------------- */
 .hero {
-  padding-top: 140px;
   text-align: center;
+  padding-top: 140px;
 }
 .hero img {
   width: 260px;
@@ -136,13 +117,20 @@ section {
   padding: 80px 20px;
 }
 section h2 {
-  color: #39ff14;
-  font-size: 2rem;
-  margin-bottom: 20px;
+  color: #39ff14; font-size: 2rem; margin-bottom: 15px;
 }
 section p {
-  font-size: 1.1rem;
-  color: #ccc;
+  font-size: 1.15rem; color: #ccc; line-height: 1.7;
+}
+
+/* TEXTOS VENDEDORES */
+#quienes p {
+  font-size: 1.2rem;
+  color: #d0d0d0;
+}
+#quehacemos p {
+  font-size: 1.15rem;
+  color: #cfcfcf;
 }
 
 /* -----------------------------------
@@ -164,7 +152,7 @@ section p {
 }
 .project:hover { transform: scale(1.04); }
 
-/* ✔ TODAS MISMO TAMAÑO REAL */
+/* TARJETAS IGUALES */
 .project img {
   width: 100%;
   height: 135px;
@@ -175,18 +163,18 @@ section p {
   cursor: pointer;
 }
 
-/* ✔ TEXTO CIAN */
+/* TEXTO CIAN */
 .project a {
-  margin-top: 10px;
+  margin-top: 8px;
   display: block;
   color: #00f7ff;
+  font-size: .92rem;
   font-weight: bold;
   text-decoration: none;
-  font-size: .92rem;
 }
 
 /* -----------------------------------
-   LIGHTBOX
+   LIGHTBOX — TODAS IGUALES
 ----------------------------------- */
 .lightbox {
   position: fixed;
@@ -201,16 +189,22 @@ section p {
   background: #0d0d0d;
   padding: 25px;
   border-radius: 15px;
-  max-width: 400px;
-  width: 80%;
+  max-width: 430px;
+  width: 90%;
   border: 2px solid #39ff14;
   text-align: center;
 }
+
+/* tamaño fijo para TODAS */
 #lightbox-img {
   width: 100%;
+  height: 320px;
+  object-fit: cover;
   border-radius: 10px;
   border: 2px solid #39ff14;
+  background: #000;
 }
+
 .close-btn {
   position: absolute;
   top: 15px;
@@ -251,12 +245,12 @@ section p {
    FOOTER
 ----------------------------------- */
 footer {
+  background: rgba(0,0,0,.55);
   padding: 20px;
-  background: rgba(0,0,0,0.55);
-  color: #aaa;
   text-align: center;
-  margin-top: 50px;
   font-size: .9rem;
+  margin-top: 50px;
+  color: #aaa;
 }
 </style>
 </head>
@@ -280,7 +274,7 @@ footer {
   </div>
 </nav>
 
-<!-- MENÚ MOBILE -->
+<!-- MENU MOBILE -->
 <div id="mobile-menu">
   <a href="#quienes" onclick="closeMenu()">Quiénes Somos</a>
   <a href="#quehacemos" onclick="closeMenu()">Qué Hacemos</a>
@@ -292,19 +286,27 @@ footer {
 <!-- HERO -->
 <div class="hero">
   <img src="https://iili.io/fH74EGa.md.png">
-  <h1>Agencia Digital · Diseño Web & Landing Pages</h1>
+  <h1>Impulsamos negocios con diseño web estratégico</h1>
 </div>
 
 <!-- QUIENES SOMOS -->
 <section id="quienes">
   <h2>Quiénes Somos</h2>
-  <p>Somos un estudio especializado en landings profesionales y diseño web moderno.</p>
+  <p>
+  En <b>Ciborg347™</b> ayudamos a negocios a crecer con páginas diseñadas para vender.
+  No hacemos diseños lindos: <b>hacemos diseños que convierten visitas en clientes</b>.
+  Nuestro enfoque combina estética moderna + estrategia comercial real.
+  </p>
 </section>
 
-<!-- QUE HACEMOS -->
+<!-- QUÉ HACEMOS -->
 <section id="quehacemos">
   <h2>Qué Hacemos</h2>
-  <p>Creamos páginas rápidas, estéticas, responsivas y con alto poder de conversión.</p>
+  <p>
+  Creamos landings rápidas, profesionales y optimizadas para captar clientes.
+  Tu marca necesita presencia, credibilidad y ventas.  
+  <b>Nosotros te damos las tres.</b>
+  </p>
 </section>
 
 <!-- SERVICIOS -->
@@ -312,42 +314,44 @@ footer {
   <h2>Servicios</h2>
   <p>
     ✔ Landing Pages premium<br>
-    ✔ Webs completas<br>
+    ✔ Sitios web completos<br>
     ✔ Branding visual<br>
     ✔ WhatsApp integrado<br>
-    ✔ Hosting gratis Render<br>
+    ✔ Hosting gratis en Render<br>
   </p>
 </section>
 
-<!-- EJEMPLOS COMPLETOS -->
+<!-- EJEMPLOS -->
 <section id="ejemplos">
   <h2>Ejemplos</h2>
 
   <h3>💅 Manicuría</h3>
   <div class="examples gallery">
     <div class="project">
-      <img src="https://iili.io/KPyCnHu.jpg" data-link="https://adda-nails.onrender.com/" data-title="Adda Nails">
+      <img src="https://iili.io/KPyCnHu.jpg" data-title="Adda Nails" data-link="https://adda-nails.onrender.com/">
       <a href="https://adda-nails.onrender.com/" target="_blank">Adda Nails</a>
     </div>
   </div>
 
   <h3>💈 Barberías</h3>
   <div class="examples gallery">
+
     <div class="project">
-      <img src="https://iili.io/KPyvEcx.jpg" data-link="https://barberia-elbebu.onrender.com/" data-title="Barber 99">
+      <img src="https://iili.io/KPyvEcx.jpg" data-title="Barber 99" data-link="https://barberia-elbebu.onrender.com/">
       <a href="https://barberia-elbebu.onrender.com/" target="_blank">Barber 99</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/KPyUCn1.jpg" data-link="https://barber-shop-rodri.onrender.com/" data-title="Barber Shop Rodri">
+      <img src="https://iili.io/KPyUCn1.jpg" data-title="Barber Shop Rodri" data-link="https://barber-shop-rodri.onrender.com/">
       <a href="https://barber-shop-rodri.onrender.com/" target="_blank">Barber Shop Rodri</a>
     </div>
+
   </div>
 
   <h3>🍰 Repostería</h3>
   <div class="examples gallery">
     <div class="project">
-      <img src="https://iili.io/fF5pLGf.jpg" data-link="https://dulce-juana.onrender.com/" data-title="Dulce Juana™">
+      <img src="https://iili.io/fF5pLGf.jpg" data-title="Dulce Juana" data-link="https://dulce-juana.onrender.com/">
       <a href="https://dulce-juana.onrender.com/" target="_blank">Dulce Juana™</a>
     </div>
   </div>
@@ -355,7 +359,7 @@ footer {
   <h3>🍻 Bailables</h3>
   <div class="examples gallery">
     <div class="project">
-      <img src="https://iili.io/f9a9K5Q.jpg" data-link="https://tio-sergio.onrender.com" data-title="Tío Sergio™">
+      <img src="https://iili.io/f9a9K5Q.jpg" data-title="Tío Sergio" data-link="https://tio-sergio.onrender.com">
       <a href="https://tio-sergio.onrender.com" target="_blank">Tío Sergio™</a>
     </div>
   </div>
@@ -363,7 +367,7 @@ footer {
   <h3>📻 Radios</h3>
   <div class="examples gallery">
     <div class="project">
-      <img src="https://iili.io/f9an4yX.jpg" data-link="https://radioimagen.onrender.com" data-title="Radio Imagen™">
+      <img src="https://iili.io/f9an4yX.jpg" data-title="Radio Imagen" data-link="https://radioimagen.onrender.com">
       <a href="https://radioimagen.onrender.com" target="_blank">Radio Imagen™</a>
     </div>
   </div>
@@ -372,37 +376,37 @@ footer {
   <div class="examples gallery">
 
     <div class="project">
-      <img src="https://iili.io/KPygQXS.jpg" data-link="https://facucasino.onrender.com/" data-title="Facu Casino™">
+      <img src="https://iili.io/KPygQXS.jpg" data-title="Facu Casino" data-link="https://facucasino.onrender.com/">
       <a href="https://facucasino.onrender.com/" target="_blank">Facu Casino™</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/KPyrMj2.jpg" data-link="https://dragon-casino.onrender.com/" data-title="Dragon Casino™">
+      <img src="https://iili.io/KPyrMj2.jpg" data-title="Dragon Casino" data-link="https://dragon-casino.onrender.com/">
       <a href="https://dragon-casino.onrender.com/" target="_blank">Dragon Casino™</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/KPyDVHP.jpg" data-link="https://dinasty-bet.onrender.com/" data-title="Dynasty Bet™">
+      <img src="https://iili.io/KPyDVHP.jpg" data-title="Dynasty Bet" data-link="https://dinasty-bet.onrender.com/">
       <a href="https://dinasty-bet.onrender.com/" target="_blank">Dynasty Bet™</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/KigNdVS.jpg" data-link="https://giraygana-fortunaplay.onrender.com/" data-title="Gira y Gana™">
+      <img src="https://iili.io/KigNdVS.jpg" data-title="Gira y Gana" data-link="https://giraygana-fortunaplay.onrender.com/">
       <a href="https://giraygana-fortunaplay.onrender.com/" target="_blank">Gira y Gana™</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/Kigv3Ij.jpg" data-link="https://ganamostodosjuntos.onrender.com/" data-title="Fortuna Play™">
+      <img src="https://iili.io/Kigv3Ij.jpg" data-title="Fortuna Play" data-link="https://ganamostodosjuntos.onrender.com/">
       <a href="https://ganamostodosjuntos.onrender.com/" target="_blank">Fortuna Play™</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/KiggTcN.jpg" data-link="https://lions-casino.onrender.com/" data-title="Lions Casino™">
+      <img src="https://iili.io/KiggTcN.jpg" data-title="Lions Casino" data-link="https://lions-casino.onrender.com/">
       <a href="https://lions-casino.onrender.com/" target="_blank">Lions Casino™</a>
     </div>
 
     <div class="project">
-      <img src="https://iili.io/f9a9Fdx.jpg" data-link="https://giraygana-ijae.onrender.com" data-title="Rueda de Premios™">
+      <img src="https://iili.io/f9a9Fdx.jpg" data-title="Rueda de Premios" data-link="https://giraygana-ijae.onrender.com">
       <a href="https://giraygana-ijae.onrender.com" target="_blank">Rueda de Premios™</a>
     </div>
 
@@ -419,12 +423,12 @@ footer {
 
 <!-- WHATSAPP -->
 <a class="whatsapp-float" target="_blank"
-   href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
+   href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20sus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
 
 <!-- FOOTER -->
-<footer>© 2025 Ciborg347™</footer>
+<footer>© 2025 Ciborg347™ · Diseño Web</footer>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
@@ -438,16 +442,12 @@ footer {
 
 <script>
 /* MENU MOBILE */
-function toggleMenu(){
-  document.getElementById("mobile-menu").classList.toggle("mobile-active");
-}
-function closeMenu(){
-  document.getElementById("mobile-menu").classList.remove("mobile-active");
-}
+function toggleMenu(){ document.getElementById("mobile-menu").classList.toggle("mobile-active"); }
+function closeMenu(){ document.getElementById("mobile-menu").classList.remove("mobile-active"); }
 
 /* LIGHTBOX */
 const items = document.querySelectorAll(".gallery img");
-items.forEach(img=>{
+items.forEach(img => {
   img.addEventListener("click", ()=>{
     document.getElementById("lightbox-img").src = img.src;
     document.getElementById("lightbox-title").innerText = img.dataset.title;
