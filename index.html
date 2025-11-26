@@ -174,95 +174,75 @@ section p {
 }
 
 /* ------------------------------------------------ */
-/* ------------------ CARRUSEL -------------------- */
+/* --------- NUEVA LÓGICA DEL CARRUSEL GLOBAL ----- */
 /* ------------------------------------------------ */
 
-.carousel-container {
-  max-width:900px;
-  margin:20px auto;
-  background:rgba(0,0,0,.65);
-  padding:25px;
-  border-radius:20px;
-  border:1px solid rgba(57,255,20,.4);
-  box-shadow:0 0 15px rgba(0,255,255,.2);
-  position:relative;
-  text-align:center;
+let index = 0;
+let manualCategory = false;
+
+/* Cuando tocan una categoría, solo salta a la PRIMER landing de esa categoría */
+function selectCategory(cat, btn){
+  document.querySelectorAll(".categories button")
+    .forEach(b => b.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  // SALTAR A LA PRIMER LANDING DE ESA CATEGORÍA
+  let foundIndex = allSlides.findIndex(x => x.category === cat);
+  if(foundIndex !== -1){
+    index = foundIndex;
+    updateCarousel();
+  }
+
+  manualCategory = true;
 }
 
-/* Contenedor de imagen */
-.carousel-image-wrapper {
-  width:100%;
-  height:320px;
-  background:#000;
-  border-radius:15px;
-  border:2px solid #39ff14;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+/* Actualizar carrusel */
+function updateCarousel(){
+  const s = allSlides[index];
+  if(!s) return;
+
+  document.getElementById("carousel-img").src = s.img;
+  document.getElementById("carousel-short").innerText = s.short;
+  document.getElementById("carousel-info").innerText = s.info;
+  document.getElementById("carousel-btn").href = s.link;
 }
 
-.carousel-image-wrapper img {
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
+/* Flechas */
+function nextSlide(){
+  index = (index + 1) % allSlides.length;
+  updateCarousel();
+}
+function prevSlide(){
+  index = (index - 1 + allSlides.length) % allSlides.length;
+  updateCarousel();
 }
 
-/* Móvil */
-@media(max-width:600px){
-  .carousel-image-wrapper { height:240px; }
-}
+/* Swipe global */
+let startX = 0;
+document.getElementById("carousel").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+document.getElementById("carousel").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if(endX < startX - 50) nextSlide();
+  if(endX > startX + 50) prevSlide();
+});
 
-/* Texto principal corto */
-.carousel-short {
-  margin-top:18px;
-  color:#00f7ff;
-  font-size:1.2rem;
-  font-weight:bold;
-}
+/* AUTOPLAY (recorre TODAS las landings) */
+setInterval(() => {
+  if(!manualCategory) nextSlide();
+}, 5000);
 
-/* Caja glass-info */
-.glass-info {
-  margin-top:15px;
-  padding:20px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(0,255,255,.4);
-  backdrop-filter:blur(6px);
-  border-radius:15px;
-  color:#dff;
-  font-size:1rem;
-  line-height:1.6;
-  text-align:left;
-}
+/* Reactivar autoplay al salir de la sección */
+document.addEventListener("scroll", () => {
+  const rect = document.getElementById("trabajos").getBoundingClientRect();
+  const fuera = rect.bottom < 0 || rect.top > window.innerHeight;
 
-/* Botón CTA */
-.carousel-btn {
-  margin-top:15px;
-  padding:10px 22px;
-  background:#39ff14;
-  color:#000;
-  font-weight:bold;
-  border-radius:25px;
-  text-decoration:none;
-  display:inline-block;
-}
-
-/* Flechas pequeñas para PC y MOBILE */
-.arrow {
-  position:absolute;
-  top:50%; transform:translateY(-50%);
-  font-size:1.4rem;
-  cursor:pointer; user-select:none;
-  color:#39ff14;
-  opacity:0.7;
-  padding:8px;
-}
-.arrow:hover { color:#00f7ff; opacity:1; }
-
-.left { left:5px; }
-.right { right:5px; }
-
-/* ------------------------------------------------ */
+  if(fuera){
+    manualCategory = false;
+  }
+}); ------------------------------------------------ */
 /* ------------------ CONTACTO -------------------- */
 /* ------------------------------------------------ */
 
