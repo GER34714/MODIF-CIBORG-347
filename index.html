@@ -124,25 +124,28 @@ section p {
 }
 
 /* -----------------------------------
-   GALERÍA — TARJETAS IGUALES
+   GALERÍA — TARJETAS TODAS IGUALES
 ----------------------------------- */
 .examples {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 18px;
+  justify-content: center;
   margin-top: 25px;
 }
 
 .project {
+  width: 190px; /* 🔥 mismo ancho para TODAS las tarjetas */
   background: rgba(255,255,255,0.07);
   border-radius: 12px;
   padding: 10px;
   border: 1px solid rgba(57,255,20,0.35);
   transition: .2s;
+  box-sizing: border-box;
 }
 .project:hover { transform: scale(1.04); }
 
-/* TARJETAS IGUALES */
+/* miniaturas todas iguales */
 .project img {
   width: 100%;
   height: 135px;
@@ -161,6 +164,7 @@ section p {
   font-size: .92rem;
   font-weight: bold;
   text-decoration: none;
+  text-align: center;
 }
 
 /* -----------------------------------
@@ -186,15 +190,15 @@ section p {
   text-align: center;
 }
 
-/* TODAS ENTERAS, SIN CORTAR, IGUALES */
+/* TODAS ENTERAS, SIN CORTAR, MISMO ALTO VISUAL */
 #lightbox-img {
   width: 100%;
   height: 320px;
-  object-fit: contain;      /* 🔥 ENTERA SIN RECORTAR */
-  object-position: center;  /* centrada */
+  object-fit: contain;      /* muestra la imagen ENTERA */
+  object-position: center;
   border-radius: 10px;
   border: 2px solid #39ff14;
-  background: #000;         /* marco negro cuando sobra espacio */
+  background: #000;
 }
 
 .close-btn {
@@ -204,6 +208,18 @@ section p {
   font-size: 2.5rem;
   color: #39ff14;
   cursor: pointer;
+}
+
+/* BOTÓN DEL LIGHTBOX */
+.view-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 20px;
+  background: #39ff14;
+  color: #000;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 /* -----------------------------------
@@ -265,7 +281,7 @@ footer {
 
 <!-- HERO -->
 <div class="hero">
-  <img src="https://iili.io/fH74EGa.md.png">
+  <img src="https://iili.io/fH74EGa.md.png" alt="Ciborg347™">
   <h1>Impulsamos negocios con diseño web estratégico</h1>
 </div>
 
@@ -402,7 +418,7 @@ footer {
 <!-- WHATSAPP -->
 <a class="whatsapp-float" target="_blank"
    href="https://wa.me/541125127689?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20dise%C3%B1ar%20algo%20para%20mi%20negocio.%20%C2%A1Gracias!">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </a>
 
 <!-- FOOTER -->
@@ -420,8 +436,12 @@ footer {
 
 <script>
 /* MENU MOBILE */
-function toggleMenu(){ document.getElementById("mobile-menu").classList.toggle("mobile-active"); }
-function closeMenu(){ document.getElementById("mobile-menu").classList.remove("mobile-active"); }
+function toggleMenu(){ 
+  document.getElementById("mobile-menu").classList.toggle("mobile-active"); 
+}
+function closeMenu(){ 
+  document.getElementById("mobile-menu").classList.remove("mobile-active"); 
+}
 
 /* LIGHTBOX */
 const items = document.querySelectorAll(".gallery img");
