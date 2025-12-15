@@ -170,4 +170,47 @@ function renderPortfolioCategorias() {
     section.appendChild(grid);
     container.appendChild(section);
   });
+}/* ================= PORTFOLIO REAL POR CATEGORÍAS ================= */
+
+function renderPortfolioCategorias() {
+  const container = document.getElementById("portfolio-categorias");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const categoriasUnicas = [...new Set(allSlides.map(p => p.category))];
+
+  categoriasUnicas.forEach(catId => {
+    const items = allSlides.filter(p => p.category === catId);
+    if (!items.length) return;
+
+    const nombreCategoria =
+      categories.find(c => c.id === catId)?.name || catId;
+
+    const section = document.createElement("div");
+    section.className = "portfolio-category";
+
+    const title = document.createElement("h3");
+    title.innerText = nombreCategoria;
+
+    const grid = document.createElement("div");
+    grid.className = "portfolio-grid";
+
+    items.forEach(p => {
+      const a = document.createElement("a");
+      a.href = p.link;
+      a.target = "_blank";
+
+      const img = document.createElement("img");
+      img.src = p.img;
+      img.alt = p.title;
+
+      a.appendChild(img);
+      grid.appendChild(a);
+    });
+
+    section.appendChild(title);
+    section.appendChild(grid);
+    container.appendChild(section);
+  });
 }
