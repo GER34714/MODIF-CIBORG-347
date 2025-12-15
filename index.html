@@ -179,6 +179,12 @@ section p {
   gap:14px;
   margin-top:10px;
 }
+.carousel-grid.one{
+  grid-template-columns: 1fr;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
+}
 
 .landing-card{
   background:rgba(255,255,255,0.06);
@@ -187,11 +193,15 @@ section p {
   padding:12px;
   text-align:left;
   backdrop-filter:blur(6px);
+
+  display:flex;
+  flex-direction:column;
+  min-height: 420px; /* ayuda a alinear alturas entre cards */
 }
 
 .landing-thumb{
   width:100%;
-  height:190px;
+  height:210px;
   background:#000;
   border-radius:12px;
   border:2px solid #39ff14;
@@ -201,9 +211,11 @@ section p {
   overflow:hidden;
 }
 .landing-thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain; /* ✅ NO recorta, muestra completa */
 }
 
 .landing-short{
@@ -212,6 +224,7 @@ section p {
   font-size:1.05rem;
   font-weight:bold;
   line-height:1.35;
+  min-height: 48px; /* alinea el bloque */
 }
 
 .landing-info{
@@ -219,17 +232,19 @@ section p {
   color:#dff;
   font-size:.95rem;
   line-height:1.55;
+  flex:1;           /* empuja CTA abajo */
+  min-height: 90px; /* alinea el bloque */
 }
 
 .landing-cta{
-  margin-top:10px;
+  margin-top:12px;
   display:flex;
   justify-content:flex-start;
 }
 
 /* CTA (ya existente) */  
 .carousel-btn {  
-  margin-top:15px;  
+  margin-top:0;  
   padding:10px 22px;  
   background:#39ff14;  
   color:#000;  
@@ -259,13 +274,14 @@ section p {
 .left { left:5px; }  
 .right { right:5px; }  
 
-/* Mobile: siguen 2 pero más compactas para que entren */
+/* Mobile */
 @media(max-width:600px){
   .carousel-container{ padding:18px; }
   .carousel-grid{ gap:10px; }
-  .landing-thumb{ height:140px; }
-  .landing-short{ font-size:.95rem; }
-  .landing-info{ font-size:.88rem; }
+  .landing-thumb{ height:150px; }
+  .landing-card{ min-height: 360px; }
+  .landing-short{ font-size:.95rem; min-height: 44px; }
+  .landing-info{ font-size:.88rem; min-height: 78px; }
   .carousel-btn{ padding:9px 14px; font-size:.95rem; }
 }
 
@@ -309,6 +325,9 @@ section p {
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:14px;
+}
+@media(max-width:600px){
+  .more-grid{ grid-template-columns: 1fr; }
 }
 
 /* WHATSAPP FLOAT */  
@@ -504,7 +523,7 @@ let allSlides = [
 
   {category:"radio", img:"https://iili.io/farGiml.jpg", link:"https://radiocannafest.onrender.com", short:"Radio Cannafest con identidad propia.", info:"Landing moderna para radio temática con estética fuerte y presencia profesional."},  
 
-  {category:"refacciones", img:"https://iili.io/farX3hl.jpg", link:"https://jyl-refacciones.onrender.com", short:"REFACCIONES/Construcciónes: servicios que se ven profesionales.", info:"Landing para refacciones y construcciones, ideal para mostrar trabajos, servicios y captar presupuestos por WhatsApp."},  
+  {category:"refacciones", img:"https://iili.io/farX3hl.jpg", link:"https://jyl-refacciones.onrender.com", short:"Refacciones y construcciones para captar presupuestos.", info:"Landing para refacciones y construcciones, ideal para mostrar trabajos, servicios y captar presupuestos por WhatsApp."},  
   
   {category:"casino", img:"https://iili.io/KPygQXS.jpg", link:"https://facu-casino.onrender.com/", short:"Diseño directo para captar jugadores.", info:"Estética intensa y conversiones rápidas."},  
   {category:"casino", img:"https://iili.io/KPyrMj2.jpg", link:"https://dragon-casino.onrender.com/", short:"Energía visual para atraer usuarios.", info:"Landing con estilo fuego y dinamismo."},  
@@ -522,7 +541,7 @@ const categories = [
   {id:"food", name:"Gastronomía"},  
   {id:"evento", name:"Eventos"},  
   {id:"radio", name:"Radios"},  
-  {id:"refacciones", name:"REFACCIONES/Construcciónes"},  
+  {id:"refacciones", name:"Refacciones"},  
   {id:"casino", name:"Casinos"}  
 ];  
   
@@ -560,7 +579,7 @@ function updateCategoryHighlight(){
   });  
 }  
 
-/* --- RENDER 2 TARJETAS --- */
+/* --- RENDER 1 o 2 TARJETAS (SIN RELLENO) --- */
 function renderGrid(){
   const grid = document.getElementById("carousel-grid");
   const morebar = document.getElementById("morebar");
@@ -574,6 +593,13 @@ function renderGrid(){
 
   const start = pageIndex * 2;
   const slice = items.slice(start, start + 2);
+
+  // Si hay 1, se muestra 1 (y listo)
+  if(slice.length === 1){
+    grid.classList.add("one");
+  } else {
+    grid.classList.remove("one");
+  }
 
   slice.forEach(item => {
     const card = document.createElement("div");
@@ -589,23 +615,7 @@ function renderGrid(){
     grid.appendChild(card);
   });
 
-  // si en esa página quedó 1 sola (por impar), duplico un placeholder vacío para mantener 2 columnas prolijas
-  if(slice.length === 1){
-    const filler = document.createElement("div");
-    filler.className = "landing-card";
-    filler.style.opacity = "0.35";
-    filler.innerHTML = `
-      <div class="landing-thumb" style="border-color:rgba(57,255,20,.35);"></div>
-      <div class="landing-short">Hay más proyectos en camino…</div>
-      <div class="landing-info">Sumamos más landings pronto para esta categoría.</div>
-      <div class="landing-cta">
-        <a class="carousel-btn" href="#contacto">Pedir una web</a>
-      </div>
-    `;
-    grid.appendChild(filler);
-  }
-
-  // botón "ver más" solo si hay más de 2 en la categoría
+  // Botón "ver más" solo si hay más de 2 en la categoría
   if(items.length > 2){
     morebar.style.display = "block";
   } else {
@@ -670,9 +680,8 @@ function openMore(){
 
   overlay.style.display = "flex";
 }
-function closeMore(e){
-  const overlay = document.getElementById("more-overlay");
-  overlay.style.display = "none";
+function closeMore(){
+  document.getElementById("more-overlay").style.display = "none";
 }
 
 /* --- INICIALIZAR --- */  
