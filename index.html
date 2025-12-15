@@ -187,7 +187,9 @@ section p {
   max-width:100%;
   max-height:100%;
   object-fit:contain;
-}/* Mobile */
+}
+
+/* Mobile */
 @media(max-width:600px){
   .carousel-image-wrapper { height:240px; }
 }
@@ -293,7 +295,8 @@ footer {
 .work-thumb img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
+  background:#000;
 }
 
 .work-content{
@@ -316,6 +319,19 @@ footer {
 .work-short{ color:#00f7ff; font-weight:bold; }
 .work-info{ color:#dff; font-size:.95rem; }
 
+/* ==================== MOBILE FIX REAL (AGREGADO) ==================== */
+@media(max-width:600px){
+  body{ background-attachment:scroll; }
+  .hero{ padding-top:100px; }
+  .hero img{ width:180px; }
+  .hero h1{ font-size:1.4rem; padding:0 10px; }
+  section{ padding:60px 15px; }
+  section h2{ font-size:1.5rem; }
+  section p{ font-size:1rem; }
+  .carousel-container{ padding:16px; }
+  .carousel-btn{ width:100%; box-sizing:border-box; text-align:center; }
+  .work-thumb{ height:160px; }
+}
 </style>
 </head>
 
@@ -431,10 +447,11 @@ elegidos por diseño, impacto y conversión.
     <div class="carousel-short" id="carousel-short"></div>
     <div class="glass-info" id="carousel-info"></div>
 
-    <a id="carousel-btn" class="carousel-btn" target="_blank">
-      Ver landing completa
-    </a>
+    <a id="carousel-btn" class="carousel-btn" target="_blank">Ver landing completa</a>
   </div>
+
+  <!-- GRILLA: MUESTRA TODOS LOS EJEMPLOS DE LA CATEGORÍA (AGREGADO) -->
+  <div class="works-grid" id="category-grid"></div>
 </section>
 
 <!-- CONTACTO -->
@@ -459,7 +476,9 @@ Te respondemos rápido para ayudarte a crear tu proyecto.
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
 </a>
 
-<footer>© 2025 Ciborg347™ · Web Agency</footer><!-- ======================= SCRIPTS ======================= -->
+<footer>© 2025 Ciborg347™ · Web Agency</footer>
+
+<!-- ======================= SCRIPTS ======================= -->
 <script>
 /* -------- MENÚ -------- */
 let autoClose;
@@ -485,7 +504,6 @@ function closeMenu(){
 }
 
 /* ===================== CARRUSEL GLOBAL ===================== */
-
 let allSlides = [
   {category:"estetica", img:"https://iili.io/KPyCnHu.jpg", link:"https://adda-nails.onrender.com/", short:"Mostrá tu trabajo con un diseño limpio y profesional.", info:"Landing pensada para estudios de belleza que necesitan transmitir prolijidad, estilo y confianza."},
 
@@ -535,6 +553,7 @@ categories.forEach(cat => {
 /* --- ACTUALIZAR CLASE ACTIVA --- */
 function updateCategoryHighlight(){
   const activeCat = allSlides[index].category;
+
   document.querySelectorAll(".categories button").forEach(btn => {
     btn.classList.remove("active");
     if(btn.innerText === categories.find(c=>c.id===activeCat).name){
@@ -543,10 +562,37 @@ function updateCategoryHighlight(){
   });
 }
 
+/* --- GRILLA POR CATEGORÍA (AGREGADO) --- */
+function renderCategoryGrid(catId){
+  const grid = document.getElementById("category-grid");
+  if(!grid) return;
+
+  const label = categories.find(c=>c.id===catId)?.name || catId;
+  const items = allSlides.filter(s => s.category === catId);
+
+  grid.innerHTML = "";
+
+  items.forEach(s => {
+    const card = document.createElement("div");
+    card.className = "work-card";
+    card.innerHTML = `
+      <div class="work-thumb"><img src="${s.img}" alt=""></div>
+      <div class="work-content">
+        <span class="work-badge">${label}</span>
+        <div class="work-short">${s.short}</div>
+        <div class="work-info">${s.info}</div>
+        <a class="carousel-btn" href="${s.link}" target="_blank">Ver landing completa</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
 /* --- SALTO A CATEGORÍA --- */
 function jumpToCategory(cat){
   index = allSlides.findIndex(x => x.category === cat);
   updateCarousel();
+  renderCategoryGrid(cat);
 }
 
 /* --- ACTUALIZAR CARRUSEL --- */
@@ -560,6 +606,7 @@ function updateCarousel(){
   document.getElementById("carousel-btn").href = s.link;
 
   updateCategoryHighlight();
+  renderCategoryGrid(s.category);
 }
 
 /* --- FLECHAS --- */
@@ -582,9 +629,6 @@ document.getElementById("carousel").addEventListener("touchend", e => {
   if(endX < startX - 50) nextSlide();
   if(endX > startX + 50) prevSlide();
 });
-
-/* --- INICIALIZAR --- */
-updateCarousel();
 
 /* --- TIPS ROTATIVOS --- */
 const tips = [
@@ -615,7 +659,7 @@ function renderFeatured(){
     const card = document.createElement("div");
     card.className = "work-card";
     card.innerHTML = `
-      <div class="work-thumb"><img src="${s.img}"></div>
+      <div class="work-thumb"><img src="${s.img}" alt=""></div>
       <div class="work-content">
         <span class="work-badge">${badge}</span>
         <div class="work-short">${s.short}</div>
@@ -627,7 +671,9 @@ function renderFeatured(){
   });
 }
 
+/* --- INICIALIZAR --- */
 renderFeatured();
+updateCarousel();
 </script>
 
 </body>
