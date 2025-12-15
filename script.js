@@ -1,73 +1,126 @@
-let projects = [];
-let featured = [];
-let fIndex = 0;
+/* -------- MENÚ -------- */
+let autoClose;
+function toggleMenu() {
+  const menu = document.getElementById("mobile-menu");
+  const overlay = document.getElementById("menu-overlay");
 
-/* CARGAR CMS */
-fetch("projects.json")
-  .then(res => res.json())
-  .then(data => {
-    projects = data;
-    featured = projects.filter(p => p.featured);
+  if(menu.classList.contains("mobile-active")){
+    closeMenu();
+  } else {
+    menu.classList.add("mobile-active");
+    overlay.style.display = "block";
 
-    // Si existe la sección destacadas (index)
-    if (document.getElementById("featured-img")) {
-      initFeatured();
-    }
+    clearTimeout(autoClose);
+    autoClose = setTimeout(() => closeMenu(), 5000);
+  }
+}
 
-    // Si existe portfolio (index o portfolio.html)
-    if (document.getElementById("portfolio-container")) {
-      buildPortfolio();
+function closeMenu(){
+  document.getElementById("mobile-menu").classList.remove("mobile-active");
+  document.getElementById("menu-overlay").style.display="none";
+  clearTimeout(autoClose);
+}
+
+/* ===================== CARRUSEL GLOBAL ===================== */
+
+let allSlides = [
+  {category:"estetica", img:"https://iili.io/KPyCnHu.jpg", link:"https://adda-nails.onrender.com/", short:"Mostrá tu trabajo con un diseño limpio y profesional.", info:"Landing pensada para estudios de belleza que necesitan transmitir prolijidad, estilo y confianza."},
+  {category:"barber", img:"https://iili.io/KPyvEcx.jpg", link:"https://barberia-elbebu.onrender.com/", short:"Presencia fuerte que posiciona tu barbería como marca.", info:"Estética moderna y masculina que genera autoridad."},
+  {category:"barber", img:"https://iili.io/KPyUCn1.jpg", link:"https://barber-shop-rodri.onrender.com/", short:"Elegancia y estilo en cada detalle.", info:"Diseño orientado a barberías que quieren diferenciarse."},
+  {category:"food", img:"https://iili.io/fF5pLGf.jpg", link:"https://dulce-juana.onrender.com/", short:"Imágenes irresistibles que generan ventas.", info:"Landing cálida y visual, perfecta para gastronomía."},
+  {category:"evento", img:"https://iili.io/f9a9K5Q.jpg", link:"https://tio-sergio.onrender.com", short:"Energía y ambiente en un diseño impactante.", info:"Ideal para salones y bailables."},
+  {category:"radio", img:"https://iili.io/f9an4yX.jpg", link:"https://radioimagen.onrender.com", short:"Tu radio con presencia moderna.", info:"Streaming integrado y visual profesional."},
+  {category:"casino", img:"https://iili.io/KPygQXS.jpg", link:"https://facu-casino.onrender.com/", short:"Diseño directo para captar jugadores.", info:"Estética intensa y conversiones rápidas."},
+  {category:"casino", img:"https://iili.io/KPyrMj2.jpg", link:"https://dragon-casino.onrender.com/", short:"Energía visual para atraer usuarios.", info:"Landing con estilo fuego y dinamismo."},
+  {category:"casino", img:"https://iili.io/KPyDVHP.jpg", link:"https://dinasty-bet.onrender.com/", short:"Identidad deportiva sólida.", info:"Perfecta para apuestas y deportes."},
+  {category:"casino", img:"https://iili.io/KigNdVS.jpg", link:"https://giraygana-fortunaplay.onrender.com/", short:"Diseño veloz y llamativo.", info:"Enfocada en interacción rápida."},
+  {category:"casino", img:"https://iili.io/Kigv3Ij.jpg", link:"https://ganamostodosjuntos.onrender.com/", short:"Impacto fuerte para gaming.", info:"Ideal para promociones continuas."},
+  {category:"casino", img:"https://iili.io/KiggTcN.jpg", link:"https://lions-casino.onrender.com/", short:"Identidad premium.", info:"Estética limpia y profesional."},
+  {category:"casino", img:"https://iili.io/f9a9Fdx.jpg", link:"https://giraygana-ijae.onrender.com", short:"Máxima rapidez para captar curiosos.", info:"Diseño simple y efectivo."}
+];
+
+let index = 0;
+
+/* --- CATEGORÍAS --- */
+const categories = [
+  {id:"estetica", name:"Estética"},
+  {id:"barber", name:"Barberías"},
+  {id:"food", name:"Gastronomía"},
+  {id:"evento", name:"Eventos"},
+  {id:"radio", name:"Radios"},
+  {id:"casino", name:"Casinos"}
+];
+
+let catContainer = document.getElementById("category-buttons");
+
+categories.forEach(cat => {
+  let btn = document.createElement("button");
+  btn.innerText = cat.name;
+  btn.onclick = () => jumpToCategory(cat.id);
+  catContainer.appendChild(btn);
+});
+
+function updateCategoryHighlight(){
+  const activeCat = allSlides[index].category;
+  document.querySelectorAll(".categories button").forEach(btn => {
+    btn.classList.remove("active");
+    if(btn.innerText === categories.find(c=>c.id===activeCat).name){
+      btn.classList.add("active");
     }
   });
-
-/* DESTACADAS */
-function initFeatured(){
-  if(!featured.length) return;
-  showFeatured();
 }
 
-function showFeatured(){
-  const p = featured[fIndex];
-  document.getElementById("featured-img").src = p.img;
-  document.getElementById("featured-text").innerText = p.text;
-  document.getElementById("featured-link").href = p.link;
+function jumpToCategory(cat){
+  index = allSlides.findIndex(x => x.category === cat);
+  updateCarousel();
 }
 
-function nextFeatured(){
-  fIndex = (fIndex + 1) % featured.length;
-  showFeatured();
+function updateCarousel(){
+  const s = allSlides[index];
+  if(!s) return;
+
+  document.getElementById("carousel-img").src = s.img;
+  document.getElementById("carousel-short").innerText = s.short;
+  document.getElementById("carousel-info").innerText = s.info;
+  document.getElementById("carousel-btn").href = s.link;
+
+  updateCategoryHighlight();
 }
-function prevFeatured(){
-  fIndex = (fIndex - 1 + featured.length) % featured.length;
-  showFeatured();
+
+function nextSlide(){
+  index = (index + 1) % allSlides.length;
+  updateCarousel();
+}
+function prevSlide(){
+  index = (index - 1 + allSlides.length) % allSlides.length;
+  updateCarousel();
 }
 
-/* PORTFOLIO */
-function buildPortfolio(){
-  const container = document.getElementById("portfolio-container");
-  container.innerHTML = "";
+/* SWIPE */
+let startX = 0;
+document.getElementById("carousel").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+document.getElementById("carousel").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if(endX < startX - 50) nextSlide();
+  if(endX > startX + 50) prevSlide();
+});
 
-  const categories = [...new Set(projects.map(p => p.category))];
+/* INIT */
+updateCarousel();
 
-  categories.forEach(cat => {
-    const block = document.createElement("div");
-    block.className = "category";
-    block.innerHTML = `<h3>${cat}</h3>`;
+/* TIPS */
+const tips = [
+  "Tip: Una landing clara convierte más clics en ventas.",
+  "Tip: Un CTA fuerte aumenta conversiones hasta un 40%.",
+  "Tip: Las imágenes profesionales venden más.",
+  "Tip: Tu web debe cargar rápido para retener clientes.",
+  "Tip: La primera impresión define si confían en tu negocio."
+];
 
-    const grid = document.createElement("div");
-    grid.className = "grid";
-
-    projects
-      .filter(p => p.category === cat)
-      .forEach(p => {
-        const a = document.createElement("a");
-        a.href = p.link;
-        a.target = "_blank";
-        a.innerHTML = `<img src="${p.img}" alt="${p.title}" title="${p.title}">`;
-        grid.appendChild(a);
-      });
-
-    block.appendChild(grid);
-    container.appendChild(block);
-  });
-}
+let tipIndex = 0;
+setInterval(() => {
+  tipIndex = (tipIndex + 1) % tips.length;
+  document.getElementById("tip-text").innerText = tips[tipIndex];
+}, 4000);
