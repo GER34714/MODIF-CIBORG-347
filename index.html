@@ -205,6 +205,7 @@ section p {
   margin-right:auto;
 }
 
+/* ✅ Cards con alto fijo + texto recortado => botones parejitos */
 .landing-card{
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(0,255,255,.35);
@@ -214,7 +215,7 @@ section p {
 
   display:flex;
   flex-direction:column;
-  min-height: 420px;
+  height: 430px;            /* ✅ mismo alto para todas */
 }
 
 .landing-thumb{
@@ -236,32 +237,42 @@ section p {
   object-fit:contain; /* ✅ completa, sin recorte */
 }
 
+/* ✅ mismo alto + clamp */
 .landing-short{
   margin-top:10px;
   color:#00f7ff;
   font-size:1.05rem;
   font-weight:bold;
   line-height:1.35;
-  min-height: 48px;
+  height: 52px;             /* ✅ fijo */
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
   text-align:center;
 }
 
+/* ✅ mismo alto + clamp */
 .landing-info{
   margin-top:8px;
   color:#dff;
   font-size:.95rem;
   line-height:1.55;
-  flex:1;
-  min-height: 90px;
+  height: 110px;            /* ✅ fijo */
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
   text-align:left;
 }
 
 .landing-cta{
-  margin-top:12px;
+  margin-top:auto;          /* ✅ empuja el botón al fondo */
   display:flex;
-  justify-content:center; /* ✅ botón centrado */
+  justify-content:center;
 }
 
+/* ✅ botón siempre igual */
 .carousel-btn {  
   padding:10px 22px;  
   background:#39ff14;  
@@ -269,7 +280,11 @@ section p {
   font-weight:bold;  
   border-radius:25px;  
   text-decoration:none;  
-  display:inline-block;  
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 170px;         /* ✅ mismo ancho */
+  height: 42px;             /* ✅ mismo alto */
 }  
 
 .morebar{
@@ -282,10 +297,10 @@ section p {
   .carousel-container{ padding:18px; }
   .carousel-grid{ gap:10px; }
   .landing-thumb{ height:150px; }
-  .landing-card{ min-height: 360px; }
-  .landing-short{ font-size:.95rem; min-height: 44px; }
-  .landing-info{ font-size:.88rem; min-height: 78px; }
-  .carousel-btn{ padding:9px 14px; font-size:.95rem; }
+  .landing-card{ height: 380px; }          /* ✅ fijo mobile */
+  .landing-short{ font-size:.95rem; height: 46px; }
+  .landing-info{ font-size:.88rem; height: 92px; }
+  .carousel-btn{ min-width: 160px; height: 40px; padding:9px 14px; font-size:.95rem; }
 }
 
 /* Modal "Ver más" */
@@ -515,7 +530,7 @@ let allSlides = [
   {category:"food", img:"https://iili.io/fF5pLGf.jpg", link:"https://dulce-juana.onrender.com/", short:"Imágenes irresistibles que generan ventas.", info:"Landing cálida y visual, perfecta para gastronomía."},  
 
   {category:"evento", img:"https://iili.io/f9a9K5Q.jpg", link:"https://tio-sergio.onrender.com", short:"Energía y ambiente en un diseño impactante.", info:"Ideal para salones y bailables."},  
-  {category:"evento", img:"https://iili.io/faZQ0Ff.jpg", link:"https://web-mmg-oficial.onrender.com", short:"Showcase potente para eventos y artistas.", info:"Landing con estética pro para presentar el evento/producción, mostrar identidad y llevar tráfico directo a contacto/redes."},
+  {category:"evento", img:"https://iili.io/faZQ0Ff.jpg", link:"https://web-mmg-oficial.onrender.com", short:"Showcase potente para eventos y artistas.", info:"Landing con estética pro para presentar el evento/producción, mostrar identidad y llevar tráfico directo a contacto/redes."},  
 
   {category:"radio", img:"https://iili.io/f9an4yX.jpg", link:"https://radioimagen.onrender.com", short:"Tu radio con presencia moderna.", info:"Streaming integrado y visual profesional."},  
   {category:"radio", img:"https://iili.io/farGiml.jpg", link:"https://radiocannafest.onrender.com", short:"Radio Cannafest con identidad propia.", info:"Landing moderna para radio temática con estética fuerte y presencia profesional."},  
