@@ -7,8 +7,6 @@
   <meta property="og:image" content="https://iili.io/fcqMequ.jpg">
   <meta property="og:url" content="https://ciborg347.onrender.com">
   <meta property="og:type" content="website">
-
-  <!-- Extra recomendado -->
   <meta property="og:locale" content="es_AR">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -18,7 +16,7 @@
   <link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
 
   <style>
-    /* FIX PC: evita que el NAV se corte por width:100% + padding */
+    /* FIX PC */
     *, *::before, *::after { box-sizing: border-box; }
     body { overflow-x: hidden; }
 
@@ -48,6 +46,7 @@
       color:#39ff14;
       font-size:1.3rem;
       font-weight:bold;
+      letter-spacing:.3px;
     }
     nav ul {
       display:flex; gap:35px; list-style:none; padding:0; margin:0;
@@ -102,10 +101,11 @@
 
     /* ------------------------ HERO ------------------------ */
     .hero {
-      padding-top:140px; text-align:center;
+      padding-top:130px; text-align:center;
+      padding-bottom:20px;
     }
     .hero img {
-      width:260px;
+      width:250px;
       filter:drop-shadow(0 0 15px #39ff14);
       animation:glow 3s infinite alternate;
     }
@@ -114,434 +114,382 @@
       50%{ filter:drop-shadow(0 0 20px #00f7ff);}
       100%{ filter:drop-shadow(0 0 10px #39ff14);}
     }
+    .hero h1{
+      color:#00f7ff;
+      margin:18px 12px 0;
+      font-size: clamp(1.3rem, 2.5vw, 2.0rem);
+      line-height:1.2;
+    }
 
     /* ------------------------ SECCIONES ------------------------ */
     section {
-      max-width:1100px; margin:auto; padding:80px 20px;
+      max-width:1100px; margin:auto; padding:60px 20px;
       text-align:center;
     }
     section h2 {
-      font-size:2rem; color:#39ff14; margin-bottom:15px;
+      font-size:2rem; color:#39ff14; margin-bottom:14px;
     }
     section p {
-      font-size:1.15rem; line-height:1.7; color:#ccc;
+      font-size:1.12rem; line-height:1.7; color:#ccc;
       text-align:center;
       white-space:pre-line;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    @media(max-width:600px){
+      section{ padding:50px 16px; }
+      section h2{ font-size:1.7rem; }
+      section p{ font-size:1.02rem; }
     }
 
     /* ------------------------ TIPS BAR ------------------------ */
     .tips-bar {
-      max-width:900px;
-      margin:20px auto 0;
+      max-width:980px;
+      margin:18px auto 0;
       padding:12px 18px;
       background:rgba(0,255,255,0.08);
       border:1px solid rgba(0,255,255,.35);
       border-radius:12px;
       backdrop-filter:blur(4px);
       box-shadow:0 0 12px rgba(0,255,255,.15);
-      font-size:1.05rem;
+      font-size:1.02rem;
       text-align:center;
       color:#00f7ff;
       font-weight:bold;
     }
 
-    /* ------------------------ BOTONES BASE ------------------------ */
-    .carousel-btn{
-      padding:10px 22px;
-      background:#39ff14;
-      color:#000;
-      font-weight:bold;
-      border-radius:25px;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:0;
-      cursor:pointer;
-    }
-    .carousel-btn:hover{ filter:brightness(1.05); }
-
-    /* ------------------------ EJEMPLOS PRO (tarjetitas + modal) ------------------------ */
-    .examples-wrap{
+    /* ------------------------ CATEGORÍAS ------------------------ */
+    .categories {
       max-width:980px;
-      margin:18px auto 0;
-      background:rgba(0,0,0,.62);
-      border:1px solid rgba(57,255,20,.35);
-      border-radius:20px;
-      padding:18px;
-      box-shadow:0 0 15px rgba(0,255,255,.16);
-      overflow:hidden;
-      text-align:left;
-    }
-
-    .examples-top{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 12px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:12px;
-    }
-
-    .examples-left{
+      margin:18px auto 8px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      align-items:center;
+      justify-content:center;
     }
-
-    .examples-note{
-      color:#00f7ff;
-      font-weight:bold;
-      background:rgba(0,255,255,.08);
-      border:1px solid rgba(0,255,255,.25);
-      padding:8px 12px;
-      border-radius:12px;
-      font-size:.98rem;
-    }
-
-    .examples-actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .btn-ghost{
-      background:rgba(0,255,255,.10);
-      border:1px solid rgba(0,255,255,.35);
+    .categories button {
+      background:rgba(0,255,255,.1);
+      border:1px solid rgba(0,255,255,.4);
       color:#00f7ff;
       padding:10px 16px;
       border-radius:25px;
       cursor:pointer;
       font-weight:bold;
+      transition:.2s;
+    }
+    .categories button:hover,
+    .categories .active {
+      background:#00f7ff;
+      color:#000;
+    }
+
+    /* ------------------------ EJEMPLOS: TARJETITAS ------------------------ */
+    .examples-shell{
+      max-width:980px;
+      margin:14px auto 0;
+      background:rgba(0,0,0,.60);
+      border:1px solid rgba(57,255,20,.35);
+      box-shadow:0 0 15px rgba(0,255,255,.16);
+      border-radius:18px;
+      padding:16px;
+      text-align:left;
+    }
+
+    .examples-toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .examples-title{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .examples-title strong{
+      color:#39ff14;
+      font-size:1.1rem;
+      letter-spacing:.2px;
+    }
+    .examples-title span{
+      color:#bfe;
+      font-size:.95rem;
+      opacity:.95;
+    }
+
+    .examples-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      text-decoration:none;
-    }
-    .btn-ghost:hover{ background:rgba(0,255,255,.18); }
-
-    .categories{
-      margin:10px 0 14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:flex-start;
-    }
-    .categories button{
-      background:rgba(0,255,255,.10);
-      border:1px solid rgba(0,255,255,.35);
-      color:#00f7ff;
+      gap:8px;
       padding:10px 14px;
-      border-radius:25px;
-      cursor:pointer;
+      border-radius:999px;
       font-weight:bold;
-      transition:.2s;
-      font-size:.98rem;
+      cursor:pointer;
+      text-decoration:none;
+      transition:.18s;
+      user-select:none;
+      border:1px solid rgba(0,255,255,.35);
+      background:rgba(0,255,255,.08);
+      color:#00f7ff;
+      font-size:.95rem;
     }
-    .categories button:hover, .categories .active{
+    .btn:hover{
       background:#00f7ff;
       color:#000;
+      border-color:#00f7ff;
+    }
+    .btn.primary{
+      background:#39ff14;
+      border-color:#39ff14;
+      color:#000;
+    }
+    .btn.primary:hover{
+      filter:brightness(1.04);
     }
 
     .cards-grid{
       display:grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap:12px;
-      min-width:0;
     }
 
-    .ex-card{
-      border-radius:14px;
-      border:1px solid rgba(0,255,255,.25);
+    @media(max-width:900px){
+      .cards-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media(max-width:600px){
+      .examples-shell{ padding:14px; }
+      .cards-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap:10px; }
+      .btn{ width:100%; }
+      .examples-actions{ width:100%; }
+    }
+
+    .card{
       background:rgba(255,255,255,0.06);
+      border:1px solid rgba(0,255,255,.28);
+      border-radius:16px;
       overflow:hidden;
       cursor:pointer;
-      transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+      transition:.18s;
       min-width:0;
+      position:relative;
     }
-    .ex-card:hover{
+    .card:hover{
       transform:translateY(-2px);
       border-color:rgba(57,255,20,.55);
-      box-shadow:0 0 14px rgba(0,255,255,.12);
+      box-shadow:0 0 14px rgba(0,255,255,.10);
     }
 
-    .ex-thumb{
-      width:100%;
-      height:120px;                /* ✅ tarjetita chica */
+    .card-thumb{
+      height:120px;
       background:#000;
+      border-bottom:1px solid rgba(0,255,255,.18);
       display:flex;
       align-items:center;
       justify-content:center;
-      border-bottom:1px solid rgba(0,255,255,.15);
-      overflow:hidden;
+      padding:8px;
     }
-    .ex-thumb img{
+    .card-thumb img{
       width:100%;
       height:100%;
-      object-fit:contain;          /* ✅ imagen ENTERA dentro del cuadro */
-      padding:8px;
-      display:block;
+      object-fit:contain; /* ✅ se ve entera */
+      border-radius:10px;
     }
 
-    .ex-meta{
+    .card-body{
       padding:10px 10px 12px;
-      min-width:0;
-    }
-    .ex-badge{
-      display:inline-flex;
-      align-items:center;
+      display:flex;
+      flex-direction:column;
       gap:6px;
-      font-size:.85rem;
-      color:#39ff14;
-      font-weight:bold;
-      margin-bottom:6px;
-      opacity:.95;
     }
-    .ex-title{
+
+    .tag{
+      width:fit-content;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:bold;
+      border:1px solid rgba(57,255,20,.35);
+      color:#39ff14;
+      background:rgba(57,255,20,.08);
+      letter-spacing:.2px;
+    }
+
+    .card-title{
       color:#00f7ff;
       font-weight:bold;
-      font-size:.95rem;
-      line-height:1.25;
-      margin:0;
+      font-size:.98rem;
+      line-height:1.2;
       overflow:hidden;
       text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .card-short{
+      color:#d7ffff;
+      font-size:.86rem;
+      line-height:1.35;
+      opacity:.92;
       display:-webkit-box;
       -webkit-line-clamp:2;
       -webkit-box-orient:vertical;
-    }
-    .ex-hint{
-      margin-top:8px;
-      font-size:.85rem;
-      color:#bfefff;
-      opacity:.9;
-      font-weight:bold;
+      overflow:hidden;
+      min-height: 2.4em;
     }
 
-    .examples-bottom{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .count-text{
-      color:#cfefff;
-      opacity:.9;
-      font-size:.95rem;
-      font-weight:bold;
-    }
-
-    @media(max-width:1000px){
-      .cards-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-    @media(max-width:700px){
-      .cards-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .ex-thumb{ height:120px; }
-      .examples-wrap{ padding:14px; }
-    }
-
-    /* ------------------------ MODAL DETALLE (click en tarjeta) ------------------------ */
-    .ex-overlay{
-      position:fixed; inset:0;
+    /* ------------------------ MODAL (DETALLE + VER TODOS) ------------------------ */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
       background:rgba(0,0,0,.78);
       display:none;
       align-items:center;
       justify-content:center;
-      z-index:6500;
-      padding:14px;
+      z-index:7000;
+      padding:18px;
     }
-    .ex-modal{
-      width:min(980px, 96vw);
-      max-height:88vh;
+    .modal{
+      width:min(980px, 94vw);
+      max-height:86vh;
       overflow:auto;
       background:rgba(0,0,0,.90);
       border:1px solid rgba(0,255,255,.35);
       border-radius:18px;
-      box-shadow:0 0 18px rgba(0,255,255,.16);
+      box-shadow:0 0 20px rgba(0,255,255,.14);
       position:relative;
       padding:16px;
-      text-align:left;
     }
-    .ex-close{
-      position:absolute; top:10px; right:14px;
+    .modal-close{
+      position:absolute;
+      top:10px; right:14px;
       font-size:2rem;
       color:#39ff14;
       cursor:pointer;
       user-select:none;
     }
 
-    .ex-modal-grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:14px;
-      align-items:start;
-    }
-    .ex-modal-figure{
-      background:#000;
-      border:1px solid rgba(57,255,20,.35);
-      border-radius:16px;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:320px;
-    }
-    .ex-modal-figure img{
-      width:100%;
-      height:100%;
-      object-fit:contain;        /* ✅ imagen ENTERA */
-      padding:10px;
-      display:block;
-    }
-
-    .ex-modal-side{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(0,255,255,.22);
-      border-radius:16px;
-      padding:14px;
-    }
-    .ex-modal-cat{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      color:#39ff14;
-      font-weight:bold;
-      margin-bottom:10px;
-      font-size:.95rem;
-    }
-    .ex-modal-title{
-      color:#00f7ff;
-      font-weight:bold;
-      font-size:1.2rem;
-      line-height:1.25;
-      margin:0 0 10px 0;
-    }
-    .ex-modal-short{
-      color:#dff;
-      font-size:1rem;
-      font-weight:bold;
-      margin:0 0 10px 0;
-      line-height:1.45;
-    }
-    .ex-modal-info{
-      color:#cfcfcf;
-      font-size:.98rem;
-      line-height:1.65;
-      margin:0 0 14px 0;
-      white-space:pre-line;
-    }
-    .ex-modal-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .nav-mini{
-      margin-top:12px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-    }
-    .nav-mini button{
-      background:rgba(0,255,255,.10);
-      border:1px solid rgba(0,255,255,.35);
-      color:#00f7ff;
-      padding:10px 14px;
-      border-radius:14px;
-      cursor:pointer;
-      font-weight:bold;
-      min-width:120px;
-    }
-    .nav-mini button:hover{ background:rgba(0,255,255,.18); }
-    .nav-mini .pos{
-      color:#cfefff;
-      opacity:.95;
-      font-weight:bold;
-      font-size:.95rem;
-    }
-
-    @media(max-width:820px){
-      .ex-modal-grid{ grid-template-columns: 1fr; }
-      .ex-modal-figure{ min-height:260px; }
-    }
-
-    /* ------------------------ MODAL "VER TODOS" (sin alargar la página) ------------------------ */
-    .catalog-overlay{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.80);
-      display:none;
-      z-index:6600;
-      padding:14px;
-      align-items:center;
-      justify-content:center;
-    }
-    .catalog-modal{
-      width:min(1100px, 96vw);
-      max-height:90vh;
-      overflow:auto;
-      background:rgba(0,0,0,.92);
-      border:1px solid rgba(0,255,255,.35);
-      border-radius:18px;
-      box-shadow:0 0 18px rgba(0,255,255,.16);
-      position:relative;
-      padding:16px;
-      text-align:left;
-    }
-    .catalog-close{
-      position:absolute; top:10px; right:14px;
-      font-size:2rem;
-      color:#39ff14;
-      cursor:pointer;
-      user-select:none;
-    }
-    .catalog-head{
+    /* Detalle */
+    .detail-head{
       display:flex;
       flex-wrap:wrap;
-      gap:10px 12px;
-      align-items:center;
+      gap:10px;
+      align-items:flex-start;
       justify-content:space-between;
-      padding-right:40px;
       margin-bottom:12px;
+      padding-right:40px;
     }
-    .catalog-title{
-      color:#39ff14;
-      font-weight:bold;
+    .detail-head .left{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width:0;
+    }
+    .detail-title{
+      color:#00f7ff;
       font-size:1.25rem;
+      font-weight:bold;
+      line-height:1.2;
       margin:0;
     }
-    .catalog-tools{
+    .detail-sub{
+      color:#bfe;
+      font-size:.98rem;
+      opacity:.95;
+      margin:0;
+    }
+    .detail-actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      align-items:center;
       justify-content:flex-end;
     }
-    .searchbox{
+    .detail-image{
+      width:100%;
+      background:#000;
+      border-radius:16px;
+      border:2px solid rgba(57,255,20,.55);
+      padding:10px;
       display:flex;
       align-items:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(0,255,255,.35);
-      background:rgba(0,255,255,.08);
-      min-width:min(360px, 86vw);
+      justify-content:center;
+      margin:10px 0 12px;
+      max-height: 48vh;
     }
-    .searchbox input{
-      width:100%;
-      outline:none;
-      border:0;
-      background:transparent;
-      color:#eaffff;
+    .detail-image img{
+      max-width:100%;
+      max-height: 46vh;
+      width:auto;
+      height:auto;
+      object-fit:contain; /* ✅ entera */
+      border-radius:12px;
+    }
+    .detail-info{
+      color:#dff;
+      line-height:1.7;
+      font-size:1rem;
+      white-space:pre-line;
+      text-align:left;
+      margin:0;
+    }
+
+    /* Ver todos */
+    .all-head{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+      padding-right:40px;
+    }
+    .all-title{
+      color:#39ff14;
+      font-size:1.25rem;
       font-weight:bold;
-      font-size:.98rem;
+      margin:0;
     }
-    .searchbox input::placeholder{ color:rgba(255,255,255,.55); }
+    .all-controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      width:100%;
+    }
+    .input, .select{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(0,255,255,.25);
+      color:#dff;
+      border-radius:12px;
+      padding:10px 12px;
+      outline:none;
+      min-width:220px;
+      font-size:.95rem;
+    }
+    .select{ min-width:180px; }
+    @media(max-width:600px){
+      .input, .select{ min-width: 0; width:100%; }
+    }
+    .all-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    @media(max-width:900px){
+      .all-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media(max-width:600px){
+      .all-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap:10px; }
+    }
 
     /* ------------------------ WHATSAPP FLOAT ------------------------ */
     .whatsapp-float {
@@ -558,7 +506,7 @@
     footer {
       text-align:center;
       padding:20px;
-      margin-top:50px;
+      margin-top:40px;
       background:rgba(0,0,0,.55);
       color:#aaa;
       font-size:.9rem;
@@ -597,7 +545,7 @@
   <!-- HERO -->
   <div class="hero">
     <img src="https://iili.io/fH74EGa.md.png" alt="Logo Ciborg347">
-    <h1 style="color:#00f7ff; margin-top:20px;">Impulsamos negocios con diseño web estratégico</h1>
+    <h1>Impulsamos negocios con diseño web estratégico</h1>
   </div>
 
   <!-- QUIÉNES SOMOS -->
@@ -605,7 +553,7 @@
     <h2>Quiénes Somos</h2>
     <p>
 En Ciborg347™ transformamos ideas en páginas que venden.
-Diseñamos landings y sitios web profesionales, modernos y rápidos, pensados para captar clientes y generar confianza desde el primer segundo.  Nos enfocamos en tres pilares esenciales para cualquier negocio:
+Diseñamos landings y sitios web profesionales, modernos y rápidos, pensados para captar clientes y generar confianza desde el primer segundo. Nos enfocamos en tres pilares esenciales para cualquier negocio:
 • Presencia online
 • Confianza visual
 • Ventas reales
@@ -645,90 +593,36 @@ Nosotros te damos las tres. 🚀
 
   <!-- EJEMPLOS -->
   <section id="trabajos">
-    <h2>Ejemplos de sitios web's y landing page's</h2>
+    <h2>Ejemplos de sitios web y landing pages</h2>
 
     <div class="tips-bar" id="tip-text">
       Tip: Una landing clara convierte más clics en ventas.
     </div>
 
-    <!-- ✅ Ejemplos estilo agencia: tarjetitas + modal detalle, y “Ver todos” en modal para NO alargar la página -->
-    <div class="examples-wrap">
-      <div class="examples-top">
-        <div class="examples-left">
-          <div class="examples-note" id="examples-note">Tocá una tarjeta para ver la preview + detalles (sin scrollear de más).</div>
+    <div class="categories" id="category-buttons"></div>
+
+    <div class="examples-shell">
+      <div class="examples-toolbar">
+        <div class="examples-title">
+          <strong id="examples-cat-title">Categoría: Estética</strong>
+          <span>Tocá cualquier tarjeta para ver imagen + detalles + botón “Ver landing completa”.</span>
         </div>
 
         <div class="examples-actions">
-          <button class="btn-ghost" type="button" onclick="openCatalog()">Ver todos los ejemplos</button>
-          <button class="carousel-btn" type="button" onclick="loadMoreOnPage()">Cargar más</button>
+          <button class="btn" type="button" onclick="openAll('category')">Ver todos de esta categoría</button>
+          <button class="btn primary" type="button" onclick="openAll('all')">Ver todos los ejemplos</button>
         </div>
       </div>
 
-      <div class="categories" id="category-buttons"></div>
-
       <div class="cards-grid" id="cards-grid"></div>
-
-      <div class="examples-bottom">
-        <div class="count-text" id="count-text">Mostrando 0</div>
-        <button class="btn-ghost" type="button" onclick="scrollToTopExamples()">Volver arriba de ejemplos</button>
-      </div>
     </div>
   </section>
 
-  <!-- MODAL DETALLE (click en tarjeta) -->
-  <div class="ex-overlay" id="ex-overlay" onclick="closeExample(event)">
-    <div class="ex-modal" onclick="event.stopPropagation()">
-      <div class="ex-close" onclick="closeExample()">×</div>
-
-      <div class="ex-modal-grid">
-        <div class="ex-modal-figure">
-          <img id="ex-modal-img" src="" alt="">
-        </div>
-
-        <div class="ex-modal-side">
-          <div class="ex-modal-cat" id="ex-modal-cat">Categoría</div>
-          <h3 class="ex-modal-title" id="ex-modal-title">Título</h3>
-          <p class="ex-modal-short" id="ex-modal-short"></p>
-          <p class="ex-modal-info" id="ex-modal-info"></p>
-
-          <div class="ex-modal-actions">
-            <a class="carousel-btn" id="ex-modal-link" href="#" target="_blank">Ver landing completa</a>
-            <button class="btn-ghost" type="button" onclick="openCatalog(true)">Ver en catálogo completo</button>
-          </div>
-
-          <div class="nav-mini">
-            <button type="button" onclick="prevExample()">❮ Anterior</button>
-            <div class="pos" id="ex-pos">1/1</div>
-            <button type="button" onclick="nextExample()">Siguiente ❯</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL "VER TODOS LOS EJEMPLOS" (no alarga la página) -->
-  <div class="catalog-overlay" id="catalog-overlay" onclick="closeCatalog(event)">
-    <div class="catalog-modal" onclick="event.stopPropagation()">
-      <div class="catalog-close" onclick="closeCatalog()">×</div>
-
-      <div class="catalog-head">
-        <h3 class="catalog-title" id="catalog-title">Catálogo completo</h3>
-
-        <div class="catalog-tools">
-          <div class="searchbox">
-            <input id="catalog-search" type="text" placeholder="Buscar (ej: barber, radio, estética, etc.)" oninput="renderCatalog()">
-          </div>
-          <button class="carousel-btn" type="button" onclick="catalogLoadMore()">Cargar más</button>
-        </div>
-      </div>
-
-      <div class="categories" id="catalog-category-buttons"></div>
-      <div class="cards-grid" id="catalog-grid"></div>
-
-      <div class="examples-bottom" style="margin-top:14px;">
-        <div class="count-text" id="catalog-count">Mostrando 0</div>
-        <button class="btn-ghost" type="button" onclick="closeCatalog()">Cerrar</button>
-      </div>
+  <!-- MODAL (Detalle / Ver todos) -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-close" onclick="closeModal()">×</div>
+      <div id="modal-body"></div>
     </div>
   </div>
 
@@ -740,21 +634,20 @@ Escribinos y contanos tu idea.
 Te respondemos rápido para ayudarte a crear tu proyecto.
     </p>
 
-    <a class="carousel-btn"
+    <a class="btn primary"
       href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20quiero%20dise%C3%B1ar%20algo%20para%20mi%20negocio."
-      target="_blank">WhatsApp</a>
+      target="_blank" rel="noopener">WhatsApp</a>
   </section>
 
   <!-- WHATSAPP FLOAT -->
   <a class="whatsapp-float"
     href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20mi%20landing."
-    target="_blank">
+    target="_blank" rel="noopener">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
   </a>
 
   <footer>© 2025 Ciborg347™ · Web Agency</footer>
 
-  <!-- ======================= SCRIPTS ======================= -->
   <script>
     /* -------- MENÚ -------- */
     let autoClose;
@@ -776,34 +669,33 @@ Te respondemos rápido para ayudarte a crear tu proyecto.
       clearTimeout(autoClose);
     }
 
-    /* ===================== DATOS ===================== */
-    const allSlides = [
-      {category:"estetica", img:"https://iili.io/KPyCnHu.jpg", link:"https://adda-nails.onrender.com/", short:"Mostrá tu trabajo con un diseño limpio y profesional.", info:"Landing pensada para estudios de belleza que necesitan transmitir prolijidad, estilo y confianza."},
+    /* ===================== DATA ===================== */
+    let allSlides = [
+      {category:"estetica", title:"Adda Nails", img:"https://iili.io/KPyCnHu.jpg", link:"https://adda-nails.onrender.com/", short:"Mostrá tu trabajo con un diseño limpio y profesional.", info:"Landing pensada para estudios de belleza que necesitan transmitir prolijidad, estilo y confianza."},
 
-      {category:"barber", img:"https://iili.io/KPyvEcx.jpg", link:"https://barberia-elbebu.onrender.com/", short:"Presencia fuerte que posiciona tu barbería como marca.", info:"Estética moderna y masculina que genera autoridad."},
-      {category:"barber", img:"https://iili.io/KPyUCn1.jpg", link:"https://barber-shop-rodri.onrender.com/", short:"Elegancia y estilo en cada detalle.", info:"Diseño orientado a barberías que quieren diferenciarse."},
+      {category:"barber", title:"Barbería El Bebu", img:"https://iili.io/KPyvEcx.jpg", link:"https://barberia-elbebu.onrender.com/", short:"Presencia fuerte que posiciona tu barbería como marca.", info:"Estética moderna y masculina que genera autoridad."},
+      {category:"barber", title:"Barber Shop Rodri", img:"https://iili.io/KPyUCn1.jpg", link:"https://barber-shop-rodri.onrender.com/", short:"Elegancia y estilo en cada detalle.", info:"Diseño orientado a barberías que quieren diferenciarse."},
 
-      {category:"food", img:"https://iili.io/fF5pLGf.jpg", link:"https://dulce-juana.onrender.com/", short:"Imágenes irresistibles que generan ventas.", info:"Landing cálida y visual, perfecta para gastronomía."},
+      {category:"food", title:"Dulce Juana", img:"https://iili.io/fF5pLGf.jpg", link:"https://dulce-juana.onrender.com/", short:"Imágenes irresistibles que generan ventas.", info:"Landing cálida y visual, perfecta para gastronomía."},
 
-      {category:"evento", img:"https://iili.io/f9a9K5Q.jpg", link:"https://tio-sergio.onrender.com", short:"Energía y ambiente en un diseño impactante.", info:"Ideal para salones y bailables."},
-      {category:"evento", img:"https://iili.io/faZQ0Ff.jpg", link:"https://web-mmg-oficial.onrender.com", short:"Showcase potente para eventos y artistas.", info:"Landing con estética pro para presentar el evento/producción, mostrar identidad y llevar tráfico directo a contacto/redes."},
+      {category:"evento", title:"Tío Sergio", img:"https://iili.io/f9a9K5Q.jpg", link:"https://tio-sergio.onrender.com", short:"Energía y ambiente en un diseño impactante.", info:"Ideal para salones y bailables."},
+      {category:"evento", title:"MMG - Evento/Producción", img:"https://iili.io/faZQ0Ff.jpg", link:"https://web-mmg-oficial.onrender.com", short:"Showcase potente para eventos y artistas.", info:"Landing con estética pro para presentar el evento/producción, mostrar identidad y llevar tráfico directo a contacto/redes."},
 
-      {category:"radio", img:"https://iili.io/f9an4yX.jpg", link:"https://radioimagen.onrender.com", short:"Tu radio con presencia moderna.", info:"Streaming integrado y visual profesional."},
-      {category:"radio", img:"https://iili.io/farGiml.jpg", link:"https://radiocannafest.onrender.com", short:"Radio Cannafest con identidad propia.", info:"Landing moderna para radio temática con estética fuerte y presencia profesional."},
+      {category:"radio", title:"Radio Imagen", img:"https://iili.io/f9an4yX.jpg", link:"https://radioimagen.onrender.com", short:"Tu radio con presencia moderna.", info:"Streaming integrado y visual profesional."},
+      {category:"radio", title:"Radio Cannafest", img:"https://iili.io/farGiml.jpg", link:"https://radiocannafest.onrender.com", short:"Radio temática con identidad propia.", info:"Landing moderna para radio temática con estética fuerte y presencia profesional."},
 
-      {category:"refacciones", img:"https://iili.io/farX3hl.jpg", link:"https://jyl-refacciones.onrender.com", short:"Refacciones y construcciones para captar presupuestos.", info:"Landing para refacciones y construcciones, ideal para mostrar trabajos, servicios y captar presupuestos por WhatsApp."},
+      {category:"refacciones", title:"J&L Refacciones", img:"https://iili.io/farX3hl.jpg", link:"https://jyl-refacciones.onrender.com", short:"Refacciones y construcciones para captar presupuestos.", info:"Landing ideal para mostrar trabajos, servicios y captar presupuestos por WhatsApp."},
 
-      {category:"casino", img:"https://iili.io/KPygQXS.jpg", link:"https://facu-casino.onrender.com/", short:"Diseño directo para captar jugadores.", info:"Estética intensa y conversiones rápidas."},
-      {category:"casino", img:"https://iili.io/KPyrMj2.jpg", link:"https://dragon-casino.onrender.com/", short:"Energía visual para atraer usuarios.", info:"Landing con estilo fuego y dinamismo."},
-      {category:"casino", img:"https://iili.io/KPyDVHP.jpg", link:"https://dinasty-bet.onrender.com/", short:"Identidad deportiva sólida.", info:"Perfecta para apuestas y deportes."},
-      {category:"casino", img:"https://iili.io/KigNdVS.jpg", link:"https://giraygana-fortunaplay.onrender.com/", short:"Diseño veloz y llamativo.", info:"Enfocada en interacción rápida."},
-      {category:"casino", img:"https://iili.io/Kigv3Ij.jpg", link:"https://ganamostodosjuntos.onrender.com/", short:"Impacto fuerte para gaming.", info:"Ideal para promociones continuas."},
-      {category:"casino", img:"https://iili.io/KiggTcN.jpg", link:"https://lions-casino.onrender.com/", short:"Identidad premium.", info:"Estética limpia y profesional."},
-      {category:"casino", img:"https://iili.io/f9a9Fdx.jpg", link:"https://giraygana-ijae.onrender.com", short:"Máxima rapidez para captar curiosos.", info:"Diseño simple y efectivo."}
+      {category:"casino", title:"Facu Casino", img:"https://iili.io/KPygQXS.jpg", link:"https://facu-casino.onrender.com/", short:"Diseño directo para captar jugadores.", info:"Estética intensa y conversiones rápidas."},
+      {category:"casino", title:"Dragon Casino", img:"https://iili.io/KPyrMj2.jpg", link:"https://dragon-casino.onrender.com/", short:"Energía visual para atraer usuarios.", info:"Landing con estilo fuego y dinamismo."},
+      {category:"casino", title:"Dinasty Bet", img:"https://iili.io/KPyDVHP.jpg", link:"https://dinasty-bet.onrender.com/", short:"Identidad deportiva sólida.", info:"Perfecta para apuestas y deportes."},
+      {category:"casino", title:"FortunaPlay", img:"https://iili.io/KigNdVS.jpg", link:"https://giraygana-fortunaplay.onrender.com/", short:"Diseño veloz y llamativo.", info:"Enfocada en interacción rápida."},
+      {category:"casino", title:"GanaMos Todos Juntos", img:"https://iili.io/Kigv3Ij.jpg", link:"https://ganamostodosjuntos.onrender.com/", short:"Impacto fuerte para gaming.", info:"Ideal para promociones continuas."},
+      {category:"casino", title:"Lions Casino", img:"https://iili.io/KiggTcN.jpg", link:"https://lions-casino.onrender.com/", short:"Identidad premium.", info:"Estética limpia y profesional."},
+      {category:"casino", title:"Gira y Gana", img:"https://iili.io/f9a9Fdx.jpg", link:"https://giraygana-ijae.onrender.com", short:"Máxima rapidez para captar curiosos.", info:"Diseño simple y efectivo."}
     ];
 
     const categories = [
-      {id:"all", name:"Todos"},
       {id:"estetica", name:"Estética"},
       {id:"barber", name:"Barberías"},
       {id:"food", name:"Gastronomía"},
@@ -813,228 +705,219 @@ Te respondemos rápido para ayudarte a crear tu proyecto.
       {id:"casino", name:"Casinos"}
     ];
 
-    const categoryNameById = (id) => (categories.find(c => c.id === id)?.name || id);
+    let activeCatIndex = 0;
+    let activeCategory = categories[activeCatIndex].id;
 
-    /* ===================== ESTADO (página) ===================== */
-    let activeCategory = "all";
-    let pageLimit = 8;           // ✅ no hace la página eterna
-    let pageList = [];           // lista filtrada actual
-    let modalList = [];          // lista dentro del modal (mismo filtro)
-    let modalIndex = 0;
+    /* -------------------- CATEGORÍAS (BOTONES) -------------------- */
+    const catContainer = document.getElementById("category-buttons");
+    categories.forEach((cat, i) => {
+      const btn = document.createElement("button");
+      btn.innerText = cat.name;
+      btn.onclick = () => goToCategoryIndex(i);
+      catContainer.appendChild(btn);
+    });
 
-    /* ===================== ESTADO (catálogo modal) ===================== */
-    let catalogCategory = "all";
-    let catalogLimit = 16;
-
-    /* ===================== HELPERS ===================== */
-    function normalizeText(s){
-      return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    function updateCategoryHighlight(){
+      document.querySelectorAll(".categories button").forEach((btn, i) => {
+        btn.classList.toggle("active", i === activeCatIndex);
+      });
+      document.getElementById("examples-cat-title").innerText = "Categoría: " + categories[activeCatIndex].name;
     }
 
-    function getFilteredList(cat, searchText){
-      let items = allSlides.slice();
-
-      if(cat && cat !== "all"){
-        items = items.filter(x => x.category === cat);
-      }
-
-      if(searchText){
-        const q = normalizeText(searchText);
-        items = items.filter(x => {
-          const hay = normalizeText(x.short + " " + x.info + " " + x.category + " " + x.link);
-          return hay.includes(q);
-        });
-      }
-
-      return items;
+    function getItemsByCategory(cat){
+      return allSlides.filter(x => x.category === cat);
     }
 
-    function cardHTML(item, indexInCurrent){
-      const catName = categoryNameById(item.category);
-      const title = item.short || "Ver ejemplo";
+    /* -------------------- TARJETITAS (VISTA PRINCIPAL) -------------------- */
+    function cardHTML(item, globalIndex){
+      const catName = categories.find(c => c.id === item.category)?.name || item.category;
       return `
-        <div class="ex-card" role="button" tabindex="0" data-idx="${indexInCurrent}">
-          <div class="ex-thumb">
-            <img src="${item.img}" alt="">
+        <div class="card" onclick="openDetail(${globalIndex})" title="Tocar para ver detalles">
+          <div class="card-thumb">
+            <img src="${item.img}" loading="lazy" alt="">
           </div>
-          <div class="ex-meta">
-            <div class="ex-badge">• ${catName}</div>
-            <p class="ex-title">${title}</p>
-            <div class="ex-hint">Tocar para ver</div>
+          <div class="card-body">
+            <div class="tag">${catName}</div>
+            <div class="card-title">${item.title || "Landing"}</div>
+            <div class="card-short">${item.short || ""}</div>
           </div>
         </div>
       `;
     }
 
-    function wireCardClicks(gridEl, listRef){
-      gridEl.querySelectorAll(".ex-card").forEach(card => {
-        const idx = Number(card.getAttribute("data-idx"));
-        const open = () => openExampleFromList(listRef, idx);
-
-        card.addEventListener("click", open);
-        card.addEventListener("keydown", (e) => {
-          if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); }
-        });
-      });
-    }
-
-    /* ===================== BOTONES DE CATEGORÍA (página) ===================== */
-    function renderCategoryButtons(){
-      const wrap = document.getElementById("category-buttons");
-      wrap.innerHTML = "";
-
-      categories.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.textContent = cat.name;
-        btn.className = (cat.id === activeCategory) ? "active" : "";
-        btn.onclick = () => {
-          activeCategory = cat.id;
-          pageLimit = 8;
-          renderPage();
-        };
-        wrap.appendChild(btn);
-      });
-    }
-
-    /* ===================== RENDER PÁGINA (tarjetitas) ===================== */
-    function renderPage(){
+    function renderCards(){
       const grid = document.getElementById("cards-grid");
+      grid.innerHTML = "";
 
-      pageList = getFilteredList(activeCategory, "");
-      const visible = pageList.slice(0, pageLimit);
+      const items = getItemsByCategory(activeCategory);
 
-      grid.innerHTML = visible.map((it, i) => cardHTML(it, i)).join("");
-      wireCardClicks(grid, visible);
+      // ✅ Mostramos pocas (ordenado y sin scroll infinito)
+      const visible = items.slice(0, 8);
 
-      const countText = document.getElementById("count-text");
-      countText.textContent = `Mostrando ${Math.min(pageLimit, pageList.length)} de ${pageList.length} (${categoryNameById(activeCategory)})`;
+      visible.forEach(item => {
+        const idx = allSlides.indexOf(item);
+        grid.insertAdjacentHTML("beforeend", cardHTML(item, idx));
+      });
 
-      const note = document.getElementById("examples-note");
-      note.textContent = (activeCategory === "all")
-        ? "Tocá una tarjeta para ver preview + detalles (la imagen se ve completa)."
-        : `Categoría: ${categoryNameById(activeCategory)} — tocá una tarjeta para ver detalles.`;
-
-      // si ya mostró todo, el botón “Cargar más” igual funciona pero no cambia nada
+      updateCategoryHighlight();
     }
 
-    function loadMoreOnPage(){
-      pageLimit += 8;
-      renderPage();
-      // no scrollea solo: evitamos “salto” molesto
+    function goToCategoryIndex(i){
+      activeCatIndex = (i + categories.length) % categories.length;
+      activeCategory = categories[activeCatIndex].id;
+      renderCards();
+      resetAutoCategory();
     }
 
-    function scrollToTopExamples(){
-      document.getElementById("trabajos").scrollIntoView({behavior:"smooth", block:"start"});
+    /* -------------------- MODAL -------------------- */
+    function openModal(html){
+      const overlay = document.getElementById("modal-overlay");
+      const body = document.getElementById("modal-body");
+      body.innerHTML = html;
+      overlay.style.display = "flex";
+      stopAutoCategory();
+    }
+    function closeModal(){
+      document.getElementById("modal-overlay").style.display = "none";
+      document.getElementById("modal-body").innerHTML = "";
+      resetAutoCategory();
     }
 
-    /* ===================== MODAL DETALLE ===================== */
-    function openExampleFromList(list, idx){
-      modalList = list.slice();      // lista visible del contexto (página o catálogo)
-      modalIndex = Math.max(0, Math.min(idx, modalList.length - 1));
-      paintExample();
-      document.getElementById("ex-overlay").style.display = "flex";
-    }
-
-    function paintExample(){
-      const item = modalList[modalIndex];
+    function openDetail(index){
+      const item = allSlides[index];
       if(!item) return;
 
-      document.getElementById("ex-modal-img").src = item.img;
-      document.getElementById("ex-modal-cat").textContent = "• " + categoryNameById(item.category);
-      document.getElementById("ex-modal-title").textContent = "Ejemplo " + (modalIndex + 1);
-      document.getElementById("ex-modal-short").textContent = item.short || "";
-      document.getElementById("ex-modal-info").textContent = item.info || "";
-      document.getElementById("ex-modal-link").href = item.link || "#";
+      const catName = categories.find(c => c.id === item.category)?.name || item.category;
 
-      document.getElementById("ex-pos").textContent = `${modalIndex + 1}/${modalList.length}`;
+      const html = `
+        <div class="detail-head">
+          <div class="left">
+            <div class="tag">${catName}</div>
+            <h3 class="detail-title">${item.title || "Landing"}</h3>
+            <p class="detail-sub">${item.short || ""}</p>
+          </div>
+          <div class="detail-actions">
+            <a class="btn primary" href="${item.link}" target="_blank" rel="noopener">Ver landing completa</a>
+            <button class="btn" type="button" onclick="closeModal()">Cerrar</button>
+          </div>
+        </div>
+
+        <div class="detail-image">
+          <img src="${item.img}" alt="">
+        </div>
+
+        <p class="detail-info">${item.info || ""}</p>
+      `;
+      openModal(html);
     }
 
-    function closeExample(){
-      document.getElementById("ex-overlay").style.display = "none";
-    }
-    function prevExample(){
-      if(!modalList.length) return;
-      modalIndex = (modalIndex - 1 + modalList.length) % modalList.length;
-      paintExample();
-    }
-    function nextExample(){
-      if(!modalList.length) return;
-      modalIndex = (modalIndex + 1) % modalList.length;
-      paintExample();
-    }
+    /* -------------------- VER TODOS (SIN SCROLL EN LA PÁGINA) -------------------- */
+    function openAll(mode){
+      const title = mode === "all"
+        ? "Todos los ejemplos"
+        : "Todos los ejemplos de " + categories[activeCatIndex].name;
 
-    /* ===================== CATÁLOGO COMPLETO (modal) ===================== */
-    function renderCatalogButtons(){
-      const wrap = document.getElementById("catalog-category-buttons");
-      wrap.innerHTML = "";
+      const html = `
+        <div class="all-head">
+          <h3 class="all-title">${title}</h3>
+        </div>
 
-      categories.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.textContent = cat.name;
-        btn.className = (cat.id === catalogCategory) ? "active" : "";
-        btn.onclick = () => {
-          catalogCategory = cat.id;
-          catalogLimit = 16;
-          renderCatalog();
-        };
-        wrap.appendChild(btn);
+        <div class="all-controls">
+          <input class="input" id="all-search" type="text" placeholder="Buscar (ej: barber, radio, dulce...)">
+          <select class="select" id="all-filter">
+            <option value="all">Todas las categorías</option>
+            ${categories.map(c => `<option value="${c.id}">${c.name}</option>`).join("")}
+          </select>
+          <button class="btn primary" type="button" onclick="applyAllFilters()">Aplicar</button>
+        </div>
+
+        <div class="all-grid" id="all-grid"></div>
+      `;
+      openModal(html);
+
+      // Set default filter
+      const filter = document.getElementById("all-filter");
+      if(mode === "category") filter.value = activeCategory;
+      else filter.value = "all";
+
+      // Render initial list
+      applyAllFilters();
+
+      // Enter key
+      const search = document.getElementById("all-search");
+      search.addEventListener("keydown", (e) => {
+        if(e.key === "Enter") applyAllFilters();
       });
     }
 
-    function renderCatalog(){
-      const grid = document.getElementById("catalog-grid");
-      const q = document.getElementById("catalog-search").value || "";
+    function applyAllFilters(){
+      const grid = document.getElementById("all-grid");
+      const q = (document.getElementById("all-search")?.value || "").trim().toLowerCase();
+      const cat = document.getElementById("all-filter")?.value || "all";
 
-      const list = getFilteredList(catalogCategory, q);
-      const visible = list.slice(0, catalogLimit);
+      let list = allSlides.slice();
+      if(cat !== "all") list = list.filter(x => x.category === cat);
 
-      grid.innerHTML = visible.map((it, i) => cardHTML(it, i)).join("");
-      wireCardClicks(grid, visible);
-
-      document.getElementById("catalog-count").textContent =
-        `Mostrando ${Math.min(catalogLimit, list.length)} de ${list.length} (${categoryNameById(catalogCategory)})`;
-
-      document.getElementById("catalog-title").textContent =
-        (q.trim())
-          ? `Catálogo completo — buscando: “${q.trim()}”`
-          : `Catálogo completo — ${categoryNameById(catalogCategory)}`;
-    }
-
-    function openCatalog(fromExample = false){
-      const overlay = document.getElementById("catalog-overlay");
-      overlay.style.display = "flex";
-
-      if(fromExample){
-        // Si venís desde el ejemplo, setea la categoría según el ejemplo actual para que caiga “en contexto”
-        const current = modalList[modalIndex];
-        if(current?.category){
-          catalogCategory = current.category;
-          document.getElementById("catalog-search").value = "";
-        }
+      if(q){
+        list = list.filter(x => {
+          const catName = categories.find(c => c.id === x.category)?.name || x.category;
+          const hay = (x.title||"") + " " + (x.short||"") + " " + (x.info||"") + " " + catName;
+          return hay.toLowerCase().includes(q);
+        });
       }
 
-      renderCatalogButtons();
-      renderCatalog();
+      grid.innerHTML = "";
+      list.forEach(item => {
+        const idx = allSlides.indexOf(item);
+        grid.insertAdjacentHTML("beforeend", cardHTML(item, idx));
+      });
+
+      if(list.length === 0){
+        grid.innerHTML = `<div style="grid-column:1/-1; color:#bfe; opacity:.9; padding:12px; text-align:center;">
+          No encontré resultados con esos filtros.
+        </div>`;
+      }
     }
 
-    function closeCatalog(){
-      document.getElementById("catalog-overlay").style.display = "none";
+    /* -------------------- AUTO (CAMBIA CATEGORÍAS) -------------------- */
+    let autoCatTimer = null;
+    function startAutoCategory(){
+      stopAutoCategory();
+      autoCatTimer = setInterval(() => {
+        const modalOpen = document.getElementById("modal-overlay").style.display === "flex";
+        if(!modalOpen) goToCategoryIndex(activeCatIndex + 1);
+      }, 7000);
     }
-
-    function catalogLoadMore(){
-      catalogLimit += 16;
-      renderCatalog();
+    function stopAutoCategory(){
+      if(autoCatTimer) clearInterval(autoCatTimer);
+      autoCatTimer = null;
     }
+    function resetAutoCategory(){ startAutoCategory(); }
 
-    /* ===================== INICIALIZAR ===================== */
-    renderCategoryButtons();
-    renderPage();
-    renderCatalogButtons();
+    /* -------------------- SWIPE PARA CAMBIAR CATEGORÍA -------------------- */
+    let startX = 0, startY = 0;
+    const trabajosSection = document.getElementById("trabajos");
+    trabajosSection.addEventListener("touchstart", (e) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+    }, {passive:true});
 
-    /* --- TIPS ROTATIVOS --- */
+    trabajosSection.addEventListener("touchend", (e) => {
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      if(Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)){
+        if(dx < 0) goToCategoryIndex(activeCatIndex + 1);
+        else goToCategoryIndex(activeCatIndex - 1);
+      }
+    }, {passive:true});
+
+    /* -------------------- TIPS ROTATIVOS -------------------- */
     const tips = [
       "Tip: Una landing clara convierte más clics en ventas.",
-      "Tip: Un CTA fuerte aumenta conversiones hasta un 40%.",
+      "Tip: Un CTA fuerte aumenta conversiones.",
       "Tip: Las imágenes profesionales venden más.",
       "Tip: Tu web debe cargar rápido para retener clientes.",
       "Tip: La primera impresión define si confían en tu negocio."
@@ -1045,17 +928,9 @@ Te respondemos rápido para ayudarte a crear tu proyecto.
       document.getElementById("tip-text").innerText = tips[tipIndex];
     }, 4000);
 
-    /* ===================== UX: cerrar con ESC ===================== */
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        if(document.getElementById("ex-overlay").style.display === "flex") closeExample();
-        if(document.getElementById("catalog-overlay").style.display === "flex") closeCatalog();
-      }
-      if(document.getElementById("ex-overlay").style.display === "flex"){
-        if(e.key === "ArrowLeft") prevExample();
-        if(e.key === "ArrowRight") nextExample();
-      }
-    });
+    /* -------------------- INICIALIZAR -------------------- */
+    renderCards();
+    startAutoCategory();
   </script>
 </body>
 </html>
