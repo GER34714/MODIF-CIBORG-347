@@ -15,511 +15,16 @@
   <title>Ciborg347™ | Web Agency</title>
   <link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png">
 
-  <style>
-    /* FIX PC */
-    *, *::before, *::after { box-sizing: border-box; }
-    body { overflow-x: hidden; }
-
-    /* ------------------------ BASE ------------------------ */
-    body {
-      margin: 0;
-      font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
-      background: url("https://iili.io/fH5IORj.jpg") center/cover fixed no-repeat;
-      color: #fff;
-      scroll-behavior: smooth;
-    }
-    body::before {
-      content:""; inset:0; position:fixed;
-      background:rgba(0,0,0,.80); backdrop-filter:blur(4px);
-      z-index:-1;
-    }
-
-    /* ------------------------ NAV ------------------------ */
-    nav {
-      position:fixed; top:0; left:0; width:100%;
-      background:rgba(0,0,0,.85);
-      padding:15px 20px;
-      display:flex; justify-content:space-between; align-items:center;
-      z-index:3000;
-    }
-    .logo-nav {
-      color:#39ff14;
-      font-size:1.3rem;
-      font-weight:bold;
-      letter-spacing:.3px;
-    }
-    nav ul {
-      display:flex; gap:35px; list-style:none; padding:0; margin:0;
-    }
-    nav li a {
-      color:#00f7ff; text-decoration:none; font-weight:bold; font-size:1.05rem;
-    }
-    nav li a:hover { color:#39ff14; }
-
-    /* Hamburguesa */
-    .hamburger {
-      display:none; width:28px; cursor:pointer;
-      flex-direction:column; gap:5px;
-    }
-    .hamburger div { height:4px; background:#39ff14; border-radius:4px; }
-
-    /* Menu móvil */
-    #mobile-menu {
-      position:fixed; right:-100%; top:0;
-      height:100%; width:70%;
-      background:#000;
-      padding:80px 25px;
-      display:flex; flex-direction:column; gap:30px;
-      transition:.3s ease-in-out;
-      z-index:3500;
-    }
-    #mobile-menu a {
-      color:#00f7ff; text-decoration:none; font-size:1.3rem; font-weight:bold;
-    }
-    .mobile-active { right:0!important; }
-
-    .close-mobile {
-      position:absolute;
-      top:20px; right:20px;
-      font-size:2rem;
-      color:#39ff14;
-      cursor:pointer;
-    }
-
-    /* Overlay menú */
-    #menu-overlay {
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.6);
-      display:none;
-      z-index:3200;
-    }
-
-    @media(max-width:900px){
-      nav ul { display:none; }
-      .hamburger { display:flex; margin-right:8px; }
-    }
-
-    /* ------------------------ HERO ------------------------ */
-    .hero {
-      padding-top:130px; text-align:center;
-      padding-bottom:20px;
-    }
-    .hero img {
-      width:250px;
-      filter:drop-shadow(0 0 15px #39ff14);
-      animation:glow 3s infinite alternate;
-    }
-    @keyframes glow {
-      0%{ filter:drop-shadow(0 0 10px #39ff14);}
-      50%{ filter:drop-shadow(0 0 20px #00f7ff);}
-      100%{ filter:drop-shadow(0 0 10px #39ff14);}
-    }
-    .hero h1{
-      color:#00f7ff;
-      margin:18px 12px 0;
-      font-size: clamp(1.3rem, 2.5vw, 2.0rem);
-      line-height:1.2;
-    }
-
-    /* ------------------------ SECCIONES ------------------------ */
-    section {
-      max-width:1100px; margin:auto; padding:60px 20px;
-      text-align:center;
-    }
-    section h2 {
-      font-size:2rem; color:#39ff14; margin-bottom:14px;
-    }
-    section p {
-      font-size:1.12rem; line-height:1.7; color:#ccc;
-      text-align:center;
-      white-space:pre-line;
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    @media(max-width:600px){
-      section{ padding:50px 16px; }
-      section h2{ font-size:1.7rem; }
-      section p{ font-size:1.02rem; }
-    }
-
-    /* ------------------------ TIPS BAR ------------------------ */
-    .tips-bar {
-      max-width:980px;
-      margin:18px auto 0;
-      padding:12px 18px;
-      background:rgba(0,255,255,0.08);
-      border:1px solid rgba(0,255,255,.35);
-      border-radius:12px;
-      backdrop-filter:blur(4px);
-      box-shadow:0 0 12px rgba(0,255,255,.15);
-      font-size:1.02rem;
-      text-align:center;
-      color:#00f7ff;
-      font-weight:bold;
-    }
-
-    /* ------------------------ CATEGORÍAS ------------------------ */
-    .categories {
-      max-width:980px;
-      margin:18px auto 8px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-    }
-    .categories button {
-      background:rgba(0,255,255,.1);
-      border:1px solid rgba(0,255,255,.4);
-      color:#00f7ff;
-      padding:10px 16px;
-      border-radius:25px;
-      cursor:pointer;
-      font-weight:bold;
-      transition:.2s;
-    }
-    .categories button:hover,
-    .categories .active {
-      background:#00f7ff;
-      color:#000;
-    }
-
-    /* ------------------------ EJEMPLOS: TARJETITAS ------------------------ */
-    .examples-shell{
-      max-width:980px;
-      margin:14px auto 0;
-      background:rgba(0,0,0,.60);
-      border:1px solid rgba(57,255,20,.35);
-      box-shadow:0 0 15px rgba(0,255,255,.16);
-      border-radius:18px;
-      padding:16px;
-      text-align:left;
-    }
-
-    .examples-toolbar{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-    }
-    .examples-title{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-    }
-    .examples-title strong{
-      color:#39ff14;
-      font-size:1.1rem;
-      letter-spacing:.2px;
-    }
-    .examples-title span{
-      color:#bfe;
-      font-size:.95rem;
-      opacity:.95;
-    }
-
-    .examples-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:bold;
-      cursor:pointer;
-      text-decoration:none;
-      transition:.18s;
-      user-select:none;
-      border:1px solid rgba(0,255,255,.35);
-      background:rgba(0,255,255,.08);
-      color:#00f7ff;
-      font-size:.95rem;
-    }
-    .btn:hover{
-      background:#00f7ff;
-      color:#000;
-      border-color:#00f7ff;
-    }
-    .btn.primary{
-      background:#39ff14;
-      border-color:#39ff14;
-      color:#000;
-    }
-    .btn.primary:hover{
-      filter:brightness(1.04);
-    }
-
-    .cards-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:12px;
-    }
-
-    @media(max-width:900px){
-      .cards-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-    @media(max-width:600px){
-      .examples-shell{ padding:14px; }
-      .cards-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap:10px; }
-      .btn{ width:100%; }
-      .examples-actions{ width:100%; }
-    }
-
-    .card{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(0,255,255,.28);
-      border-radius:16px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:.18s;
-      min-width:0;
-      position:relative;
-    }
-    .card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(57,255,20,.55);
-      box-shadow:0 0 14px rgba(0,255,255,.10);
-    }
-
-    .card-thumb{
-      height:120px;
-      background:#000;
-      border-bottom:1px solid rgba(0,255,255,.18);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:8px;
-    }
-    .card-thumb img{
-      width:100%;
-      height:100%;
-      object-fit:contain; /* ✅ se ve entera */
-      border-radius:10px;
-    }
-
-    .card-body{
-      padding:10px 10px 12px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-
-    .tag{
-      width:fit-content;
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:.78rem;
-      font-weight:bold;
-      border:1px solid rgba(57,255,20,.35);
-      color:#39ff14;
-      background:rgba(57,255,20,.08);
-      letter-spacing:.2px;
-    }
-
-    .card-title{
-      color:#00f7ff;
-      font-weight:bold;
-      font-size:.98rem;
-      line-height:1.2;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-    .card-short{
-      color:#d7ffff;
-      font-size:.86rem;
-      line-height:1.35;
-      opacity:.92;
-      display:-webkit-box;
-      -webkit-line-clamp:2;
-      -webkit-box-orient:vertical;
-      overflow:hidden;
-      min-height: 2.4em;
-    }
-
-    /* ------------------------ MODAL (DETALLE + VER TODOS) ------------------------ */
-    .modal-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.78);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:7000;
-      padding:18px;
-    }
-    .modal{
-      width:min(980px, 94vw);
-      max-height:86vh;
-      overflow:auto;
-      background:rgba(0,0,0,.90);
-      border:1px solid rgba(0,255,255,.35);
-      border-radius:18px;
-      box-shadow:0 0 20px rgba(0,255,255,.14);
-      position:relative;
-      padding:16px;
-    }
-    .modal-close{
-      position:absolute;
-      top:10px; right:14px;
-      font-size:2rem;
-      color:#39ff14;
-      cursor:pointer;
-      user-select:none;
-    }
-
-    /* Detalle */
-    .detail-head{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:flex-start;
-      justify-content:space-between;
-      margin-bottom:12px;
-      padding-right:40px;
-    }
-    .detail-head .left{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      min-width:0;
-    }
-    .detail-title{
-      color:#00f7ff;
-      font-size:1.25rem;
-      font-weight:bold;
-      line-height:1.2;
-      margin:0;
-    }
-    .detail-sub{
-      color:#bfe;
-      font-size:.98rem;
-      opacity:.95;
-      margin:0;
-    }
-    .detail-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .detail-image{
-      width:100%;
-      background:#000;
-      border-radius:16px;
-      border:2px solid rgba(57,255,20,.55);
-      padding:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:10px 0 12px;
-      max-height: 48vh;
-    }
-    .detail-image img{
-      max-width:100%;
-      max-height: 46vh;
-      width:auto;
-      height:auto;
-      object-fit:contain; /* ✅ entera */
-      border-radius:12px;
-    }
-    .detail-info{
-      color:#dff;
-      line-height:1.7;
-      font-size:1rem;
-      white-space:pre-line;
-      text-align:left;
-      margin:0;
-    }
-
-    /* Ver todos */
-    .all-head{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:12px;
-      padding-right:40px;
-    }
-    .all-title{
-      color:#39ff14;
-      font-size:1.25rem;
-      font-weight:bold;
-      margin:0;
-    }
-    .all-controls{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      width:100%;
-    }
-    .input, .select{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(0,255,255,.25);
-      color:#dff;
-      border-radius:12px;
-      padding:10px 12px;
-      outline:none;
-      min-width:220px;
-      font-size:.95rem;
-    }
-    .select{ min-width:180px; }
-    @media(max-width:600px){
-      .input, .select{ min-width: 0; width:100%; }
-    }
-    .all-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:12px;
-      margin-top:12px;
-    }
-    @media(max-width:900px){
-      .all-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-    @media(max-width:600px){
-      .all-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap:10px; }
-    }
-
-    /* ------------------------ WHATSAPP FLOAT ------------------------ */
-    .whatsapp-float {
-      position:fixed; right:20px; bottom:65px; z-index:4000;
-    }
-    .whatsapp-float img {
-      width:60px;
-      height:60px;
-      object-fit:contain;
-      filter:drop-shadow(0 0 6px #000);
-    }
-
-    /* FOOTER */
-    footer {
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
-      background:rgba(0,0,0,.55);
-      color:#aaa;
-      font-size:.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div id="menu-overlay" onclick="closeMenu()"></div>
 
-  <!-- NAV -->
+  <!-- ================= NAV ================= -->
   <nav>
     <div class="logo-nav">Ciborg347™</div>
+
     <ul>
       <li><a href="#quienes">Quiénes Somos</a></li>
       <li><a href="#quehacemos">Qué Hacemos</a></li>
@@ -527,12 +32,13 @@
       <li><a href="#trabajos">Ejemplos</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
+
     <div class="hamburger" onclick="toggleMenu()">
       <div></div><div></div><div></div>
     </div>
   </nav>
 
-  <!-- MENÚ MOBILE -->
+  <!-- ================= MENÚ MOBILE ================= -->
   <div id="mobile-menu">
     <span class="close-mobile" onclick="closeMenu()">×</span>
     <a href="#quienes" onclick="closeMenu()">Quiénes Somos</a>
@@ -542,18 +48,21 @@
     <a href="#contacto" onclick="closeMenu()">Contacto</a>
   </div>
 
-  <!-- HERO -->
-  <div class="hero">
+  <!-- ================= HERO ================= -->
+  <header class="hero">
     <img src="https://iili.io/fH74EGa.md.png" alt="Logo Ciborg347">
-    <h1>Impulsamos negocios con diseño web estratégico</h1>
-  </div>
+    <h1 class="hero-title">Impulsamos negocios con diseño web estratégico</h1>
+    <p class="hero-sub">Landings y webs rápidas, modernas y pensadas para convertir.</p>
+  </header>
 
-  <!-- QUIÉNES SOMOS -->
+  <!-- ================= QUIÉNES SOMOS ================= -->
   <section id="quienes">
     <h2>Quiénes Somos</h2>
     <p>
 En Ciborg347™ transformamos ideas en páginas que venden.
-Diseñamos landings y sitios web profesionales, modernos y rápidos, pensados para captar clientes y generar confianza desde el primer segundo. Nos enfocamos en tres pilares esenciales para cualquier negocio:
+Diseñamos landings y sitios web profesionales, modernos y rápidos, pensados para captar clientes y generar confianza desde el primer segundo.
+
+Nos enfocamos en 3 pilares:
 • Presencia online
 • Confianza visual
 • Ventas reales
@@ -563,13 +72,11 @@ Cuando tu negocio se ve bien… tus clientes confían más. 🚀
     </p>
   </section>
 
-  <!-- QUÉ HACEMOS -->
+  <!-- ================= QUÉ HACEMOS ================= -->
   <section id="quehacemos">
     <h2>Qué Hacemos</h2>
     <p>
-Creamos landings y webs
-modernas, rápidas
-y optimizadas para convertir.
+Creamos landings y webs modernas, rápidas y optimizadas para convertir.
 Tu negocio necesita:
 • Presencia
 • Confianza
@@ -579,7 +86,7 @@ Nosotros te damos las tres. 🚀
     </p>
   </section>
 
-  <!-- SERVICIOS -->
+  <!-- ================= SERVICIOS ================= -->
   <section id="servicios">
     <h2>Servicios</h2>
     <p>
@@ -591,7 +98,7 @@ Nosotros te damos las tres. 🚀
     </p>
   </section>
 
-  <!-- EJEMPLOS -->
+  <!-- ================= EJEMPLOS ================= -->
   <section id="trabajos">
     <h2>Ejemplos de sitios web y landing pages</h2>
 
@@ -599,34 +106,63 @@ Nosotros te damos las tres. 🚀
       Tip: Una landing clara convierte más clics en ventas.
     </div>
 
-    <div class="categories" id="category-buttons"></div>
-
-    <div class="examples-shell">
-      <div class="examples-toolbar">
-        <div class="examples-title">
-          <strong id="examples-cat-title">Categoría: Estética</strong>
-          <span>Tocá cualquier tarjeta para ver imagen + detalles + botón “Ver landing completa”.</span>
-        </div>
-
-        <div class="examples-actions">
-          <button class="btn" type="button" onclick="openAll('category')">Ver todos de esta categoría</button>
-          <button class="btn primary" type="button" onclick="openAll('all')">Ver todos los ejemplos</button>
-        </div>
+    <div class="examples-toolbar">
+      <div class="toolbar-left">
+        <div class="categories" id="category-buttons"></div>
       </div>
 
-      <div class="cards-grid" id="cards-grid"></div>
+      <div class="toolbar-right">
+        <div class="search-wrap">
+          <input id="search-input" type="text" placeholder="Buscar ejemplo (barber, radio, etc.)">
+        </div>
+
+        <button class="btn-ghost" id="toggle-all-btn">Ver todos los ejemplos</button>
+      </div>
+    </div>
+
+    <div class="examples-meta" id="examples-meta"></div>
+
+    <div class="examples-grid" id="examples-grid"></div>
+
+    <div class="examples-footer">
+      <button class="btn-primary" id="load-more-btn">Ver más</button>
+      <button class="btn-ghost" id="show-less-btn" style="display:none;">Mostrar menos</button>
     </div>
   </section>
 
-  <!-- MODAL (Detalle / Ver todos) -->
-  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-    <div class="modal" onclick="event.stopPropagation()">
-      <div class="modal-close" onclick="closeModal()">×</div>
-      <div id="modal-body"></div>
+  <!-- ================= MODAL (DETALLE) ================= -->
+  <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Detalle del ejemplo">
+      <button class="modal-close" onclick="closeExampleModal()">×</button>
+
+      <div class="modal-body">
+        <div class="modal-media">
+          <img id="modal-img" src="" alt="Ejemplo">
+        </div>
+
+        <div class="modal-content">
+          <div class="modal-badges">
+            <span class="badge" id="modal-cat"></span>
+          </div>
+
+          <h3 class="modal-title" id="modal-title">Ejemplo</h3>
+          <p class="modal-desc" id="modal-desc"></p>
+
+          <div class="modal-actions">
+            <a class="btn-primary" id="modal-link" href="#" target="_blank" rel="noopener">Ver landing completa</a>
+            <button class="btn-ghost" onclick="closeExampleModal()">Cerrar</button>
+          </div>
+
+          <div class="modal-nav">
+            <button class="btn-ghost" onclick="prevExample()">◀ Anterior</button>
+            <button class="btn-ghost" onclick="nextExample()">Siguiente ▶</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- CONTACTO -->
+  <!-- ================= CONTACTO ================= -->
   <section id="contacto">
     <h2>Contacto</h2>
     <p>
@@ -634,303 +170,22 @@ Escribinos y contanos tu idea.
 Te respondemos rápido para ayudarte a crear tu proyecto.
     </p>
 
-    <a class="btn primary"
-      href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20quiero%20dise%C3%B1ar%20algo%20para%20mi%20negocio."
-      target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn-primary"
+       href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20quiero%20dise%C3%B1ar%20algo%20para%20mi%20negocio."
+       target="_blank" rel="noopener">WhatsApp</a>
   </section>
 
-  <!-- WHATSAPP FLOAT -->
+  <!-- ================= WHATSAPP FLOAT ================= -->
   <a class="whatsapp-float"
-    href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20mi%20landing."
-    target="_blank" rel="noopener">
+     href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20mi%20landing."
+     target="_blank" rel="noopener" aria-label="WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
   </a>
 
   <footer>© 2025 Ciborg347™ · Web Agency</footer>
 
-  <script>
-    /* -------- MENÚ -------- */
-    let autoClose;
-    function toggleMenu() {
-      const menu = document.getElementById("mobile-menu");
-      const overlay = document.getElementById("menu-overlay");
-      if(menu.classList.contains("mobile-active")){
-        closeMenu();
-      } else {
-        menu.classList.add("mobile-active");
-        overlay.style.display = "block";
-        clearTimeout(autoClose);
-        autoClose = setTimeout(() => closeMenu(), 5000);
-      }
-    }
-    function closeMenu(){
-      document.getElementById("mobile-menu").classList.remove("mobile-active");
-      document.getElementById("menu-overlay").style.display="none";
-      clearTimeout(autoClose);
-    }
-
-    /* ===================== DATA ===================== */
-    let allSlides = [
-      {category:"estetica", title:"Adda Nails", img:"https://iili.io/KPyCnHu.jpg", link:"https://adda-nails.onrender.com/", short:"Mostrá tu trabajo con un diseño limpio y profesional.", info:"Landing pensada para estudios de belleza que necesitan transmitir prolijidad, estilo y confianza."},
-
-      {category:"barber", title:"Barbería El Bebu", img:"https://iili.io/KPyvEcx.jpg", link:"https://barberia-elbebu.onrender.com/", short:"Presencia fuerte que posiciona tu barbería como marca.", info:"Estética moderna y masculina que genera autoridad."},
-      {category:"barber", title:"Barber Shop Rodri", img:"https://iili.io/KPyUCn1.jpg", link:"https://barber-shop-rodri.onrender.com/", short:"Elegancia y estilo en cada detalle.", info:"Diseño orientado a barberías que quieren diferenciarse."},
-
-      {category:"food", title:"Dulce Juana", img:"https://iili.io/fF5pLGf.jpg", link:"https://dulce-juana.onrender.com/", short:"Imágenes irresistibles que generan ventas.", info:"Landing cálida y visual, perfecta para gastronomía."},
-
-      {category:"evento", title:"Tío Sergio", img:"https://iili.io/f9a9K5Q.jpg", link:"https://tio-sergio.onrender.com", short:"Energía y ambiente en un diseño impactante.", info:"Ideal para salones y bailables."},
-      {category:"evento", title:"MMG - Evento/Producción", img:"https://iili.io/faZQ0Ff.jpg", link:"https://web-mmg-oficial.onrender.com", short:"Showcase potente para eventos y artistas.", info:"Landing con estética pro para presentar el evento/producción, mostrar identidad y llevar tráfico directo a contacto/redes."},
-
-      {category:"radio", title:"Radio Imagen", img:"https://iili.io/f9an4yX.jpg", link:"https://radioimagen.onrender.com", short:"Tu radio con presencia moderna.", info:"Streaming integrado y visual profesional."},
-      {category:"radio", title:"Radio Cannafest", img:"https://iili.io/farGiml.jpg", link:"https://radiocannafest.onrender.com", short:"Radio temática con identidad propia.", info:"Landing moderna para radio temática con estética fuerte y presencia profesional."},
-
-      {category:"refacciones", title:"J&L Refacciones", img:"https://iili.io/farX3hl.jpg", link:"https://jyl-refacciones.onrender.com", short:"Refacciones y construcciones para captar presupuestos.", info:"Landing ideal para mostrar trabajos, servicios y captar presupuestos por WhatsApp."},
-
-      {category:"casino", title:"Facu Casino", img:"https://iili.io/KPygQXS.jpg", link:"https://facu-casino.onrender.com/", short:"Diseño directo para captar jugadores.", info:"Estética intensa y conversiones rápidas."},
-      {category:"casino", title:"Dragon Casino", img:"https://iili.io/KPyrMj2.jpg", link:"https://dragon-casino.onrender.com/", short:"Energía visual para atraer usuarios.", info:"Landing con estilo fuego y dinamismo."},
-      {category:"casino", title:"Dinasty Bet", img:"https://iili.io/KPyDVHP.jpg", link:"https://dinasty-bet.onrender.com/", short:"Identidad deportiva sólida.", info:"Perfecta para apuestas y deportes."},
-      {category:"casino", title:"FortunaPlay", img:"https://iili.io/KigNdVS.jpg", link:"https://giraygana-fortunaplay.onrender.com/", short:"Diseño veloz y llamativo.", info:"Enfocada en interacción rápida."},
-      {category:"casino", title:"GanaMos Todos Juntos", img:"https://iili.io/Kigv3Ij.jpg", link:"https://ganamostodosjuntos.onrender.com/", short:"Impacto fuerte para gaming.", info:"Ideal para promociones continuas."},
-      {category:"casino", title:"Lions Casino", img:"https://iili.io/KiggTcN.jpg", link:"https://lions-casino.onrender.com/", short:"Identidad premium.", info:"Estética limpia y profesional."},
-      {category:"casino", title:"Gira y Gana", img:"https://iili.io/f9a9Fdx.jpg", link:"https://giraygana-ijae.onrender.com", short:"Máxima rapidez para captar curiosos.", info:"Diseño simple y efectivo."}
-    ];
-
-    const categories = [
-      {id:"estetica", name:"Estética"},
-      {id:"barber", name:"Barberías"},
-      {id:"food", name:"Gastronomía"},
-      {id:"evento", name:"Eventos"},
-      {id:"radio", name:"Radios"},
-      {id:"refacciones", name:"Refacciones"},
-      {id:"casino", name:"Casinos"}
-    ];
-
-    let activeCatIndex = 0;
-    let activeCategory = categories[activeCatIndex].id;
-
-    /* -------------------- CATEGORÍAS (BOTONES) -------------------- */
-    const catContainer = document.getElementById("category-buttons");
-    categories.forEach((cat, i) => {
-      const btn = document.createElement("button");
-      btn.innerText = cat.name;
-      btn.onclick = () => goToCategoryIndex(i);
-      catContainer.appendChild(btn);
-    });
-
-    function updateCategoryHighlight(){
-      document.querySelectorAll(".categories button").forEach((btn, i) => {
-        btn.classList.toggle("active", i === activeCatIndex);
-      });
-      document.getElementById("examples-cat-title").innerText = "Categoría: " + categories[activeCatIndex].name;
-    }
-
-    function getItemsByCategory(cat){
-      return allSlides.filter(x => x.category === cat);
-    }
-
-    /* -------------------- TARJETITAS (VISTA PRINCIPAL) -------------------- */
-    function cardHTML(item, globalIndex){
-      const catName = categories.find(c => c.id === item.category)?.name || item.category;
-      return `
-        <div class="card" onclick="openDetail(${globalIndex})" title="Tocar para ver detalles">
-          <div class="card-thumb">
-            <img src="${item.img}" loading="lazy" alt="">
-          </div>
-          <div class="card-body">
-            <div class="tag">${catName}</div>
-            <div class="card-title">${item.title || "Landing"}</div>
-            <div class="card-short">${item.short || ""}</div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderCards(){
-      const grid = document.getElementById("cards-grid");
-      grid.innerHTML = "";
-
-      const items = getItemsByCategory(activeCategory);
-
-      // ✅ Mostramos pocas (ordenado y sin scroll infinito)
-      const visible = items.slice(0, 8);
-
-      visible.forEach(item => {
-        const idx = allSlides.indexOf(item);
-        grid.insertAdjacentHTML("beforeend", cardHTML(item, idx));
-      });
-
-      updateCategoryHighlight();
-    }
-
-    function goToCategoryIndex(i){
-      activeCatIndex = (i + categories.length) % categories.length;
-      activeCategory = categories[activeCatIndex].id;
-      renderCards();
-      resetAutoCategory();
-    }
-
-    /* -------------------- MODAL -------------------- */
-    function openModal(html){
-      const overlay = document.getElementById("modal-overlay");
-      const body = document.getElementById("modal-body");
-      body.innerHTML = html;
-      overlay.style.display = "flex";
-      stopAutoCategory();
-    }
-    function closeModal(){
-      document.getElementById("modal-overlay").style.display = "none";
-      document.getElementById("modal-body").innerHTML = "";
-      resetAutoCategory();
-    }
-
-    function openDetail(index){
-      const item = allSlides[index];
-      if(!item) return;
-
-      const catName = categories.find(c => c.id === item.category)?.name || item.category;
-
-      const html = `
-        <div class="detail-head">
-          <div class="left">
-            <div class="tag">${catName}</div>
-            <h3 class="detail-title">${item.title || "Landing"}</h3>
-            <p class="detail-sub">${item.short || ""}</p>
-          </div>
-          <div class="detail-actions">
-            <a class="btn primary" href="${item.link}" target="_blank" rel="noopener">Ver landing completa</a>
-            <button class="btn" type="button" onclick="closeModal()">Cerrar</button>
-          </div>
-        </div>
-
-        <div class="detail-image">
-          <img src="${item.img}" alt="">
-        </div>
-
-        <p class="detail-info">${item.info || ""}</p>
-      `;
-      openModal(html);
-    }
-
-    /* -------------------- VER TODOS (SIN SCROLL EN LA PÁGINA) -------------------- */
-    function openAll(mode){
-      const title = mode === "all"
-        ? "Todos los ejemplos"
-        : "Todos los ejemplos de " + categories[activeCatIndex].name;
-
-      const html = `
-        <div class="all-head">
-          <h3 class="all-title">${title}</h3>
-        </div>
-
-        <div class="all-controls">
-          <input class="input" id="all-search" type="text" placeholder="Buscar (ej: barber, radio, dulce...)">
-          <select class="select" id="all-filter">
-            <option value="all">Todas las categorías</option>
-            ${categories.map(c => `<option value="${c.id}">${c.name}</option>`).join("")}
-          </select>
-          <button class="btn primary" type="button" onclick="applyAllFilters()">Aplicar</button>
-        </div>
-
-        <div class="all-grid" id="all-grid"></div>
-      `;
-      openModal(html);
-
-      // Set default filter
-      const filter = document.getElementById("all-filter");
-      if(mode === "category") filter.value = activeCategory;
-      else filter.value = "all";
-
-      // Render initial list
-      applyAllFilters();
-
-      // Enter key
-      const search = document.getElementById("all-search");
-      search.addEventListener("keydown", (e) => {
-        if(e.key === "Enter") applyAllFilters();
-      });
-    }
-
-    function applyAllFilters(){
-      const grid = document.getElementById("all-grid");
-      const q = (document.getElementById("all-search")?.value || "").trim().toLowerCase();
-      const cat = document.getElementById("all-filter")?.value || "all";
-
-      let list = allSlides.slice();
-      if(cat !== "all") list = list.filter(x => x.category === cat);
-
-      if(q){
-        list = list.filter(x => {
-          const catName = categories.find(c => c.id === x.category)?.name || x.category;
-          const hay = (x.title||"") + " " + (x.short||"") + " " + (x.info||"") + " " + catName;
-          return hay.toLowerCase().includes(q);
-        });
-      }
-
-      grid.innerHTML = "";
-      list.forEach(item => {
-        const idx = allSlides.indexOf(item);
-        grid.insertAdjacentHTML("beforeend", cardHTML(item, idx));
-      });
-
-      if(list.length === 0){
-        grid.innerHTML = `<div style="grid-column:1/-1; color:#bfe; opacity:.9; padding:12px; text-align:center;">
-          No encontré resultados con esos filtros.
-        </div>`;
-      }
-    }
-
-    /* -------------------- AUTO (CAMBIA CATEGORÍAS) -------------------- */
-    let autoCatTimer = null;
-    function startAutoCategory(){
-      stopAutoCategory();
-      autoCatTimer = setInterval(() => {
-        const modalOpen = document.getElementById("modal-overlay").style.display === "flex";
-        if(!modalOpen) goToCategoryIndex(activeCatIndex + 1);
-      }, 7000);
-    }
-    function stopAutoCategory(){
-      if(autoCatTimer) clearInterval(autoCatTimer);
-      autoCatTimer = null;
-    }
-    function resetAutoCategory(){ startAutoCategory(); }
-
-    /* -------------------- SWIPE PARA CAMBIAR CATEGORÍA -------------------- */
-    let startX = 0, startY = 0;
-    const trabajosSection = document.getElementById("trabajos");
-    trabajosSection.addEventListener("touchstart", (e) => {
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-    }, {passive:true});
-
-    trabajosSection.addEventListener("touchend", (e) => {
-      const t = e.changedTouches[0];
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-
-      if(Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)){
-        if(dx < 0) goToCategoryIndex(activeCatIndex + 1);
-        else goToCategoryIndex(activeCatIndex - 1);
-      }
-    }, {passive:true});
-
-    /* -------------------- TIPS ROTATIVOS -------------------- */
-    const tips = [
-      "Tip: Una landing clara convierte más clics en ventas.",
-      "Tip: Un CTA fuerte aumenta conversiones.",
-      "Tip: Las imágenes profesionales venden más.",
-      "Tip: Tu web debe cargar rápido para retener clientes.",
-      "Tip: La primera impresión define si confían en tu negocio."
-    ];
-    let tipIndex = 0;
-    setInterval(() => {
-      tipIndex = (tipIndex + 1) % tips.length;
-      document.getElementById("tip-text").innerText = tips[tipIndex];
-    }, 4000);
-
-    /* -------------------- INICIALIZAR -------------------- */
-    renderCards();
-    startAutoCategory();
-  </script>
+  <!-- ================= DATA + SCRIPTS ================= -->
+  <script src="examples.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
