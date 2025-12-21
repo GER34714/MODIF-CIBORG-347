@@ -21,10 +21,9 @@
 <body>
   <div id="menu-overlay" onclick="closeMenu()"></div>
 
-  <!-- ================= NAV ================= -->
+  <!-- NAV -->
   <nav>
     <div class="logo-nav">Ciborg347™</div>
-
     <ul>
       <li><a href="#quienes">Quiénes Somos</a></li>
       <li><a href="#quehacemos">Qué Hacemos</a></li>
@@ -32,13 +31,12 @@
       <li><a href="#trabajos">Ejemplos</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-
     <div class="hamburger" onclick="toggleMenu()">
       <div></div><div></div><div></div>
     </div>
   </nav>
 
-  <!-- ================= MENÚ MOBILE ================= -->
+  <!-- MENÚ MOBILE -->
   <div id="mobile-menu">
     <span class="close-mobile" onclick="closeMenu()">×</span>
     <a href="#quienes" onclick="closeMenu()">Quiénes Somos</a>
@@ -48,31 +46,28 @@
     <a href="#contacto" onclick="closeMenu()">Contacto</a>
   </div>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <header class="hero">
     <img src="https://iili.io/fH74EGa.md.png" alt="Logo Ciborg347">
     <h1 class="hero-title">Impulsamos negocios con diseño web estratégico</h1>
     <p class="hero-sub">Landings y webs rápidas, modernas y pensadas para convertir.</p>
   </header>
 
-  <!-- ================= QUIÉNES SOMOS ================= -->
+  <!-- QUIÉNES SOMOS -->
   <section id="quienes">
     <h2>Quiénes Somos</h2>
     <p>
 En Ciborg347™ transformamos ideas en páginas que venden.
 Diseñamos landings y sitios web profesionales, modernos y rápidos, pensados para captar clientes y generar confianza desde el primer segundo.
 
-Nos enfocamos en 3 pilares:
+Nos enfocamos en tres pilares:
 • Presencia online
 • Confianza visual
 • Ventas reales
-
-Cada proyecto es único: analizamos tu rubro, tu estilo y tus objetivos para crear una web que represente tu marca al 100%.
-Cuando tu negocio se ve bien… tus clientes confían más. 🚀
     </p>
   </section>
 
-  <!-- ================= QUÉ HACEMOS ================= -->
+  <!-- QUÉ HACEMOS -->
   <section id="quehacemos">
     <h2>Qué Hacemos</h2>
     <p>
@@ -81,12 +76,10 @@ Tu negocio necesita:
 • Presencia
 • Confianza
 • Ventas
-
-Nosotros te damos las tres. 🚀
     </p>
   </section>
 
-  <!-- ================= SERVICIOS ================= -->
+  <!-- SERVICIOS -->
   <section id="servicios">
     <h2>Servicios</h2>
     <p>
@@ -98,7 +91,7 @@ Nosotros te damos las tres. 🚀
     </p>
   </section>
 
-  <!-- ================= EJEMPLOS ================= -->
+  <!-- EJEMPLOS -->
   <section id="trabajos">
     <h2>Ejemplos de sitios web y landing pages</h2>
 
@@ -106,22 +99,13 @@ Nosotros te damos las tres. 🚀
       Tip: Una landing clara convierte más clics en ventas.
     </div>
 
+    <!-- SOLO CATEGORÍAS + BOTÓN -->
     <div class="examples-toolbar">
-      <div class="toolbar-left">
-        <div class="categories" id="category-buttons"></div>
-      </div>
-
-      <div class="toolbar-right">
-        <div class="search-wrap">
-          <input id="search-input" type="text" placeholder="Buscar ejemplo (barber, radio, etc.)">
-        </div>
-
-        <button class="btn-ghost" id="toggle-all-btn">Ver todos los ejemplos</button>
-      </div>
+      <div class="categories" id="category-buttons"></div>
+      <button class="btn-ghost" id="toggle-all-btn">Ver todos los ejemplos</button>
     </div>
 
     <div class="examples-meta" id="examples-meta"></div>
-
     <div class="examples-grid" id="examples-grid"></div>
 
     <div class="examples-footer">
@@ -130,26 +114,23 @@ Nosotros te damos las tres. 🚀
     </div>
   </section>
 
-  <!-- ================= MODAL (DETALLE) ================= -->
-  <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="Detalle del ejemplo">
+  <!-- MODAL DETALLE -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
       <button class="modal-close" onclick="closeExampleModal()">×</button>
 
       <div class="modal-body">
         <div class="modal-media">
-          <img id="modal-img" src="" alt="Ejemplo">
+          <img id="modal-img" src="" alt="">
         </div>
 
         <div class="modal-content">
-          <div class="modal-badges">
-            <span class="badge" id="modal-cat"></span>
-          </div>
-
-          <h3 class="modal-title" id="modal-title">Ejemplo</h3>
+          <span class="badge" id="modal-cat"></span>
+          <h3 class="modal-title" id="modal-title"></h3>
           <p class="modal-desc" id="modal-desc"></p>
 
           <div class="modal-actions">
-            <a class="btn-primary" id="modal-link" href="#" target="_blank" rel="noopener">Ver landing completa</a>
+            <a class="btn-primary" id="modal-link" href="#" target="_blank">Ver landing completa</a>
             <button class="btn-ghost" onclick="closeExampleModal()">Cerrar</button>
           </div>
 
@@ -162,29 +143,14 @@ Nosotros te damos las tres. 🚀
     </div>
   </div>
 
-  <!-- ================= CONTACTO ================= -->
+  <!-- CONTACTO -->
   <section id="contacto">
     <h2>Contacto</h2>
-    <p>
-Escribinos y contanos tu idea.
-Te respondemos rápido para ayudarte a crear tu proyecto.
-    </p>
-
-    <a class="btn-primary"
-       href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20quiero%20dise%C3%B1ar%20algo%20para%20mi%20negocio."
-       target="_blank" rel="noopener">WhatsApp</a>
+    <p>Escribinos y contanos tu idea.</p>
+    <a class="btn-primary" href="https://wa.me/541164499481" target="_blank">WhatsApp</a>
   </section>
 
-  <!-- ================= WHATSAPP FLOAT ================= -->
-  <a class="whatsapp-float"
-     href="https://wa.me/541164499481?text=Hola%20Ciborg%2C%20vi%20tus%20trabajos%20y%20quisiera%20mi%20landing."
-     target="_blank" rel="noopener" aria-label="WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
-  </a>
-
-  <footer>© 2025 Ciborg347™ · Web Agency</footer>
-
-  <!-- ================= DATA + SCRIPTS ================= -->
+  <!-- SCRIPTS -->
   <script src="examples.js"></script>
   <script src="script.js"></script>
 </body>
