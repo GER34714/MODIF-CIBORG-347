@@ -1062,6 +1062,16 @@
       .banner-carousel-prev, .banner-carousel-next { width: 32px; height: 32px; font-size: 1rem; }
     }
 
+    /* CÓMO TRABAJAMOS */
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .process-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:1.7rem; transition:all .3s ease; }
+    .process-card:hover { transform:translateY(-5px); border-color:var(--cyan); box-shadow:0 0 18px rgba(0,212,255,.16); }
+    .process-card span { display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:12px; background:rgba(0,212,255,.12); color:var(--cyan); font-family:'JetBrains Mono',monospace; font-weight:600; margin-bottom:1rem; }
+    .process-card h3 { font-family:'Syne',sans-serif; color:var(--white); margin-bottom:.65rem; font-size:1.05rem; }
+    .process-card p { color:var(--text2); font-size:.86rem; line-height:1.6; }
+    @media (max-width:900px){ .process-grid{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:600px){ .process-grid{grid-template-columns:1fr;} }
+
     /* FAQ */
     .faqGrid {
       display: grid;
@@ -1591,11 +1601,10 @@
       <div class="brand__text"><strong>CIBORG 347</strong><span>DESARROLLO WEB</span></div>
     </a>
     <nav class="nav">
-      <a href="#beneficios">Beneficios</a>
-      <a href="#casos-exito">Resultados</a>
-      <a href="#resenas">Testimonios</a>
       <a href="#servicios">Servicios</a>
       <a href="#portfolio">Proyectos</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#resenas">Opiniones</a>
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
       <a href="quienes-somos.html">Quiénes somos</a>
@@ -1632,7 +1641,7 @@
   <div class="wrap">
     <div class="hero__copy fade-in-left">
       <h1 class="typewriter" id="typewriterTitle"></h1>
-      <p style="margin-top: 1rem;">Creamos webs, tiendas online y sistemas a medida para que tu negocio pueda mostrar, vender y recibir consultas desde cualquier dispositivo.</p>
+      <p style="margin-top: 1rem;">Creamos páginas web, tiendas online y sistemas a medida para que tu negocio pueda mostrar lo que hace, recibir consultas y vender desde cualquier dispositivo.</p>
       <div class="hero__actions">
         <a href="#contacto" class="btn btn--primary" data-cta="hero-primary">Pedí tu presupuesto gratis →</a>
         <a href="#portfolio" class="btn btn--ghost" data-cta="hero-portfolio">Ver proyectos</a>
@@ -1655,58 +1664,19 @@
   </div>
 </div>
 
-<!-- ========== 2. BENEFICIOS (AHORA ARRIBA) ========== -->
-<section class="section" id="beneficios">
+<!-- ========== 7. MARCAS QUE CONFÍAN ========== -->
+<section class="section" id="marcas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
-      <span class="section__label">El resultado</span>
-      <h2>¿Qué cambia cuando tu negocio <em>está bien conectado?</em></h2>
-      <p>Una presencia digital profesional no es solo estética: tiene que ayudarte a vender, captar consultas y ahorrar tiempo.</p>
+      <span class="section__label">Autoridad</span>
+      <h2>Marcas que <em>nos eligen</em></h2>
+      <p>Empresas y emprendedores que confiaron en CIBORG 347.</p>
     </div>
-    <div class="benefits-grid" id="benefitsGrid">
-      <div class="skeleton-card" style="height: 200px;"></div>
-      <div class="skeleton-card" style="height: 200px;"></div>
-      <div class="skeleton-card" style="height: 200px;"></div>
-      <div class="skeleton-card" style="height: 200px;"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 3. CASOS DE ÉXITO (AHORA ARRIBA) ========== -->
-<section class="section" id="casos-exito">
-  <div class="wrap">
-    <div class="section__head center fade-in-up">
-      <span class="section__label">Resultados</span>
-      <h2>Proyectos que <em>transformaron negocios</em></h2>
-      <p>Historias reales de clientes que potenciaron su presencia digital.</p>
-    </div>
-    <div class="stories-grid" id="storiesGrid">
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 4. TESTIMONIOS (AHORA ARRIBA) ========== -->
-<section class="section section--alt" id="resenas">
-  <div class="wrap">
-    <div class="section__head center fade-in-up">
-      <span class="section__label">Confianza</span>
-      <h2>Lo que dicen <em>nuestros clientes</em></h2>
-      <p>Experiencias reales de personas que confiaron en nosotros.</p>
-    </div>
-    <div class="reviews-section">
-      <div class="reviews-carousel-container">
-        <button class="carousel-nav-btn" id="prevReviewBtn" aria-label="Reseña anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <div class="reviews-carousel">
-          <div class="reviews-track" id="reviewsTrack"></div>
-        </div>
-        <button class="carousel-nav-btn" id="nextReviewBtn" aria-label="Reseña siguiente">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
+    <div class="brands-section">
+      <div class="brands-carousel-container" id="brandsCarouselContainer">
+        <button class="brands-carousel-btn prev" id="brandsPrevBtn" aria-label="Marcas anteriores">‹</button>
+        <div class="brands-carousel" id="brandsCarousel"></div>
+        <button class="brands-carousel-btn next" id="brandsNextBtn" aria-label="Marcas siguientes">›</button>
       </div>
     </div>
   </div>
@@ -1724,6 +1694,23 @@
       <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2. BENEFICIOS (AHORA ARRIBA) ========== -->
+<section class="section" id="beneficios">
+  <div class="wrap">
+    <div class="section__head center fade-in-up">
+      <span class="section__label">El resultado</span>
+      <h2>¿Qué cambia cuando tu negocio <em>está bien conectado?</em></h2>
+      <p>Una presencia digital profesional no es solo estética: tiene que ayudarte a vender, captar consultas y ahorrar tiempo.</p>
+    </div>
+    <div class="benefits-grid" id="benefitsGrid">
+      <div class="skeleton-card" style="height: 200px;"></div>
+      <div class="skeleton-card" style="height: 200px;"></div>
+      <div class="skeleton-card" style="height: 200px;"></div>
+      <div class="skeleton-card" style="height: 200px;"></div>
     </div>
   </div>
 </section>
@@ -1771,34 +1758,58 @@
   </div>
 </section>
 
-<!-- ========== 7. MARCAS QUE CONFÍAN ========== -->
-<section class="section" id="marcas">
+<!-- ========== CÓMO TRABAJAMOS ========== -->
+<section class="section section--alt" id="proceso">
   <div class="wrap">
     <div class="section__head center fade-in-up">
-      <span class="section__label">Autoridad</span>
-      <h2>Marcas que <em>nos eligen</em></h2>
-      <p>Empresas y emprendedores que confiaron en CIBORG 347.</p>
+      <span class="section__label">Proceso simple</span>
+      <h2>Así llevamos tu idea a <em>la realidad</em></h2>
+      <p>Te acompañamos desde la primera idea hasta tener tu proyecto listo para usar.</p>
     </div>
-    <div class="brands-section">
-      <div class="brands-carousel-container" id="brandsCarouselContainer">
-        <button class="brands-carousel-btn prev" id="brandsPrevBtn" aria-label="Marcas anteriores">‹</button>
-        <div class="brands-carousel" id="brandsCarousel"></div>
-        <button class="brands-carousel-btn next" id="brandsNextBtn" aria-label="Marcas siguientes">›</button>
-      </div>
+    <div class="process-grid">
+      <article class="process-card fade-in-up"><span>01</span><h3>Nos contás tu idea</h3><p>Analizamos tu negocio, qué necesitás y cuál es el mejor camino para empezar.</p></article>
+      <article class="process-card fade-in-up"><span>02</span><h3>Definimos la solución</h3><p>Organizamos funcionalidades, contenido y objetivos para construir algo que tenga sentido para tu negocio.</p></article>
+      <article class="process-card fade-in-up"><span>03</span><h3>Diseñamos y desarrollamos</h3><p>Convertimos la idea en una experiencia digital profesional, adaptable a todos los dispositivos.</p></article>
+      <article class="process-card fade-in-up"><span>04</span><h3>Publicamos y acompañamos</h3><p>Dejamos tu proyecto listo para usar y seguimos acompañándote según las necesidades acordadas.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ========== 8. CTA INTERMEDIO ========== -->
-<section class="conversion-cta" id="cta-intermedio">
+<!-- ========== 3. CASOS DE ÉXITO (AHORA ARRIBA) ========== -->
+<section class="section" id="casos-exito">
   <div class="wrap">
-    <div class="conversion-cta__inner">
-      <span class="section__label">¿Te imaginás algo así para tu negocio?</span>
-      <h2>Tu próximo proyecto puede <em>empezar hoy.</em></h2>
-      <p>Contanos tu idea. Te ayudamos a definir qué solución tiene más sentido para tu negocio, sin compromiso.</p>
-      <div class="conversion-cta__actions">
-        <a href="#contacto" class="btn btn--primary" data-cta="mid-contact">Quiero hablar de mi proyecto →</a>
-        <a href="#faq" class="btn btn--ghost">Tengo una duda</a>
+    <div class="section__head center fade-in-up">
+      <span class="section__label">Resultados</span>
+      <h2>Proyectos que <em>transformaron negocios</em></h2>
+      <p>Historias reales de clientes que potenciaron su presencia digital.</p>
+    </div>
+    <div class="stories-grid" id="storiesGrid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 4. TESTIMONIOS (AHORA ARRIBA) ========== -->
+<section class="section section--alt" id="resenas">
+  <div class="wrap">
+    <div class="section__head center fade-in-up">
+      <span class="section__label">Confianza</span>
+      <h2>Lo que dicen <em>nuestros clientes</em></h2>
+      <p>Experiencias reales de personas que confiaron en nosotros.</p>
+    </div>
+    <div class="reviews-section">
+      <div class="reviews-carousel-container">
+        <button class="carousel-nav-btn" id="prevReviewBtn" aria-label="Reseña anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="reviews-carousel">
+          <div class="reviews-track" id="reviewsTrack"></div>
+        </div>
+        <button class="carousel-nav-btn" id="nextReviewBtn" aria-label="Reseña siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1819,6 +1830,21 @@
       <button class="banner-carousel-prev" id="bannerCarouselPrev" aria-label="Banner anterior">❮</button>
       <button class="banner-carousel-next" id="bannerCarouselNext" aria-label="Banner siguiente">❯</button>
       <div class="banner-carousel-dots" id="bannerCarouselDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8. CTA INTERMEDIO ========== -->
+<section class="conversion-cta" id="cta-intermedio">
+  <div class="wrap">
+    <div class="conversion-cta__inner">
+      <span class="section__label">¿Te imaginás algo así para tu negocio?</span>
+      <h2>Tu próximo proyecto puede <em>empezar hoy.</em></h2>
+      <p>Contanos tu idea. Te ayudamos a definir qué solución tiene más sentido para tu negocio, sin compromiso.</p>
+      <div class="conversion-cta__actions">
+        <a href="#contacto" class="btn btn--primary" data-cta="mid-contact">Quiero hablar de mi proyecto →</a>
+        <a href="#faq" class="btn btn--ghost">Tengo una duda</a>
+      </div>
     </div>
   </div>
 </section>
