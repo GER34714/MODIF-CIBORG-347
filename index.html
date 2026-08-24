@@ -659,7 +659,7 @@
       .banner-carousel-prev, .banner-carousel-next { width: 32px; height: 32px; font-size: 1rem; }
     }
 
-    /* ===== TESTIMONIOS CON AUTO-REPRODUCCIÓN ===== */
+    /* ===== TESTIMONIOS CON AUTO-REPRODUCCIÓN Y NAVEGACIÓN MANUAL ===== */
     .reviews-section { margin-top: 2rem; }
     .reviews-carousel-container {
       position: relative;
@@ -802,7 +802,7 @@
     }
     .rating-star-input.active { color: #f5b042; }
 
-    /* ===== PORTFOLIO ===== */
+    /* ===== PORTFOLIO - CARDS MÁS CHICAS ===== */
     .featured-section {
       margin-bottom: 3rem;
     }
@@ -821,11 +821,11 @@
     .featuredGrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 20px;
     }
     .featuredCard {
       background: var(--bg2);
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       transition: all 0.3s ease;
       cursor: pointer;
@@ -838,32 +838,34 @@
     }
     .featuredCard__image {
       width: 100%;
-      aspect-ratio: 16/9;
+      aspect-ratio: 16/10;
       object-fit: contain;
       background-color: var(--bg3);
       display: block;
     }
-    .featuredCard__content { padding: 1rem; }
+    .featuredCard__content { 
+      padding: 0.8rem 1rem 1rem 1rem; 
+    }
     .featuredCard__cat {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
+      font-size: 8px;
       color: var(--cyan);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
     .featuredCard__title {
       font-family: 'Syne', sans-serif;
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 0.3rem;
-      line-height: 1.3;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
     }
     .featuredCard__desc {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--text2);
-      line-height: 1.4;
+      line-height: 1.3;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -873,7 +875,6 @@
       text-align: center;
       margin-top: 2rem;
     }
-    /* Sección completa del portfolio (oculta inicialmente) */
     .portfolio-full {
       display: none;
       margin-top: 3rem;
@@ -883,11 +884,33 @@
     .portfolio-full.visible {
       display: block;
     }
-    @media (max-width: 900px) {
-      .featuredGrid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 1024px) {
+      .featuredGrid { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 16px;
+      }
     }
-    @media (max-width: 600px) {
-      .featuredGrid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      .featuredGrid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 14px;
+      }
+    }
+    @media (max-width: 480px) {
+      .featuredGrid { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px;
+      }
+      .featuredCard__title {
+        font-size: 0.75rem;
+      }
+      .featuredCard__desc {
+        font-size: 0.6rem;
+        -webkit-line-clamp: 1;
+      }
+      .featuredCard__content { 
+        padding: 0.5rem 0.7rem 0.7rem 0.7rem; 
+      }
     }
     .controls-bar {
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
@@ -919,19 +942,19 @@
     }
     .projectsGrid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
     .projectCard {
       background: var(--bg2);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       cursor: pointer;
       border: 1px solid var(--border);
     }
     .projectCard:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       box-shadow: var(--card-shadow), 0 0 15px var(--cyan);
       border-color: var(--cyan);
     }
@@ -942,28 +965,30 @@
       background-color: var(--bg3);
       display: block;
     }
-    .projectCard__content { padding: 1.25rem 1.25rem 1.5rem 1.25rem; }
+    .projectCard__content { 
+      padding: 0.8rem 1rem 1rem 1rem; 
+    }
     .projectCard__cat {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
+      font-size: 8px;
       color: var(--cyan);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
     .projectCard__title {
       font-family: 'Syne', sans-serif;
-      font-size: 1.25rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
     }
     .projectCard__desc {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       color: var(--text2);
-      line-height: 1.5;
-      margin-bottom: 1rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -973,21 +998,21 @@
       display: inline-block;
       background: linear-gradient(135deg, var(--magenta), var(--violet));
       color: white;
-      font-size: 9px;
+      font-size: 8px;
       font-family: 'JetBrains Mono', monospace;
-      padding: 3px 8px;
+      padding: 2px 8px;
       border-radius: 100px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
     .share-btn {
       background: transparent;
       border: 1px solid var(--border);
       border-radius: 30px;
-      padding: 6px 12px;
+      padding: 4px 10px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
+      gap: 4px;
+      font-size: 9px;
       cursor: pointer;
       color: var(--text2);
       transition: all 0.2s;
@@ -996,54 +1021,138 @@
     .share-btn:hover { background: var(--cyan); color: white; border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
     .skeleton-card {
       background: var(--bg3);
-      border-radius: 20px;
-      height: 380px;
+      border-radius: 16px;
+      height: 320px;
       background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
     }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
     
-    /* ===== MODAL CON GALERÍA ===== */
+    @media (max-width: 768px) {
+      .projectsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .projectCard__title {
+        font-size: 0.8rem;
+      }
+      .projectCard__desc {
+        font-size: 0.65rem;
+        -webkit-line-clamp: 1;
+      }
+      .projectCard__content { 
+        padding: 0.6rem 0.8rem 0.8rem 0.8rem; 
+      }
+      .skeleton-card {
+        height: 280px;
+      }
+    }
+    @media (max-width: 480px) {
+      .projectsGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .projectCard__title {
+        font-size: 0.7rem;
+      }
+      .projectCard__desc {
+        font-size: 0.55rem;
+        -webkit-line-clamp: 1;
+      }
+      .projectCard__content { 
+        padding: 0.4rem 0.6rem 0.6rem 0.6rem; 
+      }
+      .skeleton-card {
+        height: 240px;
+      }
+      .projectCard__image {
+        aspect-ratio: 16/10;
+      }
+    }
+
+    /* ===== MODAL PANTALLA COMPLETA ===== */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1000;
       padding: 20px;
+      animation: modalFadeIn 0.3s ease;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
     .modal-container {
       background: var(--bg2);
       border-radius: 24px;
-      max-width: 700px;
+      max-width: 900px;
       width: 100%;
-      max-height: 85vh;
+      max-height: 92vh;
       overflow-y: auto;
       border: 1px solid var(--cyan);
+      box-shadow: 0 0 60px rgba(0, 212, 255, 0.15);
+      position: relative;
+    }
+    .modal-container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .modal-container::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    .modal-container::-webkit-scrollbar-thumb {
+      background: var(--cyan);
+      border-radius: 2px;
     }
     .modal-header {
-      padding: 1.25rem 1.5rem;
+      padding: 1.5rem 2rem;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      background: var(--bg2);
+      z-index: 5;
+      border-radius: 24px 24px 0 0;
     }
-    .modal-header h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--white); }
+    .modal-header h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      color: var(--white);
+    }
     .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.8rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.5rem;
       cursor: pointer;
       color: var(--text2);
-      transition: color 0.2s;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .modal-close:hover { color: var(--cyan); }
-    .modal-body { padding: 1.5rem; }
-    .gallery-container { position: relative; margin-bottom: 1rem; }
+    .modal-close:hover {
+      background: var(--cyan);
+      color: var(--bg);
+      border-color: var(--cyan);
+      transform: rotate(90deg);
+    }
+    .modal-body {
+      padding: 2rem;
+    }
+    .gallery-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
     .gallery-main {
       position: relative;
       width: 100%;
@@ -1051,10 +1160,11 @@
       overflow: hidden;
       background: var(--bg3);
       touch-action: pan-y pinch-zoom;
+      aspect-ratio: 16/9;
     }
     .gallery-main-img {
       width: 100%;
-      aspect-ratio: 16/9;
+      height: 100%;
       object-fit: contain;
       display: block;
       cursor: pointer;
@@ -1063,74 +1173,114 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
-      border: none;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid var(--cyan);
       color: white;
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      transition: all 0.3s;
       z-index: 10;
     }
     .gallery-nav-btn:hover {
       background: var(--cyan);
-      transform: translateY(-50%) scale(1.05);
+      color: var(--bg);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 20px var(--cyan);
     }
-    .gallery-prev { left: 10px; }
-    .gallery-next { right: 10px; }
+    .gallery-prev { left: 16px; }
+    .gallery-next { right: 16px; }
     .gallery-thumbnails {
       display: flex;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 10px;
+      margin-top: 14px;
       flex-wrap: wrap;
       justify-content: center;
     }
     .gallery-thumb {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      opacity: 0.6;
-      transition: all 0.2s;
+      opacity: 0.5;
+      transition: all 0.3s;
       border: 2px solid transparent;
     }
-    .gallery-thumb.active { opacity: 1; border-color: var(--cyan); }
-    .gallery-thumb:hover { opacity: 1; }
+    .gallery-thumb.active {
+      opacity: 1;
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px var(--cyan);
+    }
+    .gallery-thumb:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
     .modal-cat {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
+      font-size: 11px;
       color: var(--cyan);
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin-bottom: 0.5rem;
     }
-    .modal-desc { color: var(--text2); line-height: 1.7; margin: 1rem 0; }
-    .modal-actions { display: flex; gap: 12px; margin-top: 1.5rem; flex-wrap: wrap; }
-    .modal-actions .btn { flex: 1; justify-content: center; }
-    .lightbox-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(15px);
+    .modal-desc {
+      color: var(--text2);
+      line-height: 1.8;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    .modal-actions {
       display: flex;
-      align-items: center;
+      gap: 14px;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .modal-actions .btn {
+      flex: 1;
       justify-content: center;
-      z-index: 2000;
-      cursor: pointer;
+      padding: 14px 24px;
+      font-size: 14px;
     }
-    .lightbox-image {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0,212,255,0.3);
+    @media (max-width: 768px) {
+      .modal-overlay {
+        padding: 12px;
+      }
+      .modal-container {
+        max-height: 96vh;
+        border-radius: 16px;
+      }
+      .modal-header {
+        padding: 1rem 1.2rem;
+      }
+      .modal-header h3 {
+        font-size: 1.1rem;
+      }
+      .modal-body {
+        padding: 1.2rem;
+      }
+      .gallery-nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+      }
+      .gallery-prev { left: 8px; }
+      .gallery-next { right: 8px; }
+      .gallery-thumb {
+        width: 50px;
+        height: 50px;
+      }
+      .modal-actions .btn {
+        font-size: 12px;
+        padding: 10px 16px;
+      }
     }
-    
+
     /* ===== TECNOLOGÍAS ===== */
     .tech-strip {
       background: rgba(15, 15, 26, 0.6);
@@ -1246,12 +1396,12 @@
     }
     .footer__inner {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 2rem;
       align-items: center;
+      text-align: center;
     }
-    .footer__brand { display: flex; align-items: center; gap: 12px; }
+    .footer__brand { display: flex; align-items: center; gap: 12px; justify-content: center; }
     .footer__brand img { width: 38px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; animation: neonPulse 2s ease-in-out infinite; }
     .footer__brand img:hover { animation: none; filter: drop-shadow(0 0 12px var(--cyan)) drop-shadow(0 0 25px var(--violet)); transform: scale(1.02); }
     .footer__brand div strong { font-family: 'Syne', sans-serif; font-size: 14px; color: var(--white); display: block; }
@@ -1260,13 +1410,20 @@
     .footer__links a { font-size: 12px; color: var(--text2); transition: color 0.2s; }
     .footer__links a:hover { color: var(--cyan); }
     .footer__copy { font-size: 11px; color: var(--text2); text-align: center; }
-    .footer__social { margin-top: 1rem; text-align: center; }
+    .footer__social { 
+      margin-top: 1.5rem; 
+      text-align: center; 
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
     .btn-social {
       display: inline-flex; align-items: center; gap: 8px;
       background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
       padding: 10px 20px; border-radius: 40px; color: white;
       font-family: 'JetBrains Mono', monospace; font-size: 12px;
       transition: all 0.3s ease;
+      margin: 0 auto;
     }
     .btn-social:hover { transform: scale(1.05); box-shadow: 0 0 15px #fd1d1d; }
 
@@ -1474,7 +1631,6 @@
     @media (max-width: 600px) {
       .section { padding: 60px 0; }
       .hero__stats { display: flex; }
-      .projectsGrid { gap: 20px; }
       .gallery-nav-btn { width: 28px; height: 28px; font-size: 1rem; }
       .gallery-thumb { width: 40px; height: 40px; }
     }
@@ -1504,11 +1660,12 @@
 <main id="contenido-principal">
 <header class="topbar">
   <div class="wrap topbar__inner">
-    <a href="#" class="brand">
+    <a href="#inicio" class="brand">
       <img class="brand__logo" id="brandLogo" src="https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/fETkPEv.md.png" alt="Logo Ciborg 347 - Desarrollo Web" />
       <div class="brand__text"><strong>CIBORG 347</strong><span>DESARROLLO WEB</span></div>
     </a>
     <nav class="nav">
+      <a href="#inicio">Inicio</a>
       <a href="#beneficios">Beneficios</a>
       <a href="#marcas">Marcas</a>
       <a href="#portfolio">Portfolio</a>
@@ -1526,6 +1683,7 @@
   </div>
 </header>
 <nav class="mobileMenu" id="mobileMenu">
+  <a href="#inicio">Inicio</a>
   <a href="#beneficios">Beneficios</a>
   <a href="#marcas">Marcas</a>
   <a href="#portfolio">Portfolio</a>
@@ -1538,7 +1696,7 @@
   <a href="#" class="btn btn--wa" id="mobileWhatsAppBtn">WhatsApp</a>
 </nav>
 
-<!-- ===== ROBOT FLOTANTE (OCULTO INICIALMENTE) ===== -->
+<!-- ===== ROBOT FLOTANTE ===== -->
 <div class="robot-help" id="robotHelpBtn" aria-label="Asistente virtual">
   <div class="robot-container">
     <div class="robot-bubble" id="robotBubble">🤖 Hola, ¿necesitas ayuda?</div>
@@ -1547,7 +1705,7 @@
 </div>
 
 <!-- ========== 1. HERO ========== -->
-<section class="hero" aria-label="Sección principal">
+<section class="hero" id="inicio" aria-label="Sección principal">
   <canvas id="matrixCanvas" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero__copy fade-in-left">
@@ -1591,7 +1749,7 @@
   </div>
 </section>
 
-<!-- ========== 4. MARCAS QUE CONFÍAN (TICKER INFINITO) ========== -->
+<!-- ========== 4. MARCAS ========== -->
 <section class="section section--alt" id="marcas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1616,7 +1774,6 @@
       <p>Una muestra de lo que podemos hacer por vos.</p>
     </div>
     
-    <!-- Proyectos Destacados (solo 3) -->
     <div id="featuredSection" class="featured-section fade-in-up">
       <div class="featured-badge">✨ Proyectos Destacados</div>
       <div class="featuredGrid" id="featuredGrid"></div>
@@ -1625,13 +1782,17 @@
       </div>
     </div>
     
-    <!-- Sección completa del portfolio (oculta inicialmente) -->
     <div class="portfolio-full" id="portfolioFull">
       <div class="section__head" style="margin-bottom: 1.5rem;">
         <span class="section__label">Todos los proyectos</span>
         <h2>Explorá nuestro <em>portfolio</em></h2>
         <p>Cada proyecto es único y construido a medida.</p>
       </div>
+      
+      <div style="text-align: right; margin-bottom: 1.5rem;">
+        <button class="btn btn--ghost" id="ocultarPortfolioBtn" style="font-size: 12px;">✕ Ocultar portfolio completo</button>
+      </div>
+      
       <div class="controls-bar fade-in-up">
         <div class="filters" id="filters">
           <button class="filter-btn active" data-cat="all">Todos</button>
@@ -1648,10 +1809,15 @@
           </select>
         </div>
       </div>
-      <div id="skeletonContainer" class="skeleton-grid">
-        <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+      
+      <div id="skeletonContainer" class="skeleton-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
       </div>
+      
       <div class="projectsGrid" id="projectsGrid" style="display: none;"></div>
+      
       <div class="pagination-container" id="paginationContainer" style="display: none;">
         <div class="pagination-controls">
           <button class="pagination-btn" id="prevPageBtn" disabled>← Anterior</button>
@@ -1680,7 +1846,7 @@
   </div>
 </section>
 
-<!-- ========== 7. BANNERS PROMOCIONALES ========== -->
+<!-- ========== 7. BANNERS ========== -->
 <section class="section" id="banners">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1776,7 +1942,7 @@
   </div>
 </section>
 
-<!-- ========== 12. DEJANOS TU OPINIÓN ========== -->
+<!-- ========== 12. OPINIÓN ========== -->
 <section class="section section--alt" id="opinion">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1819,6 +1985,7 @@
         <div><strong>CIBORG 347</strong><span>Desarrollo Web</span></div>
       </div>
       <div class="footer__links">
+        <a href="#inicio">Inicio</a>
         <a href="#beneficios">Beneficios</a>
         <a href="#marcas">Marcas</a>
         <a href="#portfolio">Proyectos</a>
@@ -2490,7 +2657,7 @@ function setupRobotTrigger() {
   });
 }
 
-// ===== RESEÑAS CON AUTO-REPRODUCCIÓN =====
+// ===== RESEÑAS CON AUTO-REPRODUCCIÓN Y NAVEGACIÓN MANUAL =====
 let reviewsData = [];
 let currentReviewIndex = 0;
 let reviewsPerPage = 3;
@@ -2514,13 +2681,19 @@ async function loadReviews() {
         { nombre: "Laura G.", texto: "Muy contenta con el desarrollo de mi web institucional.", rating: 5 }, 
         { nombre: "Carlos D.", texto: "El sistema de pedidos por WhatsApp transformó mi negocio.", rating: 4 },
         { nombre: "Sofía R.", texto: "Rápidos, eficientes y con mucha calidad. 100% recomendados.", rating: 5 },
-        { nombre: "Javier M.", texto: "Entendieron perfectamente lo que necesitaba y lo ejecutaron a la perfección.", rating: 5 }
+        { nombre: "Javier M.", texto: "Entendieron perfectamente lo que necesitaba y lo ejecutaron a la perfección.", rating: 5 },
+        { nombre: "Ana P.", texto: "Muy profesionales, cumplieron todos los plazos y superaron mis expectativas.", rating: 5 },
+        { nombre: "Roberto L.", texto: "La app que me hicieron cambió por completo la forma de trabajar de mi equipo.", rating: 5 }
       ]; 
     }
   } catch(e) { console.error(e); }
   renderReviews();
   startReviewsAutoPlay();
   setupReviewsHover();
+  
+  window.addEventListener('resize', () => {
+    updateReviewCarousel();
+  });
 }
 
 function renderReviews() {
@@ -2533,6 +2706,8 @@ function renderReviews() {
     if (progress) progress.innerHTML = '';
     return; 
   }
+  
+  updateReviewsPerPage();
   
   const starsMap = (r) => { 
     let s = ''; 
@@ -2569,6 +2744,17 @@ function renderReviews() {
   updateReviewCarousel();
 }
 
+function updateReviewsPerPage() {
+  const width = window.innerWidth;
+  if (width < 600) {
+    reviewsPerPage = 1;
+  } else if (width < 900) {
+    reviewsPerPage = 2;
+  } else {
+    reviewsPerPage = 3;
+  }
+}
+
 function updateReviewCarousel() {
   const track = document.getElementById("reviewsTrack");
   const dots = document.querySelectorAll('.review-dot');
@@ -2577,13 +2763,18 @@ function updateReviewCarousel() {
   const totalCards = reviewsData.length;
   if (totalCards === 0) return;
   
+  updateReviewsPerPage();
+  
+  const totalSlides = Math.ceil(totalCards / reviewsPerPage);
+  if (currentReviewIndex >= totalSlides) currentReviewIndex = totalSlides - 1;
+  if (currentReviewIndex < 0) currentReviewIndex = 0;
+  
   const cardWidth = track.children[0]?.offsetWidth || 0;
-  const slideWidth = cardWidth + 24;
-  const maxIndex = Math.max(0, Math.ceil(totalCards / reviewsPerPage) - 1);
+  const gap = 24;
+  const slideWidth = cardWidth + gap;
   
-  if (currentReviewIndex > maxIndex) currentReviewIndex = maxIndex;
-  
-  track.style.transform = `translateX(-${currentReviewIndex * (slideWidth * reviewsPerPage)}px)`;
+  const offset = currentReviewIndex * (slideWidth * reviewsPerPage);
+  track.style.transform = `translateX(-${offset}px)`;
   
   dots.forEach((dot, i) => {
     if (i === currentReviewIndex) {
@@ -2596,7 +2787,7 @@ function updateReviewCarousel() {
   const prevBtn = document.getElementById("prevReviewBtn");
   const nextBtn = document.getElementById("nextReviewBtn");
   if (prevBtn) prevBtn.disabled = currentReviewIndex === 0;
-  if (nextBtn) nextBtn.disabled = currentReviewIndex >= maxIndex;
+  if (nextBtn) nextBtn.disabled = currentReviewIndex >= totalSlides - 1;
 }
 
 function startReviewsAutoPlay() {
@@ -2646,10 +2837,6 @@ document.getElementById("nextReviewBtn")?.addEventListener("click", () => {
     updateReviewCarousel();
     resetReviewsAutoPlay();
   }
-});
-
-window.addEventListener('resize', () => {
-  updateReviewCarousel();
 });
 
 // ========== FAQ ==========
@@ -2736,16 +2923,20 @@ function typeWriter() {
 }
 setTimeout(typeWriter, 500);
 
-// ===== OPEN MODAL CON GALERÍA =====
+// ===== OPEN MODAL CON GALERÍA - PANTALLA COMPLETA =====
 function openModal(project) {
   const images = [];
   if (project.image_url) images.push(project.image_url);
   if (project.image2_url) images.push(project.image2_url);
+  if (project.image3_url) images.push(project.image3_url);
+  if (project.image4_url) images.push(project.image4_url);
+  
+  if (images.length === 0) {
+    images.push('https://placehold.co/800x450/1a1a2e/00d4ff?text=Sin+imagen');
+  }
   
   let galleryHtml = '';
-  if (images.length === 0) {
-    galleryHtml = '<div class="gallery-main"><img class="gallery-main-img" src="https://placehold.co/800x450/1a1a2e/00d4ff?text=Sin+imagen" alt="Sin imagen"></div>';
-  } else if (images.length === 1) {
+  if (images.length === 1) {
     galleryHtml = `
       <div class="gallery-container">
         <div class="gallery-main">
@@ -2768,20 +2959,22 @@ function openModal(project) {
     `;
   }
   
+  const fullDesc = project.full_description || project.short_description || "Sin descripción adicional.";
+  
   const modalHTML = `
-    <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
       <div class="modal-container">
         <div class="modal-header">
           <h3>${esc(project.title)}</h3>
-          <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">×</button>
+          <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
         </div>
         <div class="modal-body">
           ${galleryHtml}
           <div class="modal-cat">${esc(project.categories?.name || "Proyecto")}</div>
-          <div class="modal-desc">${esc(project.full_description || project.short_description || "Sin descripción adicional.")}</div>
+          <div class="modal-desc">${esc(fullDesc)}</div>
           <div class="modal-actions">
-            <a href="${esc(project.demo_url || "#")}" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver demo →</a>
-            <a href="${waUrl(`Hola, vi la demo "${project.title}" y quiero algo así.`)}" class="btn btn--wa">Consultar por WhatsApp</a>
+            <a href="${esc(project.demo_url || "#")}" target="_blank" rel="noopener noreferrer" class="btn btn--primary">🔗 Ver demo →</a>
+            <a href="${waUrl(`Hola, vi la demo "${project.title}" y quiero algo así.`)}" class="btn btn--wa">💬 Consultar por WhatsApp</a>
           </div>
         </div>
       </div>
@@ -2857,7 +3050,6 @@ function renderFeatured() {
   if (!featuredGrid) return;
   
   if (featuredProjects.length === 0) {
-    // Si no hay destacados, mostrar los 3 más recientes
     const recentProjects = projectsData.slice(0, 3);
     if (recentProjects.length === 0) {
       featuredGrid.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:var(--text2); padding:2rem;">Cargando proyectos...</div>';
@@ -2948,36 +3140,61 @@ function renderPagination(totalPages) {
 function resetPagination() { currentPage = 1; renderProjects(); }
 
 // ===== BOTÓN "VER PORTFOLIO COMPLETO" =====
-document.getElementById("verPortfolioBtn")?.addEventListener("click", function() {
-  const portfolioFull = document.getElementById("portfolioFull");
-  if (portfolioFull) {
-    portfolioFull.classList.toggle("visible");
-    if (portfolioFull.classList.contains("visible")) {
-      this.textContent = "Ocultar portfolio completo ↑";
-      // Esperar a que se renderice y luego cargar los proyectos si no están cargados
+const verBtn = document.getElementById("verPortfolioBtn");
+const ocultarBtn = document.getElementById("ocultarPortfolioBtn");
+const portfolioFull = document.getElementById("portfolioFull");
+
+if (verBtn) {
+  verBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    
+    portfolioFull.classList.add("visible");
+    portfolioFull.style.display = "block";
+    
+    this.textContent = "⬆ Ocultar portfolio completo";
+    this.style.opacity = "0.7";
+    
+    if (projectsData.length > 0) {
+      buildFilters();
+      resetPagination();
+      
+      const skeleton = document.getElementById("skeletonContainer");
+      const projectsGrid = document.getElementById("projectsGrid");
+      
+      if (skeleton) {
+        skeleton.style.display = "grid";
+        skeleton.style.gridTemplateColumns = "repeat(3, 1fr)";
+      }
+      if (projectsGrid) projectsGrid.style.display = "none";
+      
       setTimeout(() => {
-        if (projectsData.length > 0) {
-          buildFilters();
-          resetPagination();
-          // Mostrar skeletons y luego proyectos
-          const skeleton = document.getElementById("skeletonContainer");
-          const projectsGrid = document.getElementById("projectsGrid");
-          if (skeleton) skeleton.style.display = "grid";
-          if (projectsGrid) projectsGrid.style.display = "none";
-          setTimeout(() => {
-            if (skeleton) skeleton.style.display = "none";
-            if (projectsGrid) projectsGrid.style.display = "grid";
-            renderProjects();
-          }, 500);
+        if (skeleton) skeleton.style.display = "none";
+        if (projectsGrid) {
+          projectsGrid.style.display = "grid";
+          projectsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
         }
-        // Scroll suave hacia la sección completa
-        portfolioFull.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        renderProjects();
       }, 300);
-    } else {
-      this.textContent = "Ver portfolio completo →";
     }
-  }
-});
+    
+    setTimeout(() => {
+      portfolioFull.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 350);
+  });
+}
+
+if (ocultarBtn) {
+  ocultarBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    portfolioFull.classList.remove("visible");
+    portfolioFull.style.display = "none";
+    
+    if (verBtn) {
+      verBtn.textContent = "Ver portfolio completo →";
+      verBtn.style.opacity = "1";
+    }
+  });
+}
 
 async function loadProjects() {
   const skeleton = document.getElementById("skeletonContainer");
@@ -2996,7 +3213,6 @@ async function loadProjects() {
     document.getElementById("statProjects").textContent = projectsData.length;
     renderFeatured();
     buildFilters();
-    // Cargar proyectos completos solo si la sección ya está visible
     if (document.getElementById("portfolioFull").classList.contains("visible")) {
       resetPagination();
     }
