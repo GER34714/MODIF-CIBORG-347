@@ -125,6 +125,17 @@
     .btn--ghost:hover { background: var(--glass); transform: translateY(-1px); border-color: var(--cyan); }
     .btn--wa { background: linear-gradient(135deg,#25d366,#128c7e); color: white; }
     .btn--wa:hover { transform: translateY(-2px); box-shadow: 0 0 15px #25d366; }
+    .btn--outline {
+      background: transparent;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+    }
+    .btn--outline:hover {
+      background: var(--cyan);
+      color: var(--bg);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px var(--cyan);
+    }
     .burger {
       display: none; width: 40px; height: 40px;
       border: 1px solid var(--border); border-radius: 10px;
@@ -397,76 +408,67 @@
       .benefit-card__icon { font-size: 2.2rem; }
     }
 
-    /* ===== MARCAS ===== */
+    /* ===== MARCAS - TICKER INFINITO ===== */
     .brands-section {
       background: var(--bg2);
       border-radius: 24px;
       padding: 2rem 1.5rem;
       margin: 2rem 0;
       border: 1px solid var(--border);
+      overflow: hidden;
     }
-    .brands-carousel-container {
+    .brands-ticker-wrapper {
       position: relative;
       overflow: hidden;
       margin-top: 1.5rem;
-      padding: 0 35px;
+      padding: 10px 0;
     }
-    .brands-carousel {
+    .brands-ticker {
       display: flex;
-      transition: transform 0.5s ease;
-      gap: 2rem;
-      align-items: center;
-      justify-content: center;
+      gap: 3rem;
+      animation: tickerScroll 30s linear infinite;
+      width: max-content;
     }
-    .brand-item {
+    .brands-ticker.paused {
+      animation-play-state: paused;
+    }
+    .brand-item-ticker {
       flex: 0 0 auto;
-      width: 130px;
       text-align: center;
-      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
       filter: grayscale(0.3);
       opacity: 0.8;
+      transition: all 0.3s ease;
+      min-width: 120px;
     }
-    .brand-item:hover { filter: grayscale(0); opacity: 1; transform: translateY(-4px); }
-    .brand-item img {
-      max-width: 90px;
-      max-height: 55px;
+    .brand-item-ticker:hover {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    .brand-item-ticker img {
+      max-width: 80px;
+      max-height: 50px;
       object-fit: contain;
-      margin: 0 auto 0.5rem auto;
-      display: block;
     }
-    .brand-item span { display: block; font-size: 0.7rem; color: var(--text2); text-align: center; }
-    .brands-carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s;
-      z-index: 10;
-      font-size: 1.2rem;
+    .brand-item-ticker span {
+      font-size: 0.65rem;
+      color: var(--text2);
+      text-align: center;
+      white-space: nowrap;
     }
-    .brands-carousel-btn:hover { border-color: var(--cyan); background: rgba(0, 212, 255, 0.2); }
-    .brands-carousel-btn.prev { left: 5px; }
-    .brands-carousel-btn.next { right: 5px; }
-    @media (max-width: 900px) {
-      .brands-carousel-container { padding: 0 30px; }
-      .brand-item { width: 110px; }
-      .brand-item img { max-width: 70px; max-height: 45px; }
-      .brands-carousel-btn { width: 32px; height: 32px; font-size: 1rem; }
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     @media (max-width: 600px) {
-      .brands-carousel-container { padding: 0 25px; }
-      .brand-item { width: 90px; }
-      .brand-item img { max-width: 55px; max-height: 35px; }
-      .brand-item span { font-size: 0.6rem; }
-      .brands-carousel-btn { width: 28px; height: 28px; font-size: 0.9rem; }
+      .brands-ticker { gap: 1.5rem; }
+      .brand-item-ticker { min-width: 80px; }
+      .brand-item-ticker img { max-width: 55px; max-height: 35px; }
+      .brand-item-ticker span { font-size: 0.5rem; }
     }
 
     /* ===== CASOS DE ÉXITO ===== */
@@ -657,7 +659,7 @@
       .banner-carousel-prev, .banner-carousel-next { width: 32px; height: 32px; font-size: 1rem; }
     }
 
-    /* ===== TESTIMONIOS ===== */
+    /* ===== TESTIMONIOS CON AUTO-REPRODUCCIÓN ===== */
     .reviews-section { margin-top: 2rem; }
     .reviews-carousel-container {
       position: relative;
@@ -666,7 +668,11 @@
       gap: 20px;
     }
     .reviews-carousel { overflow: hidden; flex: 1; }
-    .reviews-track { display: flex; transition: transform 0.4s ease-in-out; gap: 24px; }
+    .reviews-track { 
+      display: flex; 
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+      gap: 24px; 
+    }
     .review-card {
       flex: 0 0 calc(33.333% - 16px);
       background: var(--bg2);
@@ -713,11 +719,40 @@
       transform: scale(1.05);
     }
     .carousel-nav-btn svg { width: 20px; height: 20px; stroke: var(--text); stroke-width: 2; }
+    .carousel-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    .reviews-progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+    .review-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text2);
+      opacity: 0.3;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .review-dot.active {
+      opacity: 1;
+      background: var(--cyan);
+      width: 24px;
+      border-radius: 10px;
+    }
+    .review-dot:hover { opacity: 0.7; }
     @media (max-width: 900px) {
       .review-card { flex: 0 0 calc(50% - 12px); }
     }
     @media (max-width: 600px) {
       .review-card { flex: 0 0 100%; }
+      .carousel-nav-btn { width: 36px; height: 36px; }
+      .carousel-nav-btn svg { width: 16px; height: 16px; }
     }
 
     /* ===== FORMULARIO DE RESEÑA ===== */
@@ -768,7 +803,9 @@
     .rating-star-input.active { color: #f5b042; }
 
     /* ===== PORTFOLIO ===== */
-    .featured-section { margin-bottom: 3rem; }
+    .featured-section {
+      margin-bottom: 3rem;
+    }
     .featured-badge {
       display: inline-block;
       background: linear-gradient(135deg, var(--cyan), var(--violet));
@@ -831,6 +868,20 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .featured-actions {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    /* Sección completa del portfolio (oculta inicialmente) */
+    .portfolio-full {
+      display: none;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .portfolio-full.visible {
+      display: block;
     }
     @media (max-width: 900px) {
       .featuredGrid { grid-template-columns: repeat(2, 1fr); }
@@ -1540,7 +1591,7 @@
   </div>
 </section>
 
-<!-- ========== 4. MARCAS QUE CONFÍAN ========== -->
+<!-- ========== 4. MARCAS QUE CONFÍAN (TICKER INFINITO) ========== -->
 <section class="section section--alt" id="marcas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1549,10 +1600,8 @@
       <p>Empresas y emprendedores que confiaron en Ciborg 347</p>
     </div>
     <div class="brands-section">
-      <div class="brands-carousel-container" id="brandsCarouselContainer">
-        <button class="brands-carousel-btn prev" id="brandsPrevBtn" aria-label="Marcas anteriores">‹</button>
-        <div class="brands-carousel" id="brandsCarousel"></div>
-        <button class="brands-carousel-btn next" id="brandsNextBtn" aria-label="Marcas siguientes">›</button>
+      <div class="brands-ticker-wrapper" id="brandsTickerWrapper">
+        <div class="brands-ticker" id="brandsTicker"></div>
       </div>
     </div>
   </div>
@@ -1563,40 +1612,54 @@
   <div class="wrap">
     <div class="section__head fade-in-right">
       <span class="section__label">Portafolio</span>
-      <h2>Todos los <em>proyectos</em></h2>
-      <p>Cada uno construido a medida. Sin plantillas, sin límites.</p>
+      <h2>Proyectos <em>destacados</em></h2>
+      <p>Una muestra de lo que podemos hacer por vos.</p>
     </div>
-    <div id="featuredSection" class="featured-section fade-in-up" style="display: none;">
+    
+    <!-- Proyectos Destacados (solo 3) -->
+    <div id="featuredSection" class="featured-section fade-in-up">
       <div class="featured-badge">✨ Proyectos Destacados</div>
       <div class="featuredGrid" id="featuredGrid"></div>
-    </div>
-    <div class="controls-bar fade-in-up">
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-cat="all">Todos</button>
+      <div class="featured-actions">
+        <button class="btn btn--primary" id="verPortfolioBtn">Ver portfolio completo →</button>
       </div>
-      <div class="search-sort">
-        <div class="search-box">
-          <span>🔍</span>
-          <input type="text" id="searchInput" placeholder="Buscar proyecto..." aria-label="Buscar proyectos" />
+    </div>
+    
+    <!-- Sección completa del portfolio (oculta inicialmente) -->
+    <div class="portfolio-full" id="portfolioFull">
+      <div class="section__head" style="margin-bottom: 1.5rem;">
+        <span class="section__label">Todos los proyectos</span>
+        <h2>Explorá nuestro <em>portfolio</em></h2>
+        <p>Cada proyecto es único y construido a medida.</p>
+      </div>
+      <div class="controls-bar fade-in-up">
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-cat="all">Todos</button>
         </div>
-        <select id="sortSelect" class="sort-select" aria-label="Ordenar proyectos">
-          <option value="recent">Más recientes</option>
-          <option value="az">A → Z</option>
-          <option value="za">Z → A</option>
-        </select>
+        <div class="search-sort">
+          <div class="search-box">
+            <span>🔍</span>
+            <input type="text" id="searchInput" placeholder="Buscar proyecto..." aria-label="Buscar proyectos" />
+          </div>
+          <select id="sortSelect" class="sort-select" aria-label="Ordenar proyectos">
+            <option value="recent">Más recientes</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div id="skeletonContainer" class="skeleton-grid">
-      <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
-    </div>
-    <div class="projectsGrid" id="projectsGrid" style="display: none;"></div>
-    <div class="pagination-container" id="paginationContainer" style="display: none;">
-      <div class="pagination-controls">
-        <button class="pagination-btn" id="prevPageBtn" disabled>← Anterior</button>
-        <div class="pagination-pages" id="paginationPages"></div>
-        <button class="pagination-btn" id="nextPageBtn">Siguiente →</button>
+      <div id="skeletonContainer" class="skeleton-grid">
+        <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
       </div>
-      <div class="pagination-info" id="paginationInfo"></div>
+      <div class="projectsGrid" id="projectsGrid" style="display: none;"></div>
+      <div class="pagination-container" id="paginationContainer" style="display: none;">
+        <div class="pagination-controls">
+          <button class="pagination-btn" id="prevPageBtn" disabled>← Anterior</button>
+          <div class="pagination-pages" id="paginationPages"></div>
+          <button class="pagination-btn" id="nextPageBtn">Siguiente →</button>
+        </div>
+        <div class="pagination-info" id="paginationInfo"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1663,8 +1726,8 @@
   </div>
 </section>
 
-<!-- ========== 10. CONTACTO (HABLEMOS DE TU PROYECTO) ========== -->
-<section class="section" id="contacto">
+<!-- ========== 10. CONTACTO ========== -->
+<section class="section section--alt" id="contacto">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Contacto</span>
@@ -1688,8 +1751,8 @@
   </div>
 </section>
 
-<!-- ========== 11. TESTIMONIOS (RESEÑAS) ========== -->
-<section class="section section--alt" id="resenas">
+<!-- ========== 11. TESTIMONIOS ========== -->
+<section class="section" id="resenas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Testimonios</span>
@@ -1708,12 +1771,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
+      <div class="reviews-progress" id="reviewsProgress"></div>
     </div>
   </div>
 </section>
 
-<!-- ========== 12. DEJANOS TU OPINIÓN (FORMULARIO DE RESEÑA) ========== -->
-<section class="section" id="opinion">
+<!-- ========== 12. DEJANOS TU OPINIÓN ========== -->
+<section class="section section--alt" id="opinion">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Tu opinión importa</span>
@@ -2135,16 +2199,13 @@ document.getElementById('bannerCarouselNext')?.addEventListener('click', () => {
   resetearCarruselAutomatico();
 });
 
-// ========== MARCAS ==========
+// ========== MARCAS - TICKER INFINITO ==========
 let brandsData = [];
-let currentBrandIndex = 0;
-let brandsPerPage = 4;
-let brandsInterval = null;
 
-async function loadBrands() {
-  const container = document.getElementById('brandsCarousel');
+async function loadBrandsTicker() {
+  const container = document.getElementById('brandsTicker');
   if (!container) return;
-  container.innerHTML = '<div class="skeleton-card" style="height: 100px;"></div>';
+  container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text2);">Cargando marcas...</div>';
   try {
     const { data, error } = await sb
       .from('trusted_brands')
@@ -2153,84 +2214,47 @@ async function loadBrands() {
       .order('order_index', { ascending: true });
     if (error) throw error;
     if (!data || data.length === 0) {
-      container.innerHTML = '<div style="text-align:center; color:var(--text2);">Próximamente marcas que confían en nosotros</div>';
+      container.innerHTML = '<div style="text-align:center; color:var(--text2); padding:20px;">Próximamente marcas que confían en nosotros</div>';
       return;
     }
-    brandsData = data;
-    updateBrandsPerPage();
-    renderBrandsCarousel();
-    startBrandsCarousel();
-    window.addEventListener('resize', () => {
-      updateBrandsPerPage();
-      renderBrandsCarousel();
-    });
-  } catch(e) { console.error("Error loading brands:", e); }
+    brandsData = [...data];
+    for (let i = brandsData.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [brandsData[i], brandsData[j]] = [brandsData[j], brandsData[i]];
+    }
+    const duplicated = [...brandsData, ...brandsData, ...brandsData];
+    renderTicker(duplicated);
+    setupTickerHover();
+  } catch(e) { 
+    console.error("Error loading brands:", e);
+    container.innerHTML = '<div style="text-align:center; color:var(--text2); padding:20px;">Error al cargar marcas</div>';
+  }
 }
 
-function updateBrandsPerPage() {
-  if (window.innerWidth < 600) brandsPerPage = 2;
-  else if (window.innerWidth < 900) brandsPerPage = 3;
-  else brandsPerPage = 4;
-}
-
-function renderBrandsCarousel() {
-  const container = document.getElementById('brandsCarousel');
-  if (!container || !brandsData.length) return;
-  const start = currentBrandIndex;
-  const end = Math.min(start + brandsPerPage, brandsData.length);
-  const visibleBrands = brandsData.slice(start, end);
-  container.innerHTML = visibleBrands.map(brand => `
-    <div class="brand-item">
+function renderTicker(brands) {
+  const container = document.getElementById('brandsTicker');
+  if (!container || !brands || brands.length === 0) return;
+  container.innerHTML = brands.map(brand => `
+    <div class="brand-item-ticker">
       ${brand.website_url ? `<a href="${brand.website_url}" target="_blank" rel="noopener noreferrer">` : ''}
-        <img src="${escapeHtml(brand.logo_url)}" alt="${escapeHtml(brand.name)}" loading="lazy" width="90" height="55" />
+        <img src="${escapeHtml(brand.logo_url)}" alt="${escapeHtml(brand.name)}" loading="lazy" width="80" height="50" />
         <span>${escapeHtml(brand.name)}</span>
       ${brand.website_url ? '</a>' : ''}
     </div>
   `).join('');
 }
 
-function startBrandsCarousel() {
-  if (brandsInterval) clearInterval(brandsInterval);
-  if (brandsData.length <= brandsPerPage) return;
-  brandsInterval = setInterval(() => {
-    if (currentBrandIndex + brandsPerPage >= brandsData.length) {
-      currentBrandIndex = 0;
-    } else {
-      currentBrandIndex += 1;
-    }
-    renderBrandsCarousel();
-  }, 5000);
+function setupTickerHover() {
+  const wrapper = document.getElementById('brandsTickerWrapper');
+  const ticker = document.getElementById('brandsTicker');
+  if (!wrapper || !ticker) return;
+  wrapper.addEventListener('mouseenter', () => {
+    ticker.classList.add('paused');
+  });
+  wrapper.addEventListener('mouseleave', () => {
+    ticker.classList.remove('paused');
+  });
 }
-
-function stopBrandsCarousel() {
-  if (brandsInterval) clearInterval(brandsInterval);
-}
-
-document.getElementById('brandsPrevBtn')?.addEventListener('click', () => {
-  stopBrandsCarousel();
-  if (currentBrandIndex > 0) {
-    currentBrandIndex -= 1;
-  } else {
-    currentBrandIndex = Math.max(0, brandsData.length - brandsPerPage);
-  }
-  renderBrandsCarousel();
-  startBrandsCarousel();
-});
-
-document.getElementById('brandsNextBtn')?.addEventListener('click', () => {
-  stopBrandsCarousel();
-  if (currentBrandIndex + brandsPerPage < brandsData.length) {
-    currentBrandIndex += 1;
-  } else {
-    currentBrandIndex = 0;
-  }
-  renderBrandsCarousel();
-  startBrandsCarousel();
-});
-
-const brandsSection = document.getElementById('marcas');
-brandsSection?.addEventListener('mouseenter', stopBrandsCarousel);
-brandsSection?.addEventListener('mouseleave', startBrandsCarousel);
 
 // ========== CASOS DE ÉXITO ==========
 async function loadSuccessStories() {
@@ -2285,14 +2309,13 @@ function escapeHtml(str) {
   });
 }
 
-// ===== ROBOT FLOTANTE - APARECE EN LA MITAD DEL CATÁLOGO =====
+// ===== ROBOT FLOTANTE =====
 const robotBtn = document.getElementById('robotHelpBtn');
 const robotImg = document.getElementById('robotImg');
 const robotBubble = document.getElementById('robotBubble');
 let robotEnlargeTimeout = null;
 let robotAppeared = false;
 
-// Ocultar robot inicialmente
 robotBtn.classList.remove('show', 'enlarged');
 robotBtn.classList.add('hide-robot');
 
@@ -2314,14 +2337,11 @@ if (robotBtn) {
   });
 }
 
-// ===== DETECTAR CUANDO EL USUARIO LLEGA A LA MITAD DEL PORTFOLIO =====
 function setupRobotTrigger() {
   const portfolioSection = document.getElementById('portfolio');
   const footer = document.querySelector('footer');
-  
   if (!portfolioSection) return;
   
-  // Crear un punto de activación en la mitad del portfolio
   const triggerPoint = document.createElement('div');
   triggerPoint.id = 'robot-trigger-point';
   triggerPoint.style.position = 'relative';
@@ -2330,15 +2350,9 @@ function setupRobotTrigger() {
   triggerPoint.style.pointerEvents = 'none';
   triggerPoint.style.opacity = '0';
   
-  // Insertar el trigger en el 50% del portfolio
-  const portfolioHeight = portfolioSection.offsetHeight || 2000;
-  const mitad = portfolioHeight * 0.5;
-  
-  // Buscar el contenedor de proyectos para insertar el trigger
   const projectsGrid = document.getElementById('projectsGrid');
   const featuredSection = document.getElementById('featuredSection');
   
-  // Insertar después de los proyectos destacados o en la mitad
   if (featuredSection && featuredSection.style.display !== 'none') {
     featuredSection.after(triggerPoint);
   } else if (projectsGrid) {
@@ -2416,14 +2430,6 @@ function setupRobotTrigger() {
     }, 6000);
   }
 
-  function resetSequence() {
-    if (sequenceTimeout) clearTimeout(sequenceTimeout);
-    if (vibrationInterval) clearInterval(vibrationInterval);
-    if (shrinkTimeout) clearTimeout(shrinkTimeout);
-    startSequence();
-  }
-
-  // Observer para el trigger point
   const triggerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !robotAppeared) {
@@ -2439,7 +2445,6 @@ function setupRobotTrigger() {
 
   triggerObserver.observe(triggerPoint);
 
-  // Observer para el footer (ocultar robot)
   const footerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && robotVisible) {
@@ -2459,24 +2464,20 @@ function setupRobotTrigger() {
     footerObserver.observe(footer);
   }
 
-  // Si el usuario vuelve a scrollear hacia arriba, el robot se oculta
   let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
     const heroSection = document.querySelector('.hero');
     const heroBottom = heroSection ? heroSection.getBoundingClientRect().bottom + window.scrollY : 0;
     
-    // Si el usuario está en el hero o muy arriba, ocultar robot
     if (currentScrollY < heroBottom + 200 && robotVisible && !isRobotHiddenByFooter) {
       robotBtn.classList.remove('show');
       robotBtn.classList.add('hide-robot');
       robotVisible = false;
-      // Reiniciar estado de secuencia
       if (sequenceTimeout) clearTimeout(sequenceTimeout);
       if (vibrationInterval) clearInterval(vibrationInterval);
       if (shrinkTimeout) clearTimeout(shrinkTimeout);
     } else if (currentScrollY > heroBottom + 300 && !robotVisible && robotAppeared && !isRobotHiddenByFooter) {
-      // Si el usuario scrollea hacia abajo de nuevo, mostrar robot
       robotBtn.classList.remove('hide-robot');
       robotBtn.classList.add('show');
       robotVisible = true;
@@ -2489,52 +2490,167 @@ function setupRobotTrigger() {
   });
 }
 
-// ===== RESEÑAS =====
+// ===== RESEÑAS CON AUTO-REPRODUCCIÓN =====
 let reviewsData = [];
 let currentReviewIndex = 0;
 let reviewsPerPage = 3;
+let reviewsAutoPlayInterval = null;
+let isReviewAutoPlayPaused = false;
 
 async function loadReviews() {
   if (!sb) return;
   try {
     const { data, error } = await sb.from("reviews").select("*").eq("status", "approved").order("created_at", { ascending: false });
     if (error) throw error;
-    if (data && data.length > 0) { reviewsData = data.map(review => ({ nombre: review.user_name, texto: review.comment, rating: review.rating })); }
-    else { reviewsData = [{ nombre: "Martín", texto: "Excelente trabajo. La tienda online que me hicieron es increíble.", rating: 5 }, { nombre: "Laura G.", texto: "Muy contenta con el desarrollo de mi web institucional.", rating: 5 }, { nombre: "Carlos D.", texto: "El sistema de pedidos por WhatsApp transformó mi negocio.", rating: 4 }]; }
+    if (data && data.length > 0) { 
+      reviewsData = data.map(review => ({ 
+        nombre: review.user_name, 
+        texto: review.comment, 
+        rating: review.rating 
+      })); 
+    } else { 
+      reviewsData = [
+        { nombre: "Martín", texto: "Excelente trabajo. La tienda online que me hicieron es increíble.", rating: 5 }, 
+        { nombre: "Laura G.", texto: "Muy contenta con el desarrollo de mi web institucional.", rating: 5 }, 
+        { nombre: "Carlos D.", texto: "El sistema de pedidos por WhatsApp transformó mi negocio.", rating: 4 },
+        { nombre: "Sofía R.", texto: "Rápidos, eficientes y con mucha calidad. 100% recomendados.", rating: 5 },
+        { nombre: "Javier M.", texto: "Entendieron perfectamente lo que necesitaba y lo ejecutaron a la perfección.", rating: 5 }
+      ]; 
+    }
   } catch(e) { console.error(e); }
   renderReviews();
+  startReviewsAutoPlay();
+  setupReviewsHover();
 }
 
 function renderReviews() {
   const track = document.getElementById("reviewsTrack");
+  const progress = document.getElementById("reviewsProgress");
   if (!track) return;
-  if (reviewsData.length === 0) { track.innerHTML = '<div class="review-card" style="width:100%; text-align:center;">No hay reseñas aún. ¡Sé el primero en dejar tu opinión!</div>'; return; }
-  const starsMap = (r) => { let s = ''; for (let i=1;i<=5;i++) s += `<svg viewBox="0 0 24 24" fill="${i<=r?'#f5b042':'#4a4a6a'}" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`; return s; };
-  track.innerHTML = reviewsData.map(r => `<div class="review-card"><div class="review-stars">${starsMap(r.rating)}</div><div class="review-text">"${escapeHtml(r.texto)}"</div><div class="review-author">— ${escapeHtml(r.nombre)}</div></div>`).join('');
+  
+  if (reviewsData.length === 0) { 
+    track.innerHTML = '<div class="review-card" style="width:100%; text-align:center;">No hay reseñas aún. ¡Sé el primero en dejar tu opinión!</div>'; 
+    if (progress) progress.innerHTML = '';
+    return; 
+  }
+  
+  const starsMap = (r) => { 
+    let s = ''; 
+    for (let i=1;i<=5;i++) s += `<svg viewBox="0 0 24 24" fill="${i<=r?'#f5b042':'#4a4a6a'}" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`; 
+    return s; 
+  };
+  
+  track.innerHTML = reviewsData.map(r => `
+    <div class="review-card">
+      <div class="review-stars">${starsMap(r.rating)}</div>
+      <div class="review-text">"${escapeHtml(r.texto)}"</div>
+      <div class="review-author">— ${escapeHtml(r.nombre)}</div>
+    </div>
+  `).join('');
+  
+  if (progress) {
+    const totalSlides = Math.ceil(reviewsData.length / reviewsPerPage);
+    progress.innerHTML = Array.from({ length: totalSlides }, (_, i) => 
+      `<span class="review-dot ${i === 0 ? 'active' : ''}" data-slide="${i}" aria-label="Ir a reseñas ${i+1}"></span>`
+    ).join('');
+    
+    progress.querySelectorAll('.review-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const slide = parseInt(dot.dataset.slide);
+        if (!isNaN(slide)) {
+          currentReviewIndex = slide;
+          updateReviewCarousel();
+          resetReviewsAutoPlay();
+        }
+      });
+    });
+  }
+  
   updateReviewCarousel();
 }
 
 function updateReviewCarousel() {
   const track = document.getElementById("reviewsTrack");
+  const dots = document.querySelectorAll('.review-dot');
   if (!track) return;
-  const cards = track.children;
-  const totalCards = cards.length;
-  const visibleCards = Math.min(reviewsPerPage, totalCards);
+  
+  const totalCards = reviewsData.length;
   if (totalCards === 0) return;
-  const cardWidth = cards[0]?.offsetWidth || 0;
+  
+  const cardWidth = track.children[0]?.offsetWidth || 0;
   const slideWidth = cardWidth + 24;
-  const maxIndex = Math.max(0, totalCards - visibleCards);
+  const maxIndex = Math.max(0, Math.ceil(totalCards / reviewsPerPage) - 1);
+  
   if (currentReviewIndex > maxIndex) currentReviewIndex = maxIndex;
-  track.style.transform = `translateX(-${currentReviewIndex * slideWidth}px)`;
+  
+  track.style.transform = `translateX(-${currentReviewIndex * (slideWidth * reviewsPerPage)}px)`;
+  
+  dots.forEach((dot, i) => {
+    if (i === currentReviewIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+  
   const prevBtn = document.getElementById("prevReviewBtn");
   const nextBtn = document.getElementById("nextReviewBtn");
   if (prevBtn) prevBtn.disabled = currentReviewIndex === 0;
   if (nextBtn) nextBtn.disabled = currentReviewIndex >= maxIndex;
 }
 
-document.getElementById("prevReviewBtn")?.addEventListener("click", () => { const track = document.getElementById("reviewsTrack"); const total = track?.children.length || 0; const visible = Math.min(reviewsPerPage, total); const maxIdx = Math.max(0, total - visible); if (currentReviewIndex > 0) { currentReviewIndex--; updateReviewCarousel(); } });
-document.getElementById("nextReviewBtn")?.addEventListener("click", () => { const track = document.getElementById("reviewsTrack"); const total = track?.children.length || 0; const visible = Math.min(reviewsPerPage, total); const maxIdx = Math.max(0, total - visible); if (currentReviewIndex < maxIdx) { currentReviewIndex++; updateReviewCarousel(); } });
-window.addEventListener('resize', () => updateReviewCarousel());
+function startReviewsAutoPlay() {
+  if (reviewsAutoPlayInterval) clearInterval(reviewsAutoPlayInterval);
+  if (reviewsData.length <= reviewsPerPage) return;
+  
+  reviewsAutoPlayInterval = setInterval(() => {
+    if (isReviewAutoPlayPaused) return;
+    const totalSlides = Math.ceil(reviewsData.length / reviewsPerPage);
+    currentReviewIndex = (currentReviewIndex + 1) % totalSlides;
+    updateReviewCarousel();
+  }, 5000);
+}
+
+function resetReviewsAutoPlay() {
+  if (reviewsAutoPlayInterval) {
+    clearInterval(reviewsAutoPlayInterval);
+    startReviewsAutoPlay();
+  }
+}
+
+function setupReviewsHover() {
+  const container = document.querySelector('.reviews-section');
+  if (!container) return;
+  
+  container.addEventListener('mouseenter', () => {
+    isReviewAutoPlayPaused = true;
+  });
+  container.addEventListener('mouseleave', () => {
+    isReviewAutoPlayPaused = false;
+  });
+}
+
+document.getElementById("prevReviewBtn")?.addEventListener("click", () => {
+  const totalSlides = Math.ceil(reviewsData.length / reviewsPerPage);
+  if (currentReviewIndex > 0) {
+    currentReviewIndex--;
+    updateReviewCarousel();
+    resetReviewsAutoPlay();
+  }
+});
+
+document.getElementById("nextReviewBtn")?.addEventListener("click", () => {
+  const totalSlides = Math.ceil(reviewsData.length / reviewsPerPage);
+  if (currentReviewIndex < totalSlides - 1) {
+    currentReviewIndex++;
+    updateReviewCarousel();
+    resetReviewsAutoPlay();
+  }
+});
+
+window.addEventListener('resize', () => {
+  updateReviewCarousel();
+});
 
 // ========== FAQ ==========
 async function loadFaqs() {
@@ -2734,23 +2850,42 @@ window.closeModal = function() {
   document.body.style.overflow = ""; 
 }
 
+// ===== FUNCIONES PARA EL PORTFOLIO =====
 function renderFeatured() {
-  const featuredProjects = projectsData.filter(p => p.featured === true);
-  const featuredSection = document.getElementById("featuredSection");
+  const featuredProjects = projectsData.filter(p => p.featured === true).slice(0, 3);
   const featuredGrid = document.getElementById("featuredGrid");
-  if (!featuredSection || !featuredGrid) return;
-  if (featuredProjects.length === 0) { featuredSection.style.display = "none"; return; }
-  featuredSection.style.display = "block";
-  featuredGrid.innerHTML = featuredProjects.slice(0, 6).map(p => `
-    <div class="featuredCard" data-project='${JSON.stringify(p)}'>
-      <img class="featuredCard__image" src="${esc(p.image_url)}" alt="${esc(p.title)}" loading="lazy" width="400" height="225" />
-      <div class="featuredCard__content">
-        <div class="featuredCard__cat">${esc(p.categories?.name || "Destacado")}</div>
-        <div class="featuredCard__title">${esc(p.title)}</div>
-        <div class="featuredCard__desc">${esc(p.short_description || "").substring(0, 80)}${(p.short_description || "").length > 80 ? '...' : ''}</div>
+  if (!featuredGrid) return;
+  
+  if (featuredProjects.length === 0) {
+    // Si no hay destacados, mostrar los 3 más recientes
+    const recentProjects = projectsData.slice(0, 3);
+    if (recentProjects.length === 0) {
+      featuredGrid.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:var(--text2); padding:2rem;">Cargando proyectos...</div>';
+      return;
+    }
+    featuredGrid.innerHTML = recentProjects.map(p => `
+      <div class="featuredCard" data-project='${JSON.stringify(p)}'>
+        <img class="featuredCard__image" src="${esc(p.image_url)}" alt="${esc(p.title)}" loading="lazy" width="400" height="225" />
+        <div class="featuredCard__content">
+          <div class="featuredCard__cat">${esc(p.categories?.name || "Proyecto")}</div>
+          <div class="featuredCard__title">${esc(p.title)}</div>
+          <div class="featuredCard__desc">${esc(p.short_description || "").substring(0, 80)}${(p.short_description || "").length > 80 ? '...' : ''}</div>
+        </div>
       </div>
-    </div>
-  `).join("");
+    `).join('');
+  } else {
+    featuredGrid.innerHTML = featuredProjects.map(p => `
+      <div class="featuredCard" data-project='${JSON.stringify(p)}'>
+        <img class="featuredCard__image" src="${esc(p.image_url)}" alt="${esc(p.title)}" loading="lazy" width="400" height="225" />
+        <div class="featuredCard__content">
+          <div class="featuredCard__cat">${esc(p.categories?.name || "Destacado")}</div>
+          <div class="featuredCard__title">${esc(p.title)}</div>
+          <div class="featuredCard__desc">${esc(p.short_description || "").substring(0, 80)}${(p.short_description || "").length > 80 ? '...' : ''}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+  
   document.querySelectorAll(".featuredCard").forEach(card => { 
     const project = JSON.parse(card.getAttribute("data-project")); 
     card.addEventListener("click", () => openModal(project)); 
@@ -2812,6 +2947,38 @@ function renderPagination(totalPages) {
 
 function resetPagination() { currentPage = 1; renderProjects(); }
 
+// ===== BOTÓN "VER PORTFOLIO COMPLETO" =====
+document.getElementById("verPortfolioBtn")?.addEventListener("click", function() {
+  const portfolioFull = document.getElementById("portfolioFull");
+  if (portfolioFull) {
+    portfolioFull.classList.toggle("visible");
+    if (portfolioFull.classList.contains("visible")) {
+      this.textContent = "Ocultar portfolio completo ↑";
+      // Esperar a que se renderice y luego cargar los proyectos si no están cargados
+      setTimeout(() => {
+        if (projectsData.length > 0) {
+          buildFilters();
+          resetPagination();
+          // Mostrar skeletons y luego proyectos
+          const skeleton = document.getElementById("skeletonContainer");
+          const projectsGrid = document.getElementById("projectsGrid");
+          if (skeleton) skeleton.style.display = "grid";
+          if (projectsGrid) projectsGrid.style.display = "none";
+          setTimeout(() => {
+            if (skeleton) skeleton.style.display = "none";
+            if (projectsGrid) projectsGrid.style.display = "grid";
+            renderProjects();
+          }, 500);
+        }
+        // Scroll suave hacia la sección completa
+        portfolioFull.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    } else {
+      this.textContent = "Ver portfolio completo →";
+    }
+  }
+});
+
 async function loadProjects() {
   const skeleton = document.getElementById("skeletonContainer");
   const projectsGrid = document.getElementById("projectsGrid");
@@ -2827,7 +2994,12 @@ async function loadProjects() {
     const { data: cats } = await sb.from("categories").select("*").eq("active", true);
     if (cats) allCategories = cats;
     document.getElementById("statProjects").textContent = projectsData.length;
-    renderFeatured(); buildFilters(); resetPagination();
+    renderFeatured();
+    buildFilters();
+    // Cargar proyectos completos solo si la sección ya está visible
+    if (document.getElementById("portfolioFull").classList.contains("visible")) {
+      resetPagination();
+    }
     if (skeleton) skeleton.style.display = "none";
     if (projectsGrid) projectsGrid.style.display = "grid";
     if (!countersStarted && projectsData.length) { countersStarted = true; animateCounter(document.getElementById("statProjects"), projectsData.length, '+'); animateCounter(document.getElementById("statHours"), 24, 'hs'); animateCounter(document.getElementById("statCode"), 100, '%'); }
@@ -2914,12 +3086,10 @@ loadBannersCarousel();
 loadProjects();
 loadFaqs();
 loadReviews();
-loadBrands();
+loadBrandsTicker();
 loadSuccessStories();
 setupWhatsAppVisibility();
 
-// ========== CONFIGURAR ROBOT TRAS CARGAR PROYECTOS ==========
-// Esperar a que los proyectos se carguen y luego configurar el robot
 setTimeout(() => {
   setupRobotTrigger();
 }, 1500);
