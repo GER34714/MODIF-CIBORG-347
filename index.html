@@ -1062,16 +1062,6 @@
       .banner-carousel-prev, .banner-carousel-next { width: 32px; height: 32px; font-size: 1rem; }
     }
 
-    /* CÓMO TRABAJAMOS */
-    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-    .process-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:1.7rem; transition:all .3s ease; }
-    .process-card:hover { transform:translateY(-5px); border-color:var(--cyan); box-shadow:0 0 18px rgba(0,212,255,.16); }
-    .process-card span { display:inline-flex; width:42px; height:42px; align-items:center; justify-content:center; border-radius:12px; background:rgba(0,212,255,.12); color:var(--cyan); font-family:'JetBrains Mono',monospace; font-weight:600; margin-bottom:1rem; }
-    .process-card h3 { font-family:'Syne',sans-serif; color:var(--white); margin-bottom:.65rem; font-size:1.05rem; }
-    .process-card p { color:var(--text2); font-size:.86rem; line-height:1.6; }
-    @media (max-width:900px){ .process-grid{grid-template-columns:repeat(2,1fr);} }
-    @media (max-width:600px){ .process-grid{grid-template-columns:1fr;} }
-
     /* FAQ */
     .faqGrid {
       display: grid;
@@ -1601,10 +1591,11 @@
       <div class="brand__text"><strong>CIBORG 347</strong><span>DESARROLLO WEB</span></div>
     </a>
     <nav class="nav">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#casos-exito">Resultados</a>
+      <a href="#resenas">Testimonios</a>
       <a href="#servicios">Servicios</a>
       <a href="#portfolio">Proyectos</a>
-      <a href="#proceso">Cómo trabajamos</a>
-      <a href="#resenas">Opiniones</a>
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
       <a href="quienes-somos.html">Quiénes somos</a>
@@ -1641,7 +1632,7 @@
   <div class="wrap">
     <div class="hero__copy fade-in-left">
       <h1 class="typewriter" id="typewriterTitle"></h1>
-      <p style="margin-top: 1rem;">Creamos páginas web, tiendas online y sistemas a medida para que tu negocio pueda mostrar lo que hace, recibir consultas y vender desde cualquier dispositivo.</p>
+      <p style="margin-top: 1rem;">Creamos webs, tiendas online y sistemas a medida para que tu negocio pueda mostrar, vender y recibir consultas desde cualquier dispositivo.</p>
       <div class="hero__actions">
         <a href="#contacto" class="btn btn--primary" data-cta="hero-primary">Pedí tu presupuesto gratis →</a>
         <a href="#portfolio" class="btn btn--ghost" data-cta="hero-portfolio">Ver proyectos</a>
@@ -1656,15 +1647,6 @@
   </div>
 </section>
 
-<!-- TECNOLOGÍAS -->
-<div class="tech-strip" aria-label="Tecnologías que utilizamos">
-  <div class="tech-track">
-    <span>HTML</span> · <span>CSS</span> · <span>JavaScript</span> · <span>React</span> · <span>Vue</span> · <span>Angular</span> · <span>Node.js</span> · <span>Python</span> · <span>PHP</span> · <span>Supabase</span> · <span>Firebase</span> · <span>GitHub</span> · <span>GitLab</span> · <span>Render</span> · <span>Vercel</span> · <span>Netlify</span> · <span>Docker</span> · <span>MySQL</span> · <span>PostgreSQL</span> · <span>MongoDB</span> · <span>Tailwind</span> · <span>Bootstrap</span> · <span>Figma</span> · <span>VS Code</span> · <span>TypeScript</span> · <span>Next.js</span> · <span>Astro</span> · <span>Svelte</span> · <span>Flask</span> · <span>Django</span>
-    <span>HTML</span> · <span>CSS</span> · <span>JavaScript</span> · <span>React</span> · <span>Vue</span> · <span>Angular</span> · <span>Node.js</span> · <span>Python</span> · <span>PHP</span> · <span>Supabase</span> · <span>Firebase</span> · <span>GitHub</span> · <span>GitLab</span> · <span>Render</span> · <span>Vercel</span> · <span>Netlify</span> · <span>Docker</span> · <span>MySQL</span> · <span>PostgreSQL</span> · <span>MongoDB</span> · <span>Tailwind</span> · <span>Bootstrap</span> · <span>Figma</span> · <span>VS Code</span> · <span>TypeScript</span> · <span>Next.js</span> · <span>Astro</span> · <span>Svelte</span> · <span>Flask</span> · <span>Django</span>
-  </div>
-</div>
-
-<!-- ========== 7. MARCAS QUE CONFÍAN ========== -->
 <section class="section" id="marcas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1682,7 +1664,6 @@
   </div>
 </section>
 
-<!-- ========== 5. SERVICIOS ========== -->
 <section class="section" id="servicios">
   <div class="wrap">
     <div class="section__head fade-in-left">
@@ -1698,7 +1679,6 @@
   </div>
 </section>
 
-<!-- ========== 2. BENEFICIOS (AHORA ARRIBA) ========== -->
 <section class="section" id="beneficios">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1715,7 +1695,24 @@
   </div>
 </section>
 
-<!-- ========== 6. PORTAFOLIO ========== -->
+<section class="section" id="banners">
+  <div class="wrap">
+    <div class="section__head center fade-in-up">
+      <span class="section__label">Promociones</span>
+      <h2>Ofertas <em>especiales</em></h2>
+      <p>Aprovechá nuestras promociones por tiempo limitado</p>
+    </div>
+    <div class="banner-carousel-wrapper">
+      <div class="banner-carousel-container" id="bannerCarouselContainer">
+        <div class="banner-carousel-slides" id="bannerCarouselSlides"></div>
+      </div>
+      <button class="banner-carousel-prev" id="bannerCarouselPrev" aria-label="Banner anterior">❮</button>
+      <button class="banner-carousel-next" id="bannerCarouselNext" aria-label="Banner siguiente">❯</button>
+      <div class="banner-carousel-dots" id="bannerCarouselDots"></div>
+    </div>
+  </div>
+</section>
+
 <section class="section section--alt" id="portfolio">
   <div class="wrap">
     <div class="section__head fade-in-right">
@@ -1758,24 +1755,6 @@
   </div>
 </section>
 
-<!-- ========== CÓMO TRABAJAMOS ========== -->
-<section class="section section--alt" id="proceso">
-  <div class="wrap">
-    <div class="section__head center fade-in-up">
-      <span class="section__label">Proceso simple</span>
-      <h2>Así llevamos tu idea a <em>la realidad</em></h2>
-      <p>Te acompañamos desde la primera idea hasta tener tu proyecto listo para usar.</p>
-    </div>
-    <div class="process-grid">
-      <article class="process-card fade-in-up"><span>01</span><h3>Nos contás tu idea</h3><p>Analizamos tu negocio, qué necesitás y cuál es el mejor camino para empezar.</p></article>
-      <article class="process-card fade-in-up"><span>02</span><h3>Definimos la solución</h3><p>Organizamos funcionalidades, contenido y objetivos para construir algo que tenga sentido para tu negocio.</p></article>
-      <article class="process-card fade-in-up"><span>03</span><h3>Diseñamos y desarrollamos</h3><p>Convertimos la idea en una experiencia digital profesional, adaptable a todos los dispositivos.</p></article>
-      <article class="process-card fade-in-up"><span>04</span><h3>Publicamos y acompañamos</h3><p>Dejamos tu proyecto listo para usar y seguimos acompañándote según las necesidades acordadas.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 3. CASOS DE ÉXITO (AHORA ARRIBA) ========== -->
 <section class="section" id="casos-exito">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1791,7 +1770,6 @@
   </div>
 </section>
 
-<!-- ========== 4. TESTIMONIOS (AHORA ARRIBA) ========== -->
 <section class="section section--alt" id="resenas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1815,26 +1793,6 @@
   </div>
 </section>
 
-<!-- ========== 9. BANNERS / OFERTAS (AHORA DESPUÉS DEL CTA) ========== -->
-<section class="section" id="banners">
-  <div class="wrap">
-    <div class="section__head center fade-in-up">
-      <span class="section__label">Promociones</span>
-      <h2>Ofertas <em>especiales</em></h2>
-      <p>Aprovechá nuestras promociones por tiempo limitado</p>
-    </div>
-    <div class="banner-carousel-wrapper">
-      <div class="banner-carousel-container" id="bannerCarouselContainer">
-        <div class="banner-carousel-slides" id="bannerCarouselSlides"></div>
-      </div>
-      <button class="banner-carousel-prev" id="bannerCarouselPrev" aria-label="Banner anterior">❮</button>
-      <button class="banner-carousel-next" id="bannerCarouselNext" aria-label="Banner siguiente">❯</button>
-      <div class="banner-carousel-dots" id="bannerCarouselDots"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 8. CTA INTERMEDIO ========== -->
 <section class="conversion-cta" id="cta-intermedio">
   <div class="wrap">
     <div class="conversion-cta__inner">
@@ -1849,7 +1807,6 @@
   </div>
 </section>
 
-<!-- ========== 10. FAQ ========== -->
 <section class="section" id="faq">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1861,7 +1818,6 @@
   </div>
 </section>
 
-<!-- ========== 11. CONTACTO ========== -->
 <section class="section" id="contacto">
   <div class="wrap">
     <div class="section__head center fade-in-up">
@@ -1899,7 +1855,6 @@
   </div>
 </section>
 
-<!-- ========== 12. OPINIÓN ========== -->
 <section class="section section--alt" id="opinion">
   <div class="wrap">
     <div class="section__head center fade-in-up">
