@@ -1448,11 +1448,12 @@
       <div class="brand__text"><strong>CIBORG 347</strong><span>DESARROLLO WEB</span></div>
     </a>
     <nav class="nav">
-      <a href="#portfolio">Portfolio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#casos-exito">Casos de éxito</a>
+      <a href="#beneficios">Beneficios</a>
       <a href="#marcas">Marcas</a>
-      <a href="beneficios.html">Beneficios</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#casos-exito">Casos de éxito</a>
+      <a href="#banners">Promociones</a>
+      <a href="#servicios">Servicios</a>
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
       <a href="quienes-somos.html">Quiénes somos</a>
@@ -1464,11 +1465,12 @@
   </div>
 </header>
 <nav class="mobileMenu" id="mobileMenu">
-  <a href="#portfolio">Portfolio</a>
-  <a href="#servicios">Servicios</a>
-  <a href="#casos-exito">Casos de éxito</a>
+  <a href="#beneficios">Beneficios</a>
   <a href="#marcas">Marcas</a>
-  <a href="beneficios.html">Beneficios</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#casos-exito">Casos de éxito</a>
+  <a href="#banners">Promociones</a>
+  <a href="#servicios">Servicios</a>
   <a href="#faq">FAQ</a>
   <a href="#contacto">Contacto</a>
   <a href="quienes-somos.html">Quiénes somos</a>
@@ -1528,8 +1530,26 @@
   </div>
 </section>
 
-<!-- ========== 4. PORTFOLIO ========== -->
-<section class="section section--alt" id="portfolio">
+<!-- ========== 4. MARCAS QUE CONFÍAN ========== -->
+<section class="section section--alt" id="marcas">
+  <div class="wrap">
+    <div class="section__head center fade-in-up">
+      <span class="section__label">Confían en nosotros</span>
+      <h2>Marcas que <em>nos eligen</em></h2>
+      <p>Empresas y emprendedores que confiaron en Ciborg 347</p>
+    </div>
+    <div class="brands-section">
+      <div class="brands-carousel-container" id="brandsCarouselContainer">
+        <button class="brands-carousel-btn prev" id="brandsPrevBtn" aria-label="Marcas anteriores">‹</button>
+        <div class="brands-carousel" id="brandsCarousel"></div>
+        <button class="brands-carousel-btn next" id="brandsNextBtn" aria-label="Marcas siguientes">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5. PORTFOLIO ========== -->
+<section class="section" id="portfolio">
   <div class="wrap">
     <div class="section__head fade-in-right">
       <span class="section__label">Portafolio</span>
@@ -1571,8 +1591,8 @@
   </div>
 </section>
 
-<!-- ========== 5. CASOS DE ÉXITO ========== -->
-<section class="section" id="casos-exito">
+<!-- ========== 6. CASOS DE ÉXITO ========== -->
+<section class="section section--alt" id="casos-exito">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Casos de éxito</span>
@@ -1587,8 +1607,8 @@
   </div>
 </section>
 
-<!-- ========== 6. TESTIMONIOS ========== -->
-<section class="section section--alt" id="resenas">
+<!-- ========== 7. TESTIMONIOS ========== -->
+<section class="section" id="resenas">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Testimonios</span>
@@ -1611,42 +1631,8 @@
   </div>
 </section>
 
-<!-- ========== 7. SERVICIOS (con precios) ========== -->
-<section class="section" id="servicios">
-  <div class="wrap">
-    <div class="section__head fade-in-left">
-      <span class="section__label">Qué construimos</span>
-      <h2>Soluciones <em>a medida</em></h2>
-      <p>Elegí el servicio que necesitas y te lo personalizamos al 100%.</p>
-    </div>
-    <div class="servicesGrid" id="servicesGrid">
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 8. MARCAS QUE CONFÍAN ========== -->
-<section class="section" id="marcas">
-  <div class="wrap">
-    <div class="section__head center fade-in-up">
-      <span class="section__label">Confían en nosotros</span>
-      <h2>Marcas que <em>nos eligen</em></h2>
-      <p>Empresas y emprendedores que confiaron en Ciborg 347</p>
-    </div>
-    <div class="brands-section">
-      <div class="brands-carousel-container" id="brandsCarouselContainer">
-        <button class="brands-carousel-btn prev" id="brandsPrevBtn" aria-label="Marcas anteriores">‹</button>
-        <div class="brands-carousel" id="brandsCarousel"></div>
-        <button class="brands-carousel-btn next" id="brandsNextBtn" aria-label="Marcas siguientes">›</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 9. BANNERS PROMOCIONALES ========== -->
-<section class="section" id="banners">
+<!-- ========== 8. BANNERS PROMOCIONALES ========== -->
+<section class="section section--alt" id="banners">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Promociones</span>
@@ -1664,8 +1650,24 @@
   </div>
 </section>
 
+<!-- ========== 9. SERVICIOS ========== -->
+<section class="section" id="servicios">
+  <div class="wrap">
+    <div class="section__head fade-in-left">
+      <span class="section__label">Qué construimos</span>
+      <h2>Soluciones <em>a medida</em></h2>
+      <p>Elegí el servicio que necesitas y te lo personalizamos al 100%.</p>
+    </div>
+    <div class="servicesGrid" id="servicesGrid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== 10. FAQ ========== -->
-<section class="section" id="faq">
+<section class="section section--alt" id="faq">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">FAQ</span>
@@ -1676,7 +1678,7 @@
 </section>
 
 <!-- ========== 11. DEJANOS TU OPINIÓN ========== -->
-<section class="section section--alt" id="opinion">
+<section class="section" id="opinion">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Tu opinión importa</span>
@@ -1709,7 +1711,7 @@
 </section>
 
 <!-- ========== 12. CONTACTO ========== -->
-<section class="section" id="contacto">
+<section class="section section--alt" id="contacto">
   <div class="wrap">
     <div class="section__head center fade-in-up">
       <span class="section__label">Contacto</span>
@@ -1743,11 +1745,12 @@
         <div><strong>CIBORG 347</strong><span>Desarrollo Web</span></div>
       </div>
       <div class="footer__links">
-        <a href="#portfolio">Proyectos</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#casos-exito">Casos de éxito</a>
+        <a href="#beneficios">Beneficios</a>
         <a href="#marcas">Marcas</a>
-        <a href="beneficios.html">Beneficios</a>
+        <a href="#portfolio">Proyectos</a>
+        <a href="#casos-exito">Casos de éxito</a>
+        <a href="#banners">Promociones</a>
+        <a href="#servicios">Servicios</a>
         <a href="#faq">FAQ</a>
         <a href="#contacto">Contacto</a>
         <a href="quienes-somos.html">Quiénes somos</a>
@@ -1811,7 +1814,7 @@ function getPrecioMostrar(service) {
   return precioRaw;
 }
 
-// ========== FUNCIÓN PARA CARGAR SERVICIOS (sección principal) ==========
+// ========== FUNCIÓN PARA CARGAR SERVICIOS ==========
 async function loadServicesReal() {
   const container = document.getElementById('servicesGrid');
   if (!container) return;
@@ -2289,12 +2292,6 @@ function enlargeRobot() {
     robotBtn.classList.remove('enlarged');
     robotBtn.classList.add('shrink');
   }, 5000);
-}
-
-function shrinkRobotPermanent() {
-  robotBtn.classList.remove('enlarged');
-  robotBtn.classList.add('shrink');
-  if (robotEnlargeTimeout) clearTimeout(robotEnlargeTimeout);
 }
 
 if (robotBtn) {
