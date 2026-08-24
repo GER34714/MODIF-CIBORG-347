@@ -3059,9 +3059,15 @@ let activeFilter = "all";
 let currentSearch = "";
 let currentSort = "recent";
 let currentPage = 1;
-const PROJECTS_PER_PAGE = 9;
+const PROJECTS_PER_PAGE_DESKTOP = 9;
+const PROJECTS_PER_PAGE_MOBILE = 3;
 let filteredProjectsCache = [];
 let countersStarted = false;
+
+// Función para determinar cuántos proyectos mostrar por página según el ancho de pantalla
+function getProjectsPerPage() {
+  return window.innerWidth <= 600 ? PROJECTS_PER_PAGE_MOBILE : PROJECTS_PER_PAGE_DESKTOP;
+}
 
 function esc(s) { return String(s ?? "").replace(/[&<>]/g, function(m) { return m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'; }); }
 function getWA() { return DEFAULT_WA; }
@@ -3284,9 +3290,10 @@ function getFilteredAndSortedProjects(excludeFeatured = true) {
 function renderProjects() {
   const filtered = getFilteredAndSortedProjects(true);
   filteredProjectsCache = filtered;
-  const totalPages = Math.ceil(filtered.length / PROJECTS_PER_PAGE);
-  const start = (currentPage - 1) * PROJECTS_PER_PAGE;
-  const projectsToShow = filtered.slice(start, start + PROJECTS_PER_PAGE);
+  const perPage = getProjectsPerPage();
+  const totalPages = Math.ceil(filtered.length / perPage);
+  const start = (currentPage - 1) * perPage;
+  const projectsToShow = filtered.slice(start, start + perPage);
   const grid = document.getElementById("projectsGrid");
   if (!filtered.length) { grid.innerHTML = '<div style="padding:2rem; text-align:center; color:var(--text2);">No hay proyectos en esta categoría.</div>'; document.getElementById("paginationContainer").style.display = "none"; return; }
   const sevenDaysAgo = new Date(); sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
@@ -3309,7 +3316,10 @@ function renderPagination(totalPages) {
   if (endPage - startPage + 1 < 5 && startPage > 1) startPage = Math.max(1, endPage - 4);
   for (let i = startPage; i <= endPage; i++) pagesHTML += `<button class="page-number ${i === currentPage ? 'active' : ''}" data-page="${i}" aria-label="Página ${i}">${i}</button>`;
   pagesDiv.innerHTML = pagesHTML;
-  infoDiv.textContent = `Mostrando ${(currentPage-1)*PROJECTS_PER_PAGE+1} - ${Math.min(currentPage*PROJECTS_PER_PAGE, filteredProjectsCache.length)} de ${filteredProjectsCache.length} proyectos`;
+  const perPage = getProjectsPerPage();
+  const startCount = (currentPage - 1) * perPage + 1;
+  const endCount = Math.min(currentPage * perPage, filteredProjectsCache.length);
+  infoDiv.textContent = `Mostrando ${startCount} - ${endCount} de ${filteredProjectsCache.length} proyectos`;
   const grid = document.getElementById('projectsGrid');
   const scrollToGrid = () => { if (grid) { window.scrollTo({ top: grid.getBoundingClientRect().top + window.scrollY - 20, behavior: "smooth" }); } };
   const newPrevHandler = () => { if (currentPage > 1) { currentPage--; renderProjects(); setTimeout(scrollToGrid, 100); } };
@@ -3429,6 +3439,14 @@ if (footerLogo) footerLogo.addEventListener('dblclick', () => window.location.hr
 
 document.getElementById("searchInput")?.addEventListener("input", e => { currentSearch = e.target.value; resetPagination(); });
 document.getElementById("sortSelect")?.addEventListener("change", e => { currentSort = e.target.value; resetPagination(); });
+
+// Escuchar cambios de tamaño para actualizar la paginación
+window.addEventListener('resize', () => {
+  if (document.getElementById("portfolioFull").classList.contains("visible")) {
+    renderProjects();
+  }
+});
+
 document.getElementById("reviewForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
   const nombre = document.getElementById("reviewNombre")?.value.trim();
