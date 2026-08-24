@@ -1332,9 +1332,19 @@
       transition: all 0.3s ease;
       opacity: 0;
       visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease;
     }
-    .robot-help.show { opacity: 1; visibility: visible; }
-    .robot-help.hide-robot { opacity: 0; visibility: hidden; }
+    .robot-help.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .robot-help.hide-robot {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+    }
     .robot-help .robot-img { width: 55px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .robot-help.enlarged .robot-img { width: 130px; }
     .robot-help:hover .robot-img { width: 130px !important; }
@@ -1477,7 +1487,7 @@
   <a href="#" class="btn btn--wa" id="mobileWhatsAppBtn">WhatsApp</a>
 </nav>
 
-<!-- ===== ROBOT FLOTANTE ===== -->
+<!-- ===== ROBOT FLOTANTE (OCULTO INICIALMENTE) ===== -->
 <div class="robot-help" id="robotHelpBtn" aria-label="Asistente virtual">
   <div class="robot-container">
     <div class="robot-bubble" id="robotBubble">🤖 Hola, ¿necesitas ayuda?</div>
@@ -2275,14 +2285,16 @@ function escapeHtml(str) {
   });
 }
 
-// ===== ROBOT FLOTANTE =====
+// ===== ROBOT FLOTANTE - APARECE EN LA MITAD DEL CATÁLOGO =====
 const robotBtn = document.getElementById('robotHelpBtn');
 const robotImg = document.getElementById('robotImg');
 const robotBubble = document.getElementById('robotBubble');
 let robotEnlargeTimeout = null;
+let robotAppeared = false;
 
-robotBtn.classList.remove('enlarged');
-robotBtn.classList.add('shrink');
+// Ocultar robot inicialmente
+robotBtn.classList.remove('show', 'enlarged');
+robotBtn.classList.add('hide-robot');
 
 function enlargeRobot() {
   robotBtn.classList.add('enlarged');
@@ -2302,136 +2314,180 @@ if (robotBtn) {
   });
 }
 
-const IMG1 = "https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/8f4b1793-1886-4dee-9445-b9570c2047ea.png";
-const IMG2 = "https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/a586d88b-93c0-4fac-b28d-4f5758af46f0.png";
-const IMG3 = "https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/ciborg%20sentado%20.png";
-
-let sequenceTimeout = null;
-let vibrationInterval = null;
-let isInSequence = false;
-let currentStep = 1;
-let isRobotHiddenByFooter = false;
-let shrinkTimeout = null;
-let bubbleTimeout = null;
-
-function hideBubble() {
-  robotBtn.classList.remove('bubble-visible');
-  if (bubbleTimeout) clearTimeout(bubbleTimeout);
-  bubbleTimeout = null;
-}
-
-function showTemporaryBubble() {
-  robotBtn.classList.add('bubble-visible');
-  if (bubbleTimeout) clearTimeout(bubbleTimeout);
-  bubbleTimeout = setTimeout(() => hideBubble(), 2000);
-}
-
-function startSequence() {
-  if (sequenceTimeout) clearTimeout(sequenceTimeout);
-  if (vibrationInterval) clearInterval(vibrationInterval);
-  if (shrinkTimeout) clearTimeout(shrinkTimeout);
+// ===== DETECTAR CUANDO EL USUARIO LLEGA A LA MITAD DEL PORTFOLIO =====
+function setupRobotTrigger() {
+  const portfolioSection = document.getElementById('portfolio');
+  const footer = document.querySelector('footer');
   
-  robotBtn.classList.remove('enlarged');
-  robotBtn.classList.add('shrink');
-  isInSequence = true;
-  currentStep = 1;
+  if (!portfolioSection) return;
   
-  robotImg.src = IMG1;
-  robotBubble.textContent = "🤖 Hola, ¿necesitas ayuda?";
-  robotBtn.classList.add('bubble-visible');
-  robotBtn.classList.add('neon-pulse');
+  // Crear un punto de activación en la mitad del portfolio
+  const triggerPoint = document.createElement('div');
+  triggerPoint.id = 'robot-trigger-point';
+  triggerPoint.style.position = 'relative';
+  triggerPoint.style.width = '1px';
+  triggerPoint.style.height = '1px';
+  triggerPoint.style.pointerEvents = 'none';
+  triggerPoint.style.opacity = '0';
   
-  sequenceTimeout = setTimeout(() => {
-    if (!isInSequence) return;
-    robotImg.src = IMG2;
-    robotBubble.textContent = "💙 Cualquier duda o consulta, aquí estaré";
+  // Insertar el trigger en el 50% del portfolio
+  const portfolioHeight = portfolioSection.offsetHeight || 2000;
+  const mitad = portfolioHeight * 0.5;
+  
+  // Buscar el contenedor de proyectos para insertar el trigger
+  const projectsGrid = document.getElementById('projectsGrid');
+  const featuredSection = document.getElementById('featuredSection');
+  
+  // Insertar después de los proyectos destacados o en la mitad
+  if (featuredSection && featuredSection.style.display !== 'none') {
+    featuredSection.after(triggerPoint);
+  } else if (projectsGrid) {
+    projectsGrid.before(triggerPoint);
+  } else {
+    portfolioSection.querySelector('.wrap')?.appendChild(triggerPoint);
+  }
+  
+  const IMG1 = "https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/8f4b1793-1886-4dee-9445-b9570c2047ea.png";
+  const IMG2 = "https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/a586d88b-93c0-4fac-b28d-4f5758af46f0.png";
+  const IMG3 = "https://fhxcumwhgtfirznnznjx.supabase.co/storage/v1/object/public/Imagenes/ciborg%20sentado%20.png";
+  
+  let sequenceTimeout = null;
+  let vibrationInterval = null;
+  let isInSequence = false;
+  let currentStep = 1;
+  let isRobotHiddenByFooter = false;
+  let shrinkTimeout = null;
+  let bubbleTimeout = null;
+  let robotVisible = false;
+
+  function hideBubble() {
+    robotBtn.classList.remove('bubble-visible');
+    if (bubbleTimeout) clearTimeout(bubbleTimeout);
+    bubbleTimeout = null;
+  }
+
+  function showTemporaryBubble() {
+    robotBtn.classList.add('bubble-visible');
+    if (bubbleTimeout) clearTimeout(bubbleTimeout);
+    bubbleTimeout = setTimeout(() => hideBubble(), 2000);
+  }
+
+  function startSequence() {
+    if (sequenceTimeout) clearTimeout(sequenceTimeout);
+    if (vibrationInterval) clearInterval(vibrationInterval);
+    if (shrinkTimeout) clearTimeout(shrinkTimeout);
+    
+    robotBtn.classList.remove('enlarged');
+    robotBtn.classList.add('shrink');
+    isInSequence = true;
+    currentStep = 1;
+    
+    robotImg.src = IMG1;
+    robotBubble.textContent = "🤖 Hola, ¿necesitas ayuda?";
+    robotBtn.classList.add('bubble-visible');
+    robotBtn.classList.add('neon-pulse');
     
     sequenceTimeout = setTimeout(() => {
       if (!isInSequence) return;
-      robotImg.src = IMG3;
-      robotBubble.textContent = "🤖 ¿Ayuda?";
-      isInSequence = false;
-      currentStep = 3;
-      sequenceTimeout = null;
+      robotImg.src = IMG2;
+      robotBubble.textContent = "💙 Cualquier duda o consulta, aquí estaré";
       
-      shrinkTimeout = setTimeout(() => {
-        robotBtn.classList.add('shrink');
-        robotBtn.classList.remove('enlarged');
-      }, 5000);
-      
-      vibrationInterval = setInterval(() => {
-        if (currentStep === 3 && robotBtn.classList.contains('show') && !isRobotHiddenByFooter) {
-          robotBtn.classList.add('vibrate');
-          showTemporaryBubble();
-          setTimeout(() => robotBtn.classList.remove('vibrate'), 300);
-        }
-      }, 20000);
-    }, 7000);
-  }, 6000);
-}
-
-function resetSequence() {
-  if (sequenceTimeout) clearTimeout(sequenceTimeout);
-  if (vibrationInterval) clearInterval(vibrationInterval);
-  if (shrinkTimeout) clearTimeout(shrinkTimeout);
-  startSequence();
-}
-
-function setupRobotScroll() {
-  const faqSection = document.getElementById('faq');
-  const footer = document.querySelector('footer');
-  if (!faqSection || !footer) return;
-  
-  const faqObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !isRobotHiddenByFooter) {
-        robotBtn.classList.add('show');
-        if (currentStep !== 3 && !isInSequence) {
-          startSequence();
-        } else if (currentStep === 3 && !isInSequence) {
-          robotImg.src = IMG3;
-          robotBtn.classList.add('neon-pulse');
-          if (!shrinkTimeout) {
-            shrinkTimeout = setTimeout(() => {
-              robotBtn.classList.add('shrink');
-              robotBtn.classList.remove('enlarged');
-            }, 5000);
+      sequenceTimeout = setTimeout(() => {
+        if (!isInSequence) return;
+        robotImg.src = IMG3;
+        robotBubble.textContent = "🤖 ¿Ayuda?";
+        isInSequence = false;
+        currentStep = 3;
+        sequenceTimeout = null;
+        
+        shrinkTimeout = setTimeout(() => {
+          robotBtn.classList.add('shrink');
+          robotBtn.classList.remove('enlarged');
+        }, 5000);
+        
+        vibrationInterval = setInterval(() => {
+          if (currentStep === 3 && robotVisible && !isRobotHiddenByFooter) {
+            robotBtn.classList.add('vibrate');
+            showTemporaryBubble();
+            setTimeout(() => robotBtn.classList.remove('vibrate'), 300);
           }
-          if (!vibrationInterval) {
-            vibrationInterval = setInterval(() => {
-              if (currentStep === 3 && robotBtn.classList.contains('show') && !isRobotHiddenByFooter) {
-                robotBtn.classList.add('vibrate');
-                showTemporaryBubble();
-                setTimeout(() => robotBtn.classList.remove('vibrate'), 300);
-              }
-            }, 20000);
-          }
-        }
-      }
-    });
-  }, { threshold: 0.3 });
-  faqObserver.observe(faqSection);
-  
-  const footerObserver = new IntersectionObserver((entries) => {
+        }, 20000);
+      }, 7000);
+    }, 6000);
+  }
+
+  function resetSequence() {
+    if (sequenceTimeout) clearTimeout(sequenceTimeout);
+    if (vibrationInterval) clearInterval(vibrationInterval);
+    if (shrinkTimeout) clearTimeout(shrinkTimeout);
+    startSequence();
+  }
+
+  // Observer para el trigger point
+  const triggerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        robotBtn.classList.remove('show');
-        robotBtn.classList.add('hide-robot');
-        isRobotHiddenByFooter = true;
-      } else {
+      if (entry.isIntersecting && !robotAppeared) {
+        robotAppeared = true;
         robotBtn.classList.remove('hide-robot');
-        isRobotHiddenByFooter = false;
-        const faqRect = faqSection.getBoundingClientRect();
-        if (faqRect.top < window.innerHeight && faqRect.bottom > 0) {
-          robotBtn.classList.add('show');
-        }
+        robotBtn.classList.add('show');
+        robotVisible = true;
+        startSequence();
+        console.log("🤖 Robot apareció en la mitad del catálogo");
       }
     });
   }, { threshold: 0.1 });
-  footerObserver.observe(footer);
-}
 
-setupRobotScroll();
+  triggerObserver.observe(triggerPoint);
+
+  // Observer para el footer (ocultar robot)
+  const footerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && robotVisible) {
+        robotBtn.classList.remove('show');
+        robotBtn.classList.add('hide-robot');
+        isRobotHiddenByFooter = true;
+        console.log("🤖 Robot ocultado por footer");
+      } else if (!entry.isIntersecting && robotVisible) {
+        robotBtn.classList.remove('hide-robot');
+        robotBtn.classList.add('show');
+        isRobotHiddenByFooter = false;
+      }
+    });
+  }, { threshold: 0.1 });
+
+  if (footer) {
+    footerObserver.observe(footer);
+  }
+
+  // Si el usuario vuelve a scrollear hacia arriba, el robot se oculta
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const heroSection = document.querySelector('.hero');
+    const heroBottom = heroSection ? heroSection.getBoundingClientRect().bottom + window.scrollY : 0;
+    
+    // Si el usuario está en el hero o muy arriba, ocultar robot
+    if (currentScrollY < heroBottom + 200 && robotVisible && !isRobotHiddenByFooter) {
+      robotBtn.classList.remove('show');
+      robotBtn.classList.add('hide-robot');
+      robotVisible = false;
+      // Reiniciar estado de secuencia
+      if (sequenceTimeout) clearTimeout(sequenceTimeout);
+      if (vibrationInterval) clearInterval(vibrationInterval);
+      if (shrinkTimeout) clearTimeout(shrinkTimeout);
+    } else if (currentScrollY > heroBottom + 300 && !robotVisible && robotAppeared && !isRobotHiddenByFooter) {
+      // Si el usuario scrollea hacia abajo de nuevo, mostrar robot
+      robotBtn.classList.remove('hide-robot');
+      robotBtn.classList.add('show');
+      robotVisible = true;
+      if (currentStep === 3) {
+        robotImg.src = IMG3;
+        startSequence();
+      }
+    }
+    lastScrollY = currentScrollY;
+  });
+}
 
 // ===== RESEÑAS =====
 let reviewsData = [];
@@ -2861,6 +2917,12 @@ loadReviews();
 loadBrands();
 loadSuccessStories();
 setupWhatsAppVisibility();
+
+// ========== CONFIGURAR ROBOT TRAS CARGAR PROYECTOS ==========
+// Esperar a que los proyectos se carguen y luego configurar el robot
+setTimeout(() => {
+  setupRobotTrigger();
+}, 1500);
 
 // ===== MATRIX CANVAS =====
 (function() {
